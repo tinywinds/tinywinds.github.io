@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          多语言多区域网站SEO的快速入门 - Tinywind | 佚名程序员
+        
+    </title>
+
+    <link rel="canonical" href="https://tsuixu.coding.me/multi-languages-site-seo.html">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#SEO" title="SEO">SEO</a>
+                            
+                        </div>
+                        <h1>多语言多区域网站SEO的快速入门</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Nathan on
+                            2018-12-12
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">佚名程序员</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">主页</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/about/">关于</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">标签列表</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">内容归档</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="International-SEO：多语言多区域网站SEO的快速入门指南"><a href="#International-SEO：多语言多区域网站SEO的快速入门指南" class="headerlink" title="International SEO：多语言多区域网站SEO的快速入门指南"></a>International SEO：多语言多区域网站SEO的快速入门指南</h1><p>随着经济全球化的不断发展，我们的用户受众不再仅仅是当地国家，多语言多区域的网站、平台越来越多。如果您有一个或多个以多种语言面向国际或不同国家、区域提供不同内容的门户网站，那您需要尽最大的努力扩大您的国际受众范围，确保网站在全球范围内被注意到。这时，您就需要国际SEO了。</p>
+<h2 id="1-什么是国际SEO"><a href="#1-什么是国际SEO" class="headerlink" title="1. 什么是国际SEO ?"></a>1. 什么是国际SEO ?</h2><p>首先，我来普及一下概念，</p>
+<ul>
+<li>国际SEO， International SEO （国际搜索引擎优化），是优化您的网站的过程，以便搜索引擎可以轻松识别您要定位的国家、地区以及用于业务的语言。</li>
+<li>多语言网站，是指使用多种语言提供内容的网站。例如，香港的企业向用户提供繁体中文和英文的网站。</li>
+<li>多区域网站，是指以不同国家、区域的用户为目标受众的网站。例如，某厂商，同时会向美国、加拿大、中国等多个国家发货商品。</li>
+</ul>
+<p>如下图，搜索引擎向不同地理区域的用户展示不同的语言、币种、计量单位的结果。搜索引擎会尝试向搜索用户提供与用户的语言、区域最匹配最恰当的网页版本，那么，我们如何告知用户和搜索引擎哪些才是最匹配的网页呢？</p>
+<p><img src="/multi-languages-site-seo/1.jpg" alt="img"></p>
+<h2 id="2-国际站点的URL结构"><a href="#2-国际站点的URL结构" class="headerlink" title="2. 国际站点的URL结构"></a>2. 国际站点的URL结构</h2><p>首先，先介绍多语言多区域国际站点一般的URL结构，国际站点一般有4中方式来向用户和搜索引擎指明当前页面所对应的国家、区域和语言。分别是ccTLD、子域名、子目录、具有语言、区域参数的gTLD 。</p>
+<ul>
+<li><p>ccTLD（国家顶级域 Country code top-level domain）</p>
+<p>ccTLD ，根据Google的定义，ccTLD使用双字母代码向用户和搜索引擎指明网站所在的国家、地区。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>地理位置定位明确（作用减弱）</li>
+<li>在目标用户的搜索结果页面中排名更高</li>
+<li>与服务器位置无关</li>
+<li>便于区分网站</li>
+<li>如果您拥有财务和技术资源，使用ccTLD可能是个好主意。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>您需要付出更多努力才能获得普及新域名，一起得从头开始。</li>
+<li>价格昂贵（并且可能存在使用限制，如需要备案、需要在本国存放服务器）</li>
+<li>需有更多基础架构</li>
+<li>全新网站，搜索引擎不会将页面权重从您的原始域名转移到此域名，网页需要重新索引。</li>
+</ul>
+<p>提示：Google搜索将不再使用域名来指示国家/地区服务。<a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.blog.google%2Fproducts%2Fsearch%2Fmaking-search-results-more-local-and-relevant%2F" target="_blank" rel="noopener">Making search results more local and relevant</a></p>
+<p>eg: <code>domain.cn</code></p>
+</li>
+<li><p>gTLD的子域名（gTLD，通用顶级域 Generic top-level domain）</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>允许使用不同的服务器位置</li>
+<li>便于区分网站</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>全新网站，不能继承主域权重</li>
+<li>本地化的优化过程更加复杂</li>
+</ul>
+<p>eg: <code>cn.domain.com</code></p>
+</li>
+<li><p>gTLD的子目录 — 国际化内容放置在根域下的特定子目录或文件夹中。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>维护成本用低</li>
+<li>易于设置</li>
+<li>见效快，更容易获得搜索引擎的新人，直接使用原网站权重，很快被索引</li>
+<li>这是资源有限的企业的最佳选择。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>提供弱的地理定位信号</li>
+<li>没有针对不同子目录的特定IP地址</li>
+<li>更难维护不同版本的国家/地区目录</li>
+<li>搜索引擎的处罚会影响到所有目录</li>
+</ul>
+<p>eg: <code>domain.com/cn</code></p>
+</li>
+</ul>
+<p><img src="/multi-languages-site-seo/2.jpg" alt="img"></p>
+<ul>
+<li><p>URL参数 （不推荐）</p>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>参数不可靠，有时它们会被编入索引，有时则不会。搜索引擎更喜欢唯一的URL</li>
+</ul>
+<p>eg: <code>domain.com/?lang=zh-cn</code></p>
+</li>
+</ul>
+<p>最好的国际站点的URL结构是什么，没有标准答案。只能说，每种方法都有一些优点和缺点，适合自己的就是最好的。</p>
+<h2 id="3-如何处理多语言多区域网站中的重复网页"><a href="#3-如何处理多语言多区域网站中的重复网页" class="headerlink" title="3. 如何处理多语言多区域网站中的重复网页"></a>3. 如何处理多语言多区域网站中的重复网页</h2><p>我们为多个国家提供同一种语言的内容，会造成重复页面而受到惩罚吗？答案是否定的。根据区域定位的本地化内容不是垃圾内容，有着正当的商业理由。</p>
+<ul>
+<li>如果您在同一个多区域网站的不同网址以同一种语言提供类似内容或重复内容（例如，如果 <code>example.de/</code> 和 <code>example.com/de/</code> 都显示类似的德语内容），则应使用 <code>rel=canonical</code>设定一个权威版本。</li>
+<li>使用hreflang标签。</li>
+<li>本地化关键字优化。</li>
+<li>添加本地信息，例如电话，货币，计量单位和地址等。</li>
+<li>本地化的HTML站点地图。</li>
+<li>本地化导航。</li>
+<li>与观众产生共鸣的本地化图像。</li>
+<li>专业的翻译、本地化的内容，而不是机器翻译。</li>
+<li>从本地ccTLD获取指向您本地化内容的外部链接。</li>
+</ul>
+<h2 id="4-使用语言标记确定您的网页所针对的语言"><a href="#4-使用语言标记确定您的网页所针对的语言" class="headerlink" title="4. 使用语言标记确定您的网页所针对的语言"></a>4. 使用语言标记确定您的网页所针对的语言</h2><p>国际SEO最大的问题之一就是重复页面，解决此问题的最有效方法是使用 <a href="https://link.juejin.im/?target=https%3A%2F%2Fmoz.com%2Flearn%2Fseo%2Fhreflang-tag" target="_blank" rel="noopener">hreflang</a>。这使得搜索引擎能够识别出应向特定用户展示的最匹配的网页版本。</p>
+<p>例如，您有一个英文网页面向多个国家，英国的搜索用户将搜索到对应 <code>hreflang=&quot;en-gb&quot;</code> 的网页，而美国的搜索用户将搜索到对应 <code>hreflang=&quot;en-us&quot;</code> 的网页。</p>
+<h3 id="（1）使用hreflang帮助搜索引擎识别网页版本"><a href="#（1）使用hreflang帮助搜索引擎识别网页版本" class="headerlink" title="（1）使用hreflang帮助搜索引擎识别网页版本"></a>（1）使用hreflang帮助搜索引擎识别网页版本</h3><p>将 <code>&lt;link rel=&quot;alternate&quot; hreflang=&quot;lang_code&quot;... /&gt;</code> 元素添加到网页标头中，以将网页的所有语言和区域变体告知搜索引擎。如果您没有站点地图或无法为您的网站指定 HTTP 响应标头，此方法非常有用。</p>
+<p>您应在 <code>&lt;head&gt;</code> 元素中为网页的每个变体分别添加一组 <code>&lt;link&gt;</code> 元素（由每个网页变体（包括网页自身）的链接组成）。网页的每个版本所对应的那组链接都应是相同的。</p>
+<p>以下是每个 <code>link</code> 元素的语法：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"alternate"</span> <span class="attribute">hreflang</span>=<span class="string">"lang_code"</span> <span class="attribute">href</span>=<span class="string">"url_of_page"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p><code>lang_code</code> 此网页版本所定位的受支持的语言/区域代码，或 <code>x-default</code>（以与该网页上的 <code>hreflang</code> 标记未明确列出的任何语言匹配）。</p>
+<p><code>url_of_page</code> 此网页版本的完全限定网址（与指定的语言/区域对应）。 示例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Widgets, Inc<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en-gb"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en-gb.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en-us"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en-us.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"de"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://de.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"x-default"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://www.example.com/"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p><img src="/multi-languages-site-seo/3.jpg" alt="img"></p>
+<p>使用hreflang中的常见错误：</p>
+<ul>
+<li>只有地区，没有语言</li>
+<li>地区在前，语言在后</li>
+<li>使用了多个x-default</li>
+<li>代码错误，如英国地区应该是GB ，而不是UK</li>
+</ul>
+<h3 id="（2）HTTP-响应标头"><a href="#（2）HTTP-响应标头" class="headerlink" title="（2）HTTP 响应标头"></a>（2）HTTP 响应标头</h3><p>您可以将相应网页所有语言、区域的变体告知搜索引擎，这种方法对不能设置 html 标记的 pdf 很有用。 标头格式如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Link: <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">en-gb.example.com</span>/<span class="attr">page.html</span>&gt;</span>; rel="alternate"; hreflang="en-gb", <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">en-us.example.com</span>/<span class="attr">page.html</span>&gt;</span>; rel="alternate"; hreflang="en-us", ...</span><br></pre></td></tr></table></figure>
+<h3 id="（3）XML-sitemap-站点地图"><a href="#（3）XML-sitemap-站点地图" class="headerlink" title="（3）XML sitemap 站点地图"></a>（3）XML sitemap 站点地图</h3><p>您可以使用站点地图将每个网址的所有语言和区域变体告知搜索引擎。为此，请添加一个用于指定单个网址的 <code>&lt;loc&gt;</code> 元素，其中的子 <code>&lt;xhtml:link&gt;</code> 条目应列出相应网页的每种语言/语言区域变体（包括网页自身）。因此，如果您的某个网页有 3 个版本，那么您的站点地图便应包含 3 个条目，每个条目都应包含 3 个完全相同的子条目。</p>
+<p>站点地图规则：</p>
+<ul>
+<li>按如下方式指定 xhtml 命名空间：<code>xmlns:xhtml=&quot;http://www.w3.org/1999/xhtml&quot;</code></li>
+<li>为每个网址分别创建一个单独的 <code>&lt;url&gt;</code> 元素。</li>
+<li>每个 <code>&lt;url&gt;</code> 元素都必须包含一个指示网页网址的 子元素。</li>
+<li>每个 <code>&lt;url&gt;</code> 元素都必须包含一个子元素 <code>&lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;supported_language-code&quot;&gt;</code>，其中应列出相应网页的每个备用版本（包括网页自身）。这些子 <code>&lt;xhtml:link&gt;</code>元素的顺序无关紧要。 示例：</li>
+<li><code>www.example.com/en</code> ，以英语用户为目标用户。</li>
+<li><code>www.example.com/de</code> ，以德语用户为目标用户。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">urlset</span> <span class="attr">xmlns</span>=<span class="string">"http://www.sitemaps.org/schemas/sitemap/0.9"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:xhtml</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">loc</span>&gt;</span>http://www.example.com/en<span class="tag">&lt;/<span class="name">loc</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xhtml:link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">rel</span>=<span class="string">"alternate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">hreflang</span>=<span class="string">"de"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">href</span>=<span class="string">"http://www.example.com/de"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xhtml:link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">rel</span>=<span class="string">"alternate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">hreflang</span>=<span class="string">"en"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">href</span>=<span class="string">"http://www.example.com/en"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">loc</span>&gt;</span>http://www.example.com/de<span class="tag">&lt;/<span class="name">loc</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xhtml:link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">rel</span>=<span class="string">"alternate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">hreflang</span>=<span class="string">"de"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">href</span>=<span class="string">"http://www.example.com/de"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xhtml:link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">rel</span>=<span class="string">"alternate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">hreflang</span>=<span class="string">"en"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">href</span>=<span class="string">"http://www.example.com/en"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">urlset</span>&gt;</span></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>更多 sitemap 的相关知识请参考： <a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.sitemaps.org%2Fprotocol.html" target="_blank" rel="noopener">sitemaps.org - Sitemaps XML format</a></p>
+<h3 id="（4）语言元标记"><a href="#（4）语言元标记" class="headerlink" title="（4）语言元标记"></a>（4）语言元标记</h3><p>虽然Google和Yandex目前使用hreflang属性，但Bing使用的是<a href="https://link.juejin.im/?target=http%3A%2F%2Fblogs.bing.com%2Fwebmaster%2F2011%2F03%2F01%2Fhow-to-tell-bing-your-websites-country-and-language%2F" target="_blank" rel="noopener">语言元标记</a> ： <code>&lt;meta http-equiv=“content-language” content =“en-us” /&gt;</code></p>
+<h3 id="（5）注意事项："><a href="#（5）注意事项：" class="headerlink" title="（5）注意事项："></a>（5）注意事项：</h3><ol>
+<li><p>hreflang 属性的值用于标识备用网址的语言（以</p>
+<p>ISO 639-1</p>
+<p>格式表示）和区域（可选，以</p>
+<p>ISO 3166-1 alpha-2</p>
+<p>格式表示）。例如：</p>
+<ul>
+<li>de：德语内容，不限区域</li>
+<li>en-GB：英语内容，面向英国境内的用户</li>
+<li>de-ES：德语内容，面向西班牙境内的用户</li>
+</ul>
+</li>
+<li><p>请考虑为不匹配的语言添加后备网页，尤其是在语言/国家/地区选择器中或是在会自动重定向的主页上。在这种情况下，请使用 x-default 值：<code>&lt;link rel=&quot;alternate&quot; href=&quot;http://example.com/&quot; hreflang=&quot;x-default&quot; /&gt;</code></p>
+</li>
+<li><p>备用网址必须是完全限定的网址，包含传输协议、域名。</p>
+</li>
+<li><p>备用网址无需位于同一个网域中。</p>
+</li>
+<li><p>如果两个网页没有互指，系统将会忽略相关标记。</p>
+</li>
+<li><p>使用页面标记或XML sitemap，最好不要同时使用两者。</p>
+</li>
+<li><p>Google开始根据搜索者的位置生成搜索结果，无论搜索者使用的是哪个Google本地版本。</p>
+</li>
+<li><p>第三方工具推荐：</p>
+<ul>
+<li>页面标签生成器：<a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.internationalseomap.com%2Fhreflang-tags-generator" target="_blank" rel="noopener">www.internationalseomap.com/hreflang-ta…</a></li>
+<li>Hreflang验证器：<ul>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fflang.dejanseo.com.au%2F" target="_blank" rel="noopener">flang.dejanseo.com.au/</a></li>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fhreflang.ninja" target="_blank" rel="noopener">hreflang.ninja</a> /</li>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.screamingfrog.co.uk" target="_blank" rel="noopener">www.screamingfrog.co.uk</a></li>
+<li><a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.deepcrawl.com%2F" target="_blank" rel="noopener">www.deepcrawl.com/</a></li>
+</ul>
+</li>
+<li>XML站点地图生成器：<ul>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.themediaflow.com%2Ftool_hreflang" target="_blank" rel="noopener">www.themediaflow.com/tool_hrefla…</a></li>
+<li><a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.xml-sitemaps.com" target="_blank" rel="noopener">www.xml-sitemaps.com</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-使用-rel-”canonical”-标记"><a href="#5-使用-rel-”canonical”-标记" class="headerlink" title="5. 使用 rel=”canonical” 标记"></a>5. 使用 rel=”canonical” 标记</h2><ol>
+<li>使用 rel=”canonical” link 元素标记所有重复的网页。将属性为 rel=”canonical” 的 <code>&lt;link&gt;</code>元素添加到重复网页的 <code>&lt;head&gt;</code> 部分中，并使其指向权威网页，如下所示： <code>&lt;link rel=&quot;canonical&quot; href=&quot;https://example.com/cn/&quot; /&gt;</code></li>
+<li>如果权威网页有对应的移动版变体，请为其添加 rel=”alternate” 链接，并使其指向此网页的移动版： <code>&lt;link rel=&quot;alternate&quot; media=&quot;only screen and (max-width: 640px)&quot; href=&quot;http://m.example.com/cn/”&gt;</code></li>
+<li>为此网页添加适当的 hreflang 或其他重定向。</li>
+</ol>
+<h2 id="6-需要专业的翻译、本土化的内容"><a href="#6-需要专业的翻译、本土化的内容" class="headerlink" title="6. 需要专业的翻译、本土化的内容"></a>6. 需要专业的翻译、本土化的内容</h2><p>因为非常多时候由于搜索词的文化差异，一些语言的热门关键词在另一种语言的搜索引擎中是没有排名的。所以如果从你自己本身的语言文化出发，你可能会错过很多将人们吸引到你网站上的神奇关键词。</p>
+<p>例如， 颜色，在英国是 colour ，而美式英语则是 color 。</p>
+<p>服务器，在香港叫伺服器；程序叫程式。</p>
+<p>如果你将“市场研究”从中文翻译成英文，最直接的翻译是“market study”。但是翻译成“case study“、 “market research” 您会得到更好的效果。</p>
+<p>使用这些更亲近本土搜素引擎的关键词不仅意味着你的内容将更具流动性，同时也意味着你的内容比那些使用机器直译关键词的内容更容易被搜索到，概率提高了50多倍。</p>
+<p><img src="/multi-languages-site-seo/4.jpg" alt="img"></p>
+<p>market research, case study, market study - Google 趋势</p>
+<h2 id="7-外链"><a href="#7-外链" class="headerlink" title="7. 外链"></a>7. 外链</h2><p>我们有必要在与本网站相关的同语言网站、本地ccTLD网站中投放一些导向自身网站的外部链接。这是因为相较于不同语言的链接，搜索引擎会给予同一种语言的链接更高的权重。</p>
+<h2 id="8-适合当地市场的设计"><a href="#8-适合当地市场的设计" class="headerlink" title="8. 适合当地市场的设计"></a>8. 适合当地市场的设计</h2><p>设计、用户体验、网站架构 — 所有这些在SEO中扮演着越来越重要的角色。通过本地化设计，您可以减少重复内容。</p>
+<p>不同国家的文化差异不仅影响你网站的内容或关键字，甚至可能影响整个网站。</p>
+<p>不同国家，越来越多的人都在使用移动设备来浏览网站，特别是在美国、日本、韩国这些高度移动化的国家，你有必要为网站做一个响应式设计。</p>
+<p>不同文化的人们对于颜色的认识尽管有相似点，但他们对各种颜色的感觉会不同，甚至截然相反，其原因是由于国家所处的地理位置、历史文化背景和风俗习惯不同。例如：绿色在中国象征着新生与希望，而西方文化的人们会将绿色与“缺乏经验”联系起来；在中国象征着高贵与权力的黄色，在巴西被视为绝望的象征；因此在为海外市场挑选官方用色时，你最好考虑当地人对颜色的感受。</p>
+<h2 id="9-国际SEO中的常见误区"><a href="#9-国际SEO中的常见误区" class="headerlink" title="9. 国际SEO中的常见误区"></a>9. 国际SEO中的常见误区</h2><ul>
+<li><p>使用 cookie 存储区域、语言</p>
+<p>一些网站将语言、区域信息存在在cookie ，根据cookie来向用户展示对应的页面版本。而搜索引擎在抓取页面时并不支持cookie ，除了默认版本外，它什么都看不到。同时，也创建了一个不太好的用户体验。例如，我访问到一个中文页面，通过email向朋友转发。朋友打开的时候，因为他的浏览器中没有设置中文的cookie ，页面被重定向到了一个默认的英文页面，他看到的并非我预期的结果。甚至，他若不认识英文，那他永远无法找到这个中文版本的页面。</p>
+</li>
+<li><p>Javascript 切换语言</p>
+<p>一些网站通过 Javascript 来加载本地化内容，但不会更改不同语言、区域的URL，而且没有不同的URL来匹配所访问内容。这种情况下，由于搜索引擎无法执行Javascript, 它除了访问默认的版本外，永远无法访问其他区域语言的内容。同时，用户也无法通过URL定位到本地化版本页面。</p>
+</li>
+<li><p>根据IP、Accept-Language 自动重定向</p>
+<p>这样做往往不单影响收录，也影响用户体验。原因有以下几点：</p>
+<ol>
+<li>大部分搜索引擎只从少数IP地址进行抓取。</li>
+<li>我们设置的IP库通常不全。</li>
+<li>重定向对页面加载时间产生负面影响。</li>
+<li>如果您使用外语网站，Chrome一般会问你不要翻译，如果您选择了不需要重复，Chrome 会把该语言放入请求头Acept-Language当中。</li>
+<li>搜索引擎一般不会带上Acept-Language。 事实上，Google已经改进并将继续改进其区域设置感知抓取能力。<a href="https://link.juejin.im/?target=https%3A%2F%2Fwebmasters.googleblog.com%2F2015%2F01%2Fcrawling-and-indexing-of-locale.html" target="_blank" rel="noopener">截至2015年初</a>，他们宣布Googlebot将从世界各地的许多IP地址（而不仅仅是美国）进行抓取，并将使用Accept-Lang请求头查看您的网站是否根据用户区域语言信息设置并更改页面内容。但同时，他们非常清楚这项技术并不完美，这并不能取代使用hreflang的建议。</li>
+</ol>
+<p>相反，更好的用户体验是当您检测到用户可能会发现您的网站的另一部分更相关时，该横幅就会出现。</p>
+<p><img src="/multi-languages-site-seo/5.jpg" alt="img"></p>
+<p>来源于apple.com</p>
+</li>
+</ul>
+<p>  永不使用自动重定向规则的一个例外是，当用户选择您网站上的国家、地区或语言首选项时，您应该将该首选项存储在Cookie中，并在用户访问时将其重定向到其首选语言环境的版本页面上。同时要确保他们可以随时设置新的首选项，更新cookie。</p>
+<ul>
+<li><p>添加hreflang标签将有助于我的跨国内容排名更好</p>
+<p>Hreflang标签是国际SEO工具中最强大的工具之一。他们是成功的国际SEO策略的基础。但是，它们并不是一个排名因素。相反，它们旨在确保在Google搜索结果中显示正确的本地化页面。</p>
+</li>
+<li><p>使用旗帜图标来表示网站的语言</p>
+<p>旗帜不是语言，例如英国旗帜并不代表英语。对于说这种语言但不是来自该国家的任何用户来说，代表语言使用者的国家旗帜是非常令人反感的。</p>
+<p><img src="/multi-languages-site-seo/6.jpg" alt="img"></p>
+</li>
+</ul>
+<p>  Flags symbolize nations, not languages</p>
+<ul>
+<li><p>需要本地服务器来托管网站内容</p>
+<p>因为Google和Bing过去曾明确表示，本地服务器在是一个重要的国际排名因素。事实上Google 及其他搜索引擎表示，现在本地服务器并不像以前那么重要。随着CDN的普及，通常不需要本地服务器。而您只需考虑的是，目标区域用户获取您的网页速度的体验优化。</p>
+</li>
+<li><p>国际搜索引擎 == Google ?</p>
+<p>虽然谷歌是迄今为止全球搜索引擎中最常用的，但在一些国家，有一些本地的搜索引擎比谷歌更受欢迎。如果您的目标受众区域中包含这些地区，那您仍需要对其做好针对性的SEO 。 如：</p>
+<ul>
+<li>中国（大陆地区）Baidu <code>www.baidu.com</code></li>
+<li>俄罗斯和东欧国家 Yandex <code>www.yandex.com</code></li>
+<li>韩国 NAVER <code>www.naver.com</code></li>
+</ul>
+</li>
+</ul>
+<p>  <img src="/multi-languages-site-seo/7.jpg" alt="img"></p>
+<h2 id="10-后话"><a href="#10-后话" class="headerlink" title="10. 后话"></a>10. 后话</h2><p>相信现在，您已经对国际SEO有了一定的了解。随着搜索引擎的不断发展，文中的一些观点也必定会过时，未来的您也应该带着审视的眼观来阅读、理解此文。Let’s do it .</p>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://link.juejin.im/?target=https%3A%2F%2Fwebmasters.googleblog.com%2Fsearch%2Flabel%2Flocalization" target="_blank" rel="noopener">Google Webmaster Central Blog</a></li>
+<li><a href="https://link.juejin.im/?target=https%3A%2F%2Fsupport.google.com%2Fwebmasters%2Ftopic%2F2370587" target="_blank" rel="noopener">Google Search Console帮助</a></li>
+<li><a href="https://link.juejin.im/?target=https%3A%2F%2Fmoz.com%2Flearn%2Fseo%2Finternational" target="_blank" rel="noopener">Learn About International SEO</a></li>
+<li><a href="https://link.juejin.im/?target=https%3A%2F%2Fmoz.com%2Fblog%2Fthe-international-seo-checklist" target="_blank" rel="noopener">The International SEO Checklist</a></li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/git-head-detached-solution.html" data-toggle="tooltip" data-placement="top" title="Git HEAD detached from XXX (git HEAD 游离)解决">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#SEO" title="SEO">SEO</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Nathan 2019 
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://tsuixu.coding.me/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://tsuixu.coding.me/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

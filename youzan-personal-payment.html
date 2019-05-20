@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          通过有赞云实现个人在线支即时到账 - Tinywind | 佚名程序员
+        
+    </title>
+
+    <link rel="canonical" href="https://tsuixu.coding.me/youzan-personal-payment.html">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>通过有赞云实现个人在线支即时到账</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Nathan on
+                            2018-12-07
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">佚名程序员</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">主页</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/about/">关于</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">标签列表</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">内容归档</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>很多人都想出售自己的一些产品，课程，电子书，或者其它在线可售卖的东西，但是不管是微信支付还是支付宝，都需要公司账户，这一套不是不可以搞，就是太麻烦了而已。今天介绍的就是不需要公司账号实现个人收款的自动化方案（当然，交易 1% 手续费比微信等略高）。</p>
+<p>思路是：</p>
+<p><strong>环境准备</strong>：在有赞开通微小店（免费）-&gt; 注册有赞云 -&gt; 创建自用型应用 -&gt; 绑定微小店 -&gt; 开通 push (推送交易状态)</p>
+<p><strong>交易流程</strong>：调用有赞云的收银 API ，创建支付二维码(并存储二维码 id 到自有网站订单) -&gt; 用户扫描二维码并支付 -&gt; 推送交易状态到你的网站 -&gt; 更新网站订单状态 -&gt; 完成购买</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a><strong>环境准备</strong></h2><p><strong>第一步：开通微小店</strong></p>
+<p>去这里注册并开通小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc" target="_blank" rel="noopener">有赞微小店<em>微店怎么开</em>微店网页登录/下载 - 做生意，用有赞</a></p>
+<p><strong>第二步：注册有赞云</strong></p>
+<p>去这里注册个人开发者：<a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/" target="_blank" rel="noopener">有赞云 - 做软件，用有赞云</a>，然后创建<strong>自用型</strong>应用，默认微商城，填写应用名称点下一步，授权店铺，选择你上面开通的小店名称并完成授权绑定。</p>
+<p><strong>第三步：开通应用动态推送</strong></p>
+<p>这一步主要是接收订单交易状态的，用户发起支付与支付完成都有推送消息，后面我们会介绍如何处理推送。</p>
+<p>开通推送的方法：有赞云控制台 -&gt; 应用设置 -&gt; 开发信息 -&gt; 修改 -&gt; 填写接收推送的网址即可。</p>
+<p>环境已经准备 OK 了，你的手机上应该已经装了微小店应用了，接下来我们要发起交易，开始之前我们得准备好 SDK，如果你使用 Laravel，我封了一个包：<a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan" target="_blank" rel="noopener">overtrue/laravel-youzan</a>，如果你是其它框架，那么请使用 HanSon 的封装：<a href="http://link.zhihu.com/?target=https%3A//github.com/HanSon/youzan-sdk" target="_blank" rel="noopener">HanSon/youzan-sdk</a>。当然还有一个选择，官方 SDK：<a href="http://link.zhihu.com/?target=https%3A//github.com/youzan/open-sdk-php" target="_blank" rel="noopener">youzan/open-sdk-php</a>。</p>
+<p>安装完 SDK，配置环境我们需要一些参数：</p>
+<ul>
+<li>client_id: 应用ID，在有赞云控制台 -&gt; 应用设置 页可以找到</li>
+<li>client_secret 密钥，同样在应用设置页</li>
+<li>kdt_id 其实就是原来的口袋通ID，就是应用设置页基本信息中的 “授权店铺id”</li>
+</ul>
+<h2 id="交易流程"><a href="#交易流程" class="headerlink" title="交易流程"></a><strong>交易流程</strong></h2><p><strong>第一步：创建收款二维码</strong></p>
+<p>这一步一般是用户在你的网站选择完商品，或者在购物车点结算，你在自己网站创建完订单后，调用有赞云收银 API 创建二维码，以我的包为例（大同小异啦）：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$result = \Youzan::request(<span class="string">'youzan.pay.qrcode.create'</span>, [</span><br><span class="line">                <span class="string">'qr_type'</span> =&gt; <span class="string">'QR_TYPE_DYNAMIC'</span>,  <span class="comment">// 这个就不要动了</span></span><br><span class="line">                <span class="string">'qr_price'</span> =&gt; <span class="number">100</span>,  <span class="comment">// 金额：分</span></span><br><span class="line">                <span class="string">'qr_name'</span> =&gt; <span class="string">'iPhone 8 plus 64G 金色'</span>, <span class="comment">// 收款理由</span></span><br><span class="line">                <span class="string">'qr_source'</span> =&gt; <span class="string">'102828399222'</span>, <span class="comment">// 自定义字段，你可以设置为网站订单号</span></span><br><span class="line">            ])<span class="string">'</span></span><br></pre></td></tr></table></figure>
+<p>得到的结果呢包含三个值：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"qr_id": "19707",</span><br><span class="line">"qr_url": "https://trade.koudaitong.com/wxpay/confirmQr?qr_id=19707&amp;kdt_id=55",</span><br><span class="line">"qr_code": "data:image/png;base64,iV......"</span><br></pre></td></tr></table></figure>
+<p>其中 qr_id 你需要与刚才的订单绑定（这里取决于你自己的实现了，比如你在网站应该有 payments 表用于专门记录支付记录）</p>
+<p>qr_url 呢其实就是扫码完打开的页面，qr_code 是图片内容，可以直接放到 img 的 src 中，data-url 格式。就是一个二维码图片。</p>
+<p>用户扫码后打开一个网址完成付款。这时候你的手机 app 微小店会告诉你有新的订单。</p>
+<p>接下来就是处理交易结果了。</p>
+<p><strong>第二步：主动查询订单</strong></p>
+<p>为啥要主动查询呢，不是有推送么，对，但是推送的时间以及成功率是无法保证的，所以我们应该主动去查询，我的做法是在交易创建完成后，定时（2秒左右）查询一次订单信息：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$payment = Payment::whereQrId(<span class="string">'19707'</span>);</span><br><span class="line">$result = Youzan::request(<span class="string">'youzan.trades.qr.get'</span>, [</span><br><span class="line">     <span class="string">'qr_id'</span> =&gt; $payment-&gt;qr_id, </span><br><span class="line">     <span class="string">'status'</span> =&gt; <span class="string">'TRADE_RECEIVED'</span></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($result[<span class="string">'total_results'</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    $order = array_pop($result[<span class="string">'qr_trades'</span>]);</span><br><span class="line">    $payment-&gt;status = Payment::STATUS_SUCCEED;</span><br><span class="line">    $payment-&gt;save();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面我们先从自己的数据库根据 qr_id 查询交易记录得到 $payment，然后调用了有赞云 API 的二维码订单列表得到这个二维码产生的成功的交易订单。</p>
+<p>如果得到成功交易的订单数量大于 0 （一般就一笔），就更新支付状态为成功。</p>
+<p>反之，继续查，这里一般有一个限制，比如查10次没有交易就关闭，或者其它你觉得 OK 的策略都可以。</p>
+<p><strong>第三步：处理推送</strong></p>
+<p>这一步与其它支付的情况不太一样，因为推送过来的内容不是直接就能与你的订单关联上的，推送过来的内容中有一个 id 字段，这是有赞的订单 ID ，不是我们的订单 ID，我们先要拿这个 ID 去他们的 API 取到交易详情，然后再从交易详情得到 qr_id 才能查出我们订单的关联信息。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($request-&gt;get(<span class="string">'type'</span>) == <span class="string">'TRADE_ORDER_STATE'</span> </span><br><span class="line">    &amp;&amp; $request-&gt;get(<span class="string">'status'</span>) == <span class="string">'TRADE_SUCCESS'</span>) &#123;</span><br><span class="line">    $order = Youzan::request(<span class="string">'youzan.trade.get'</span>, [<span class="string">'tid'</span> =&gt; $request-&gt;id]);</span><br><span class="line"></span><br><span class="line">    $payment = Payment::WhereQrId($order[<span class="string">'trade'</span>][<span class="string">'qr_id'</span>])-&gt;first();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($payment &amp;&amp; $payment-&gt;status !== <span class="keyword">self</span>::STATUS_SUCCEED) &#123;</span><br><span class="line">        $payment-&gt;status = Payment::STATUS_SUCCEED;</span><br><span class="line">        $payment-&gt;save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取交易详情 API 为 youzan.trade.get，传入的 tid 就是推送内容里的 id。二维码 ID 在交易详情的 trade 里。</p>
+<p>那这一套流程就实现完了，个人感觉还是非常容易的，收款完成你就可以在微小店提现了。</p>
+<p>个人觉得这一套下来接入成本非常的低，然后还有一个非常大的好处是给你省去很多开发工作，因为在手机 app 上随时有推送，以及订单管理，每天的收益统计等，很方便，当然 1% 的手续费感觉其实还好吧，毕竟你的个人站交易也大不到百万千万这样的额度去。</p>
+<p>相关资料：</p>
+<p>有赞云：<a href="http://link.zhihu.com/?target=http%3A//www.youzanyun.com/" target="_blank" rel="noopener">www.youzanyun.com</a></p>
+<p>微小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc" target="_blank" rel="noopener">有赞微小店<em>微店怎么开</em>微店网页登录/下载 - 做生意，用有赞</a></p>
+<p>收银台 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/pay_qrcode" target="_blank" rel="noopener">收银台API - 有赞云</a></p>
+<p>交易 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/trade" target="_blank" rel="noopener">商家管理订单API - 有赞云</a></p>
+<p>overtrue/laravel-youzan: <a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan" target="_blank" rel="noopener">overtrue/laravel-youzan</a></p>
+<p>HanSon/youzan-sdk: <a href="http://link.zhihu.com/?target=https%3A//github.com/HanSon/youzan-sdk" target="_blank" rel="noopener">HanSon/youzan-sdk</a></p>
+<p>官方 SDK：<a href="http://link.zhihu.com/?target=https%3A//github.com/youzan/open-sdk-php" target="_blank" rel="noopener">youzan/open-sdk-php</a></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/git-head-detached-solution.html" data-toggle="tooltip" data-placement="top" title="Git HEAD detached from XXX (git HEAD 游离)解决">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/mobile-location.html" data-toggle="tooltip" data-placement="top" title="获取手机号码归属地及运营商信息">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Nathan 2019 
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://tsuixu.coding.me/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://tsuixu.coding.me/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
