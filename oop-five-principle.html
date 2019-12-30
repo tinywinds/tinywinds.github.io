@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          面向对象的设计原则 - Tinywind | 佚名程序员
+        
+    </title>
+
+    <link rel="canonical" href="http://tinywind.cn/oop-five-principle.html">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#OOP" title="OOP">OOP</a>
+                            
+                        </div>
+                        <h1>面向对象的设计原则</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Nathan on
+                            2015-05-12
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">佚名程序员</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">主页</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/about/">关于</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">内容归档</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">标签列表</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="1-面向对象设计五大原则"><a href="#1-面向对象设计五大原则" class="headerlink" title="1.面向对象设计五大原则"></a>1.面向对象设计五大原则</h3><p>面向对象设计的五大原则分别是单一职责原则、接口隔离原则、开放-封闭原则、替换原则、依赖倒置原则。</p>
+<h3 id="2-单一职责原则（single-Pesponsibility-Principle，SRP）"><a href="#2-单一职责原则（single-Pesponsibility-Principle，SRP）" class="headerlink" title="2.单一职责原则（single Pesponsibility Principle，SRP）"></a>2.单一职责原则（single Pesponsibility Principle，SRP）</h3><p>单一职责有两个含义：一个是避免相同的职责分散到不同的累中，另一个是避免一个类承担太多职责。 为什么遵守SRP：可以减少类之间的耦合，提高类的复用性。 SRP在实际代码中的应用： 工厂模式（Factory）：根据不同的参数生成不同的实例化对象。它只负责生成对象而不负责对象的具体内容。如数据库操作，缓存操作。 命令模式：分离“命令的请求者”和“命令的实现者”方面的职责，达到请求和实现的解耦。如你去餐馆吃饭，餐馆有顾客，服务员，厨师三种职责。作为顾客只要列出菜单，传给服务员，服务员通知厨师，厨师去实现的过程。</p>
+<h3 id="3-接口隔离原则（Interface-Segregation-Principle，ISP）"><a href="#3-接口隔离原则（Interface-Segregation-Principle，ISP）" class="headerlink" title="3.接口隔离原则（Interface Segregation Principle，ISP）"></a>3.接口隔离原则（Interface Segregation Principle，ISP）</h3><p>接口隔离原则：表面客户端不应该被强迫实现一些他们不会使用的接口，应该把胖接口中的方法分组，然后用多个接口代替它，每个接口服务于一个子模块，简单地说就是使用多个专门的接口比使用单个接口要好的多。 “接口隔离”其实就是定制化服务设计的原则。使用接口的多重继承实现对不同的接口的组合，从而对外提供组合功能–达到“按需提供服务”。如PDO是一个抽象的数据接口层，它告诉我们接口应该是通用的、基本的、不易变化的，对于其他数据库特定的操作方法不应该出现到该接口里，减少对接口的污染。 接口污染的处理方式：利用委托分离接口，利用多继承分离接口。 委托方式中，有两个对象参与处理同一个请求，接受请求的对象将请求委托给另一个对象来处理，如策略模式、代理模式。</p>
+<h3 id="4-开放-封闭原则（Open-Close-Principle，OCP）"><a href="#4-开放-封闭原则（Open-Close-Principle，OCP）" class="headerlink" title="4.开放-封闭原则（Open-Close Principle，OCP）"></a>4.开放-封闭原则（Open-Close Principle，OCP）</h3><p>Open（Open for extension）模块的行为必须是开放的，支持扩展的，而不是僵化的。Close（Closed for modification）在对模块的功能进行扩展时，不应该影响或大规模地影响已有的模块。一个模块在扩展性方面应该是开放的而在更改性应该是封闭的。 实现开放-封闭的核心思想是对抽象编程，而不对具体编程。因为抽象相对稳定。让类依赖固定的抽象，这样修改就是封闭的；而通过面向对象的继承和多态机制，可以实现对抽象体的继承，通过方法的覆写改变固有行为，实现扩展新的方法，所以对于扩展是开放的。 在设计方面充分应用“抽象”和封装的思想：一方面在软件系统中找出“可变因素”，将之封装起来；另一方面一种可变性因素不应当散落在多个不同代码模块中，而应当被封装到一个对象中。 在设计模式中，装饰模式比较明显地用到OCP。</p>
+<h3 id="5-替换原则（Liskov-Substitution-Principle，LSP）"><a href="#5-替换原则（Liskov-Substitution-Principle，LSP）" class="headerlink" title="5.替换原则（Liskov Substitution Principle，LSP）"></a>5.替换原则（Liskov Substitution Principle，LSP）</h3><p>替换原则：子类型必须能够替换掉它们父类型，并出现在父类能够出现的任何地方。LSP主要是针对继承的设计原则。 如何遵守该设计原则：父类的方法都要在子类中实现或重写，并且派生类只实现抽象类中声明的方法，而不应当给出多余方法的定义或实现；在客户端程序中只应该使用父类对象而不应当直接使用子类对象，这样可以实现运行期绑定（动态多态）。 LSP包括使用多态实现隐藏基类和派生类对象的区别，以及组合的方式解决继承中的基类与派生类中不符合语意的情况。</p>
+<h3 id="6-依赖倒置原则（Dependence-Inversion-Principle，DIP）"><a href="#6-依赖倒置原则（Dependence-Inversion-Principle，DIP）" class="headerlink" title="6.依赖倒置原则（Dependence Inversion Principle，DIP）"></a>6.依赖倒置原则（Dependence Inversion Principle，DIP）</h3><p>依赖倒置原则：将依赖关系倒置为依赖接口。上层模块不应该依赖于下层模块，它们共同依赖于一个抽象；抽象不能依赖于具体，具体应该依赖于抽象。 专门由一个程序检测配置是否正确以及加载配置中所依赖的实现，这检测程序称为IOC容器。在J2EE中通常把DAO层和Service层细分为接口层和实现层，然后在配置文件中进行依赖关系倒置，这是常见的DIP应用。 如何满足DIP：每个较高层次类都为它所需要的服务提出一个接口声明，较低层次类实现这个接口；每个高层类都通过该抽象接口使用服务。</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/route-add.html" data-toggle="tooltip" data-placement="top" title="局域网增加路由">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/oop-basic.html" data-toggle="tooltip" data-placement="top" title="面向对象的核心概念">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#OOP" title="OOP">OOP</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Nathan 2019 
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://tinywind.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://tinywind.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
