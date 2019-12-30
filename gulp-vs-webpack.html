@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
@@ -76,7 +76,7 @@
     
 </style>
 
-<header class="intro-header">
+<header class="intro-header" >
     <!-- Signature -->
     <div id="signature">
         <div class="container">
@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/tags/">标签列表</a>
+                            <a href="/archive/">内容归档</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">内容归档</a>
+                            <a href="/tags/">标签列表</a>
                         </li>
                         
                     
@@ -247,12 +247,12 @@
 <p><strong>gulpfile.js 必须放在项目根目录？</strong><br>当然也可放在其他目录，但这样的话就得在启动 gulp 任务时手动指定 gulp 配置文件 gulp yourTask –gulpfile yourGulpfilePath，可能还需要全局安装 gulp-cli，所以除非有特殊需要，否则就放在项目根目录就行了，这样最简单。</p>
 <p><strong>配置文件的名字必须是 gulpfile.js 吗？</strong><br>不区分大小写，取成 gULPFile.js 的话 gulp 也能认识，只要 toLowerCase 之后是 gulpfile 就行了，如果取其它名字那你就又得使用 –gulpfile 选项去指定了。</p>
 <p>现在工程目录结构已经成了下面的样子：</p>
-<p><img src="/gulp-vs-webpack/1.png" alt="构建前 gulp 工程目录结构"></p>
+<p><img src="/gulp-vs-webpack.htm/1.png" alt="构建前 gulp 工程目录结构"></p>
 <p>构建前 gulp 工程目录结构</p>
 <p>接下来就是在 gulpfile.js 里编写 <strong>gulp task</strong>（gulp 把为每个痛苦又耗时任务编写的处理方法称为一个 <strong>task</strong>）：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">const</span> less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'build:less'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'./src/*.less'</span>)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./dist'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>最后就是打开一个终端，在终端里运行 gulp build:less。好了，编译后的文件已经被输出到了 <strong>dist</strong> 目录：</p>
-<p><img src="/gulp-vs-webpack/2.png" alt="构建后 gulp 工程目录结构"></p>
+<p><img src="/gulp-vs-webpack.htm/2.png" alt="构建后 gulp 工程目录结构"></p>
 <p>构建后 gulp 工程目录结构</p>
 <p>至此你已经算是一个 gulp 砖家了，这基本上就是 gulp 的全部内容。怎么样，是不是够简单，够丝滑。这也是 gulp 的突出特点——易于学习，易于使用，五分钟成砖家。如果想要执行解决其他痛苦又耗时的任务，只需下载安装对应的 gulp 插件包，然后依次类推写一个 <code>gulp.task</code> 出来就行了。</p>
 <p><strong>这些源代码具体是怎样被处理的</strong><br>这通常不需要关心，因为 gulp 插件包已为你做好了，并且封装的非常漂亮，你只需要告诉 gulp 你要什么，gulp 及其插件会帮你打点好一切。这就好比你把一份电子文档传进打印机，告诉它我要一份 A4 纸打印，呲呲呲~，打印机就吐出来一张 A4 纸，上面是你的文档内容。源代码就是你的电子文档，gulp 插件就是打印机，生成的可用文件就是你手里的那张 A4 纸，你不用关心打印机内部是怎样工作的，因为它封装的很好，或者你可以把打印机拆了一探究竟也行。</p>
@@ -277,12 +277,12 @@
 <p>和 gulp 一样，全局安装是为了执行 webpack 任务，本地安装是为了使用 webpack 提供的 api。</p>
 <p>安装完 webpack 之后在项目根目录下新建一个 <strong>webpack.config.js</strong>，这是 webpack 的默认配置文件，同 gulp 的 gulpfile.js 的功能类似。webpack.config.js 同样是不区分大小写的，取成 webPACk.CONfig.js 的话 webpack 也能认识，但是取成其他名字或放在别的目录就需要使用 –config 选项去指定配置文件了。</p>
 <p>现在工程目录结构如下：</p>
-<p><img src="/gulp-vs-webpack/3.png" alt="构建前webpack工程目录结构"></p>
+<p><img src="/gulp-vs-webpack.htm/3.png" alt="构建前webpack工程目录结构"></p>
 <p>构建前webpack工程目录结构</p>
 <p>接下来就是在 webpack.config.js 里配置需要的选项，注意了，webpack 与 gulp 的重要不同就是使用方式 <strong>由编程式变成了配置式</strong>：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/index.js'</span>,        <span class="comment">// 告诉 webpack 你要编译哪个文件</span></span><br><span class="line">    output: &#123;                       <span class="comment">// 告诉 webpack 你要把编译后生成的文件放在哪</span></span><br><span class="line">        filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">        path: path.join(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>最后仍然和 gulp 类似，就是在终端里运行 webpack（终端里一般会出现一大坨编译信息）。好了，现在 webpack 已经把编译好的文件输出到了 dist 目录：</p>
-<p><img src="/gulp-vs-webpack/4.png" alt="构建后webpack工程目录结构"></p>
+<p><img src="/gulp-vs-webpack.htm/4.png" alt="构建后webpack工程目录结构"></p>
 <p>构建后webpack工程目录结构</p>
 <p>看到这是不是已经一头雾水了，在你还没明白发生了什么的时候 webpack 已经把事情干完了。这也是 webpack 和 gulp 作业方式的重要不同：<strong>Gulp</strong> 是搭了个台子，让 gulp 插件在上面唱戏，尽情表演，所有构建相关的具体事情都交由 gulp 插件去做。而 <strong>Webpack</strong> 就牛逼了，webpack 先搭了个台子，然后自己在上面唱嗨了，仔细一听，他在上面唱的是《我们不一样》，当然了他也是让 webpack 插件在上面唱戏的。</p>
 <p>也就是说 webpack 把很多功能都封装进了自己身体里面，使得自己强大同时臃肿。现在你可以在 <code>./src/index.js</code> 文件里直接写 ES6 代码，因为 webpack 把编译 ES6 的工作已经封装到自己的实现里了，使得 webpack 看起来原生支持 ES6 而不需要借助第三方插件，其实他内部也是用了第三方插件的，所以你不用再专门去下一个 babel 之类的插件去转译 ES6。这样封装的好处是使用起来很方便，不好的地方就是使用者完全不知道发生了什么，构建完了还一脸懵逼。</p>

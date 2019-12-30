@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
@@ -76,7 +76,7 @@
     
 </style>
 
-<header class="intro-header">
+<header class="intro-header" >
     <!-- Signature -->
     <div id="signature">
         <div class="container">
@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/tags/">标签列表</a>
+                            <a href="/archive/">内容归档</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">内容归档</a>
+                            <a href="/tags/">标签列表</a>
                         </li>
                         
                     
@@ -215,7 +215,7 @@
 <li>多区域网站，是指以不同国家、区域的用户为目标受众的网站。例如，某厂商，同时会向美国、加拿大、中国等多个国家发货商品。</li>
 </ul>
 <p>如下图，搜索引擎向不同地理区域的用户展示不同的语言、币种、计量单位的结果。搜索引擎会尝试向搜索用户提供与用户的语言、区域最匹配最恰当的网页版本，那么，我们如何告知用户和搜索引擎哪些才是最匹配的网页呢？</p>
-<p><img src="/multi-languages-site-seo/1.jpg" alt="img"></p>
+<p><img src="/multi-languages-site-seo.htm/1.jpg" alt="img"></p>
 <h2 id="2-国际站点的URL结构"><a href="#2-国际站点的URL结构" class="headerlink" title="2. 国际站点的URL结构"></a>2. 国际站点的URL结构</h2><p>首先，先介绍多语言多区域国际站点一般的URL结构，国际站点一般有4中方式来向用户和搜索引擎指明当前页面所对应的国家、区域和语言。分别是ccTLD、子域名、子目录、具有语言、区域参数的gTLD 。</p>
 <ul>
 <li><p>ccTLD（国家顶级域 Country code top-level domain）</p>
@@ -269,7 +269,7 @@
 <p>eg: <code>domain.com/cn</code></p>
 </li>
 </ul>
-<p><img src="/multi-languages-site-seo/2.jpg" alt="img"></p>
+<p><img src="/multi-languages-site-seo.htm/2.jpg" alt="img"></p>
 <ul>
 <li><p>URL参数 （不推荐）</p>
 <p><strong>缺点：</strong></p>
@@ -301,7 +301,7 @@
 <p><code>lang_code</code> 此网页版本所定位的受支持的语言/区域代码，或 <code>x-default</code>（以与该网页上的 <code>hreflang</code> 标记未明确列出的任何语言匹配）。</p>
 <p><code>url_of_page</code> 此网页版本的完全限定网址（与指定的语言/区域对应）。 示例：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Widgets, Inc<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en-gb"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en-gb.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en-us"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en-us.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"de"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://de.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"x-default"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://www.example.com/"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-<p><img src="/multi-languages-site-seo/3.jpg" alt="img"></p>
+<p><img src="/multi-languages-site-seo.htm/3.jpg" alt="img"></p>
 <p>使用hreflang中的常见错误：</p>
 <ul>
 <li>只有地区，没有语言</li>
@@ -376,7 +376,7 @@
 <p>服务器，在香港叫伺服器；程序叫程式。</p>
 <p>如果你将“市场研究”从中文翻译成英文，最直接的翻译是“market study”。但是翻译成“case study“、 “market research” 您会得到更好的效果。</p>
 <p>使用这些更亲近本土搜素引擎的关键词不仅意味着你的内容将更具流动性，同时也意味着你的内容比那些使用机器直译关键词的内容更容易被搜索到，概率提高了50多倍。</p>
-<p><img src="/multi-languages-site-seo/4.jpg" alt="img"></p>
+<p><img src="/multi-languages-site-seo.htm/4.jpg" alt="img"></p>
 <p>market research, case study, market study - Google 趋势</p>
 <h2 id="7-外链"><a href="#7-外链" class="headerlink" title="7. 外链"></a>7. 外链</h2><p>我们有必要在与本网站相关的同语言网站、本地ccTLD网站中投放一些导向自身网站的外部链接。这是因为相较于不同语言的链接，搜索引擎会给予同一种语言的链接更高的权重。</p>
 <h2 id="8-适合当地市场的设计"><a href="#8-适合当地市场的设计" class="headerlink" title="8. 适合当地市场的设计"></a>8. 适合当地市场的设计</h2><p>设计、用户体验、网站架构 — 所有这些在SEO中扮演着越来越重要的角色。通过本地化设计，您可以减少重复内容。</p>
@@ -400,7 +400,7 @@
 <li>搜索引擎一般不会带上Acept-Language。 事实上，Google已经改进并将继续改进其区域设置感知抓取能力。<a href="https://link.juejin.im/?target=https%3A%2F%2Fwebmasters.googleblog.com%2F2015%2F01%2Fcrawling-and-indexing-of-locale.html" target="_blank" rel="noopener">截至2015年初</a>，他们宣布Googlebot将从世界各地的许多IP地址（而不仅仅是美国）进行抓取，并将使用Accept-Lang请求头查看您的网站是否根据用户区域语言信息设置并更改页面内容。但同时，他们非常清楚这项技术并不完美，这并不能取代使用hreflang的建议。</li>
 </ol>
 <p>相反，更好的用户体验是当您检测到用户可能会发现您的网站的另一部分更相关时，该横幅就会出现。</p>
-<p><img src="/multi-languages-site-seo/5.jpg" alt="img"></p>
+<p><img src="/multi-languages-site-seo.htm/5.jpg" alt="img"></p>
 <p>来源于apple.com</p>
 </li>
 </ul>
@@ -411,7 +411,7 @@
 </li>
 <li><p>使用旗帜图标来表示网站的语言</p>
 <p>旗帜不是语言，例如英国旗帜并不代表英语。对于说这种语言但不是来自该国家的任何用户来说，代表语言使用者的国家旗帜是非常令人反感的。</p>
-<p><img src="/multi-languages-site-seo/6.jpg" alt="img"></p>
+<p><img src="/multi-languages-site-seo.htm/6.jpg" alt="img"></p>
 </li>
 </ul>
 <p>  Flags symbolize nations, not languages</p>
@@ -428,7 +428,7 @@
 </ul>
 </li>
 </ul>
-<p>  <img src="/multi-languages-site-seo/7.jpg" alt="img"></p>
+<p>  <img src="/multi-languages-site-seo.htm/7.jpg" alt="img"></p>
 <h2 id="10-后话"><a href="#10-后话" class="headerlink" title="10. 后话"></a>10. 后话</h2><p>相信现在，您已经对国际SEO有了一定的了解。随着搜索引擎的不断发展，文中的一些观点也必定会过时，未来的您也应该带着审视的眼观来阅读、理解此文。Let’s do it .</p>
 <p>参考文章：</p>
 <ul>
