@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -21,21 +21,35 @@
     <link rel="canonical" href="http://tinywind.cn/youzan-personal-payment/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
 
     <!-- Custom CSS --> 
-    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
     
     <!-- Pygments Highlight CSS -->
-    <link rel="stylesheet" href="/css/highlight.css">
+    
+<link rel="stylesheet" href="/css/highlight.css">
 
-    <link rel="stylesheet" href="/css/widget.css">
 
-    <link rel="stylesheet" href="/css/rocket.css">
+    
+<link rel="stylesheet" href="/css/widget.css">
 
-    <link rel="stylesheet" href="/css/signature.css">
 
-    <link rel="stylesheet" href="/css/toc.css">
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
 
     <!-- Custom Fonts -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -59,7 +73,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -210,13 +224,13 @@
 <p><strong>环境准备</strong>：在有赞开通微小店（免费）-&gt; 注册有赞云 -&gt; 创建自用型应用 -&gt; 绑定微小店 -&gt; 开通 push (推送交易状态)</p>
 <p><strong>交易流程</strong>：调用有赞云的收银 API ，创建支付二维码(并存储二维码 id 到自有网站订单) -&gt; 用户扫描二维码并支付 -&gt; 推送交易状态到你的网站 -&gt; 更新网站订单状态 -&gt; 完成购买</p>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a><strong>环境准备</strong></h2><p><strong>第一步：开通微小店</strong></p>
-<p>去这里注册并开通小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc" target="_blank" rel="noopener">有赞微小店<em>微店怎么开</em>微店网页登录/下载 - 做生意，用有赞</a></p>
+<p>去这里注册并开通小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc">有赞微小店<em>微店怎么开</em>微店网页登录/下载 - 做生意，用有赞</a></p>
 <p><strong>第二步：注册有赞云</strong></p>
-<p>去这里注册个人开发者：<a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/" target="_blank" rel="noopener">有赞云 - 做软件，用有赞云</a>，然后创建<strong>自用型</strong>应用，默认微商城，填写应用名称点下一步，授权店铺，选择你上面开通的小店名称并完成授权绑定。</p>
+<p>去这里注册个人开发者：<a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/">有赞云 - 做软件，用有赞云</a>，然后创建<strong>自用型</strong>应用，默认微商城，填写应用名称点下一步，授权店铺，选择你上面开通的小店名称并完成授权绑定。</p>
 <p><strong>第三步：开通应用动态推送</strong></p>
 <p>这一步主要是接收订单交易状态的，用户发起支付与支付完成都有推送消息，后面我们会介绍如何处理推送。</p>
 <p>开通推送的方法：有赞云控制台 -&gt; 应用设置 -&gt; 开发信息 -&gt; 修改 -&gt; 填写接收推送的网址即可。</p>
-<p>环境已经准备 OK 了，你的手机上应该已经装了微小店应用了，接下来我们要发起交易，开始之前我们得准备好 SDK，如果你使用 Laravel，我封了一个包：<a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan" target="_blank" rel="noopener">overtrue/laravel-youzan</a>，如果你是其它框架，那么请使用 HanSon 的封装：<a href="http://link.zhihu.com/?target=https%3A//github.com/HanSon/youzan-sdk" target="_blank" rel="noopener">HanSon/youzan-sdk</a>。当然还有一个选择，官方 SDK：<a href="http://link.zhihu.com/?target=https%3A//github.com/youzan/open-sdk-php" target="_blank" rel="noopener">youzan/open-sdk-php</a>。</p>
+<p>环境已经准备 OK 了，你的手机上应该已经装了微小店应用了，接下来我们要发起交易，开始之前我们得准备好 SDK，如果你使用 Laravel，我封了一个包：<a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan">overtrue/laravel-youzan</a>，如果你是其它框架，那么请使用 HanSon 的封装：<a href="http://link.zhihu.com/?target=https%3A//github.com/HanSon/youzan-sdk">HanSon/youzan-sdk</a>。当然还有一个选择，官方 SDK：<a href="http://link.zhihu.com/?target=https%3A//github.com/youzan/open-sdk-php">youzan/open-sdk-php</a>。</p>
 <p>安装完 SDK，配置环境我们需要一些参数：</p>
 <ul>
 <li>client_id: 应用ID，在有赞云控制台 -&gt; 应用设置 页可以找到</li>
@@ -245,13 +259,13 @@
 <p>那这一套流程就实现完了，个人感觉还是非常容易的，收款完成你就可以在微小店提现了。</p>
 <p>个人觉得这一套下来接入成本非常的低，然后还有一个非常大的好处是给你省去很多开发工作，因为在手机 app 上随时有推送，以及订单管理，每天的收益统计等，很方便，当然 1% 的手续费感觉其实还好吧，毕竟你的个人站交易也大不到百万千万这样的额度去。</p>
 <p>相关资料：</p>
-<p>有赞云：<a href="http://link.zhihu.com/?target=http%3A//www.youzanyun.com/" target="_blank" rel="noopener">www.youzanyun.com</a></p>
-<p>微小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc" target="_blank" rel="noopener">有赞微小店<em>微店怎么开</em>微店网页登录/下载 - 做生意，用有赞</a></p>
-<p>收银台 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/pay_qrcode" target="_blank" rel="noopener">收银台API - 有赞云</a></p>
-<p>交易 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/trade" target="_blank" rel="noopener">商家管理订单API - 有赞云</a></p>
-<p>overtrue/laravel-youzan: <a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan" target="_blank" rel="noopener">overtrue/laravel-youzan</a></p>
-<p>HanSon/youzan-sdk: <a href="http://link.zhihu.com/?target=https%3A//github.com/HanSon/youzan-sdk" target="_blank" rel="noopener">HanSon/youzan-sdk</a></p>
-<p>官方 SDK：<a href="http://link.zhihu.com/?target=https%3A//github.com/youzan/open-sdk-php" target="_blank" rel="noopener">youzan/open-sdk-php</a></p>
+<p>有赞云：<a href="http://link.zhihu.com/?target=http%3A//www.youzanyun.com/">www.youzanyun.com</a></p>
+<p>微小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc">有赞微小店<em>微店怎么开</em>微店网页登录/下载 - 做生意，用有赞</a></p>
+<p>收银台 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/pay_qrcode">收银台API - 有赞云</a></p>
+<p>交易 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/trade">商家管理订单API - 有赞云</a></p>
+<p>overtrue/laravel-youzan: <a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan">overtrue/laravel-youzan</a></p>
+<p>HanSon/youzan-sdk: <a href="http://link.zhihu.com/?target=https%3A//github.com/HanSon/youzan-sdk">HanSon/youzan-sdk</a></p>
+<p>官方 SDK：<a href="http://link.zhihu.com/?target=https%3A//github.com/youzan/open-sdk-php">youzan/open-sdk-php</a></p>
 
                 
 
@@ -374,7 +388,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Nathan 2019 
+                    Copyright &copy; Nathan 2020 
                     <br>
                 </p>
             </div>
@@ -383,13 +397,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
+
 <script src="/js/hux-blog.min.js"></script>
+
 
 
 <!-- async load function -->

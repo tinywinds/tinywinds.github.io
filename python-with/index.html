@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -21,21 +21,35 @@
     <link rel="canonical" href="http://tinywind.cn/python-with/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
 
     <!-- Custom CSS --> 
-    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
     
     <!-- Pygments Highlight CSS -->
-    <link rel="stylesheet" href="/css/highlight.css">
+    
+<link rel="stylesheet" href="/css/highlight.css">
 
-    <link rel="stylesheet" href="/css/widget.css">
 
-    <link rel="stylesheet" href="/css/rocket.css">
+    
+<link rel="stylesheet" href="/css/widget.css">
 
-    <link rel="stylesheet" href="/css/signature.css">
 
-    <link rel="stylesheet" href="/css/toc.css">
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
 
     <!-- Custom Fonts -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -59,7 +73,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -324,7 +338,7 @@
 <p><code>File</code> <code>&quot;./with_example02.py&quot;`</code>, line<code></code>15<code></code>,<code></code>in<code></code>do_something`</p>
 <p><code>bar</code> <code>=</code> <code>1`</code>/<code></code>0`</p>
 <p><code>ZeroDivisionError: integer division</code> <code>or</code> <code>modulo by zero</code></p>
-<p>Essentially, if there are exceptions being thrown from anywhere inside the block, the __exit__() function for the object is called. As you can see, the type, value and the stack trace associated with the exception thrown is passed to this function. In this case, you can see that there was a ZeroDivisionError exception being thrown. People implementing libraries can write code that clean up resources, close files etc. in their __exit__() functions. 实际上，在with后面的代码块抛出任何异常时，__exit__()方法被执行。正如例子所示，异常抛出时，与之关联的type，value和stack trace传给__exit__()方法，因此抛出的ZeroDivisionError异常被打印出来了。开发库时，清理资源，关闭文件等等操作，都可以放在__exit__方法当中。 Thus, Python’s with is a nifty construct that makes code a little less verbose and makes cleaning up during exceptions a bit easier. 因此，Python的with语句是提供一个有效的机制，让代码更简练，同时在异常产生时，清理工作更简单。 I have put the code examples given here on <a href="https://github.com/sdqali/python_dojo/tree/master/with" title="https://github.com/sdqali/python_dojo/tree/master/with" target="_blank" rel="noopener">Github</a>. 示例代码可以在<a href="https://github.com/sdqali/python_dojo/tree/master/with" title="https://github.com/sdqali/python_dojo/tree/master/with" target="_blank" rel="noopener">Github</a>上面找到。 译注：本文原文见<a href="http://blog.sdqali.in/blog/2012/07/09/understanding-pythons-with/" title="http://blog.sdqali.in/blog/2012/07/09/understanding-pythons-with/" target="_blank" rel="noopener">Understanding Python’s “With” Statement</a></p>
+<p>Essentially, if there are exceptions being thrown from anywhere inside the block, the __exit__() function for the object is called. As you can see, the type, value and the stack trace associated with the exception thrown is passed to this function. In this case, you can see that there was a ZeroDivisionError exception being thrown. People implementing libraries can write code that clean up resources, close files etc. in their __exit__() functions. 实际上，在with后面的代码块抛出任何异常时，__exit__()方法被执行。正如例子所示，异常抛出时，与之关联的type，value和stack trace传给__exit__()方法，因此抛出的ZeroDivisionError异常被打印出来了。开发库时，清理资源，关闭文件等等操作，都可以放在__exit__方法当中。 Thus, Python’s with is a nifty construct that makes code a little less verbose and makes cleaning up during exceptions a bit easier. 因此，Python的with语句是提供一个有效的机制，让代码更简练，同时在异常产生时，清理工作更简单。 I have put the code examples given here on <a href="https://github.com/sdqali/python_dojo/tree/master/with" target="_blank" rel="noopener" title="https://github.com/sdqali/python_dojo/tree/master/with">Github</a>. 示例代码可以在<a href="https://github.com/sdqali/python_dojo/tree/master/with" target="_blank" rel="noopener" title="https://github.com/sdqali/python_dojo/tree/master/with">Github</a>上面找到。 译注：本文原文见<a href="http://blog.sdqali.in/blog/2012/07/09/understanding-pythons-with/" target="_blank" rel="noopener" title="http://blog.sdqali.in/blog/2012/07/09/understanding-pythons-with/">Understanding Python’s “With” Statement</a></p>
 
                 
 
@@ -447,7 +461,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Nathan 2019 
+                    Copyright &copy; Nathan 2020 
                     <br>
                 </p>
             </div>
@@ -456,13 +470,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
+
 <script src="/js/hux-blog.min.js"></script>
+
 
 
 <!-- async load function -->

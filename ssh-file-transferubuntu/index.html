@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -21,21 +21,35 @@
     <link rel="canonical" href="http://tinywind.cn/ssh-file-transferubuntu/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
 
     <!-- Custom CSS --> 
-    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
     
     <!-- Pygments Highlight CSS -->
-    <link rel="stylesheet" href="/css/highlight.css">
+    
+<link rel="stylesheet" href="/css/highlight.css">
 
-    <link rel="stylesheet" href="/css/widget.css">
 
-    <link rel="stylesheet" href="/css/rocket.css">
+    
+<link rel="stylesheet" href="/css/widget.css">
 
-    <link rel="stylesheet" href="/css/signature.css">
 
-    <link rel="stylesheet" href="/css/toc.css">
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
 
     <!-- Custom Fonts -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -59,7 +73,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -206,10 +220,10 @@
                 post-container">
 
                 <p>[1] It’s the exmaple for using SCP (Secure Copy).</p>
-<p># scp [Option] Source Target<br># copy the [test.txt] on local to remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a><br>ubuntu@dlp:~$ scp ./test.txt <a href="mailto:ubuntu@www.srv.world" target="_blank" rel="noopener">ubuntu@www.srv.world</a>:~/<br><a href="mailto:ubuntu@10.0.0.30" target="_blank" rel="noopener">ubuntu@10.0.0.30</a>‘s password:     # password of the user<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
-<p># copy the [/home/ubuntu/test.txt] on remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a> to the local<br>ubuntu@dlp:~$ scp <a href="mailto:ubuntu@www.srv.world" target="_blank" rel="noopener">ubuntu@www.srv.world</a>:/home/ubuntu/test.txt ./test.txt<br><a href="mailto:ubuntu@10.0.0.30" target="_blank" rel="noopener">ubuntu@10.0.0.30</a>‘s password:<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
+<p># scp [Option] Source Target<br># copy the [test.txt] on local to remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a><br>ubuntu@dlp:~$ scp ./test.txt <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:~/<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:     # password of the user<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
+<p># copy the [/home/ubuntu/test.txt] on remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a> to the local<br>ubuntu@dlp:~$ scp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:/home/ubuntu/test.txt ./test.txt<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
 <p>[2] It’s example to use SFTP (SSH File Transfer Protocol). SFTP server function is enabled by default, but if not, enable it to add the line [Subsystem sftp /usr/lib/openssh/sftp-server] in [/etc/ssh/sshd_config].</p>
-<p># sftp [Option] [user@host]<br>ubuntu@dlp:~$ sftp <a href="mailto:ubuntu@www.srv.world" target="_blank" rel="noopener">ubuntu@www.srv.world</a><br><a href="mailto:ubuntu@www.srv.world" target="_blank" rel="noopener">ubuntu@www.srv.world</a>‘s password:     # password of the user<br>Connected to <a href="http://www.srv.world" target="_blank" rel="noopener">www.srv.world</a>.<br>sftp&gt;<br># show current directory on remote server<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu<br># show current directory on local server<br>sftp&gt; !pwd<br>/home/ubuntu<br># show files in current directory on FTP server<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># show files in current directory on local server<br>sftp&gt; !ls -l<br>total 4<br>-rw-rw-r– 1 ubuntu ubuntu 10 Jul 29 21:31 test.txt<br># change directory<br>sftp&gt; cd public_html<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu/public_html<br># upload a file to remote server<br>sftp&gt; put test.txt ubuntu.txt<br>Uploading test.txt to /home/ubuntu/ubuntu.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># upload some files to remote server<br>sftp&gt; put <em>.txt<br>Uploading test.txt to /home/ubuntu/test.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>Uploading test2.txt to /home/ubuntu/test2.txt<br>test2.txt 100% 0 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># download a file from remote server<br>sftp&gt; get test.txt<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br># download some files from remote server<br>sftp&gt; get </em>.txt<br>Fetching /home/ubuntu/ubuntu.txt to ubuntu.txt<br>/home/ubuntu/ubuntu.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test2.txt to test2.txt<br>/home/ubuntu/test2.txt 100% 10 0.0KB/s 00:00<br># create a directory on remote server<br>sftp&gt; mkdir testdir<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:53 testdir<br># delete a directory on remote server<br>sftp&gt; rmdir testdir<br>rmdir ok, `testdir’ removed<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># delete a file on remote server<br>sftp&gt; rm test2.txt<br>Removing /home/ubuntu/test2.txt<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br># execute commands with “![command]“<br>sftp&gt; !cat /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>bin:x:1:1:bin:/bin:/sbin/nologin<br>…<br>…<br>ubuntu:x:1001:1001::/home/ubuntu:/bin/bash<br># exit<br>sftp&gt; quit<br>221 Goodbye.</p>
+<p># sftp [Option] [user@host]<br>ubuntu@dlp:~$ sftp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a><br><a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>‘s password:     # password of the user<br>Connected to <a href="http://www.srv.world" target="_blank" rel="noopener">www.srv.world</a>.<br>sftp&gt;<br># show current directory on remote server<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu<br># show current directory on local server<br>sftp&gt; !pwd<br>/home/ubuntu<br># show files in current directory on FTP server<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># show files in current directory on local server<br>sftp&gt; !ls -l<br>total 4<br>-rw-rw-r– 1 ubuntu ubuntu 10 Jul 29 21:31 test.txt<br># change directory<br>sftp&gt; cd public_html<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu/public_html<br># upload a file to remote server<br>sftp&gt; put test.txt ubuntu.txt<br>Uploading test.txt to /home/ubuntu/ubuntu.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># upload some files to remote server<br>sftp&gt; put <em>.txt<br>Uploading test.txt to /home/ubuntu/test.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>Uploading test2.txt to /home/ubuntu/test2.txt<br>test2.txt 100% 0 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># download a file from remote server<br>sftp&gt; get test.txt<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br># download some files from remote server<br>sftp&gt; get </em>.txt<br>Fetching /home/ubuntu/ubuntu.txt to ubuntu.txt<br>/home/ubuntu/ubuntu.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test2.txt to test2.txt<br>/home/ubuntu/test2.txt 100% 10 0.0KB/s 00:00<br># create a directory on remote server<br>sftp&gt; mkdir testdir<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:53 testdir<br># delete a directory on remote server<br>sftp&gt; rmdir testdir<br>rmdir ok, `testdir’ removed<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># delete a file on remote server<br>sftp&gt; rm test2.txt<br>Removing /home/ubuntu/test2.txt<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br># execute commands with “![command]“<br>sftp&gt; !cat /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>bin:x:1:1:bin:/bin:/sbin/nologin<br>…<br>…<br>ubuntu:x:1001:1001::/home/ubuntu:/bin/bash<br># exit<br>sftp&gt; quit<br>221 Goodbye.</p>
 
                 
 
@@ -332,7 +346,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Nathan 2019 
+                    Copyright &copy; Nathan 2020 
                     <br>
                 </p>
             </div>
@@ -341,13 +355,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
+
 <script src="/js/hux-blog.min.js"></script>
+
 
 
 <!-- async load function -->
