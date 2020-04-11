@@ -164,6 +164,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-oop-five-principle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../oop-five-principle/">面向对象的设计原则</a>
+    </h1>
+  
+
+        
+        <a href="../../oop-five-principle/" class="archive-article-date">
+  	<time datetime="2015-05-12T15:01:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-面向对象设计五大原则"><a href="#1-面向对象设计五大原则" class="headerlink" title="1.面向对象设计五大原则"></a>1.面向对象设计五大原则</h3><p>面向对象设计的五大原则分别是单一职责原则、接口隔离原则、开放-封闭原则、替换原则、依赖倒置原则。</p>
+<h3 id="2-单一职责原则（single-Pesponsibility-Principle，SRP）"><a href="#2-单一职责原则（single-Pesponsibility-Principle，SRP）" class="headerlink" title="2.单一职责原则（single Pesponsibility Principle，SRP）"></a>2.单一职责原则（single Pesponsibility Principle，SRP）</h3><p>单一职责有两个含义：一个是避免相同的职责分散到不同的累中，另一个是避免一个类承担太多职责。 为什么遵守SRP：可以减少类之间的耦合，提高类的复用性。 SRP在实际代码中的应用： 工厂模式（Factory）：根据不同的参数生成不同的实例化对象。它只负责生成对象而不负责对象的具体内容。如数据库操作，缓存操作。 命令模式：分离“命令的请求者”和“命令的实现者”方面的职责，达到请求和实现的解耦。如你去餐馆吃饭，餐馆有顾客，服务员，厨师三种职责。作为顾客只要列出菜单，传给服务员，服务员通知厨师，厨师去实现的过程。</p>
+<h3 id="3-接口隔离原则（Interface-Segregation-Principle，ISP）"><a href="#3-接口隔离原则（Interface-Segregation-Principle，ISP）" class="headerlink" title="3.接口隔离原则（Interface Segregation Principle，ISP）"></a>3.接口隔离原则（Interface Segregation Principle，ISP）</h3><p>接口隔离原则：表面客户端不应该被强迫实现一些他们不会使用的接口，应该把胖接口中的方法分组，然后用多个接口代替它，每个接口服务于一个子模块，简单地说就是使用多个专门的接口比使用单个接口要好的多。 “接口隔离”其实就是定制化服务设计的原则。使用接口的多重继承实现对不同的接口的组合，从而对外提供组合功能–达到“按需提供服务”。如PDO是一个抽象的数据接口层，它告诉我们接口应该是通用的、基本的、不易变化的，对于其他数据库特定的操作方法不应该出现到该接口里，减少对接口的污染。 接口污染的处理方式：利用委托分离接口，利用多继承分离接口。 委托方式中，有两个对象参与处理同一个请求，接受请求的对象将请求委托给另一个对象来处理，如策略模式、代理模式。</p>
+<h3 id="4-开放-封闭原则（Open-Close-Principle，OCP）"><a href="#4-开放-封闭原则（Open-Close-Principle，OCP）" class="headerlink" title="4.开放-封闭原则（Open-Close Principle，OCP）"></a>4.开放-封闭原则（Open-Close Principle，OCP）</h3><p>Open（Open for extension）模块的行为必须是开放的，支持扩展的，而不是僵化的。Close（Closed for modification）在对模块的功能进行扩展时，不应该影响或大规模地影响已有的模块。一个模块在扩展性方面应该是开放的而在更改性应该是封闭的。 实现开放-封闭的核心思想是对抽象编程，而不对具体编程。因为抽象相对稳定。让类依赖固定的抽象，这样修改就是封闭的；而通过面向对象的继承和多态机制，可以实现对抽象体的继承，通过方法的覆写改变固有行为，实现扩展新的方法，所以对于扩展是开放的。 在设计方面充分应用“抽象”和封装的思想：一方面在软件系统中找出“可变因素”，将之封装起来；另一方面一种可变性因素不应当散落在多个不同代码模块中，而应当被封装到一个对象中。 在设计模式中，装饰模式比较明显地用到OCP。</p>
+<h3 id="5-替换原则（Liskov-Substitution-Principle，LSP）"><a href="#5-替换原则（Liskov-Substitution-Principle，LSP）" class="headerlink" title="5.替换原则（Liskov Substitution Principle，LSP）"></a>5.替换原则（Liskov Substitution Principle，LSP）</h3><p>替换原则：子类型必须能够替换掉它们父类型，并出现在父类能够出现的任何地方。LSP主要是针对继承的设计原则。 如何遵守该设计原则：父类的方法都要在子类中实现或重写，并且派生类只实现抽象类中声明的方法，而不应当给出多余方法的定义或实现；在客户端程序中只应该使用父类对象而不应当直接使用子类对象，这样可以实现运行期绑定（动态多态）。 LSP包括使用多态实现隐藏基类和派生类对象的区别，以及组合的方式解决继承中的基类与派生类中不符合语意的情况。</p>
+<h3 id="6-依赖倒置原则（Dependence-Inversion-Principle，DIP）"><a href="#6-依赖倒置原则（Dependence-Inversion-Principle，DIP）" class="headerlink" title="6.依赖倒置原则（Dependence Inversion Principle，DIP）"></a>6.依赖倒置原则（Dependence Inversion Principle，DIP）</h3><p>依赖倒置原则：将依赖关系倒置为依赖接口。上层模块不应该依赖于下层模块，它们共同依赖于一个抽象；抽象不能依赖于具体，具体应该依赖于抽象。 专门由一个程序检测配置是否正确以及加载配置中所依赖的实现，这检测程序称为IOC容器。在J2EE中通常把DAO层和Service层细分为接口层和实现层，然后在配置文件中进行依赖关系倒置，这是常见的DIP应用。 如何满足DIP：每个较高层次类都为它所需要的服务提出一个接口声明，较低层次类实现这个接口；每个高层类都通过该抽象接口使用服务。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">OOP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/OOP//" class="article-tag-list-link color4">OOP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="../../oop-five-principle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-oop-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -936,214 +1026,6 @@ git pull
       
         <p class="article-more-link">
           <a class="article-more-a" href="../../php_core_lifetime/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ajax_example" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../ajax_example/">jQuery Ajax 实例 全解析</a>
-    </h1>
-  
-
-        
-        <a href="../../ajax_example/" class="archive-article-date">
-  	<time datetime="2015-01-13T10:36:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1. load</strong>( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 <strong>url </strong>(String) : 请求的HTML页的URL地址。 <strong>data </strong>(Map) : (可选参数) 发送至服务器的 key/value 数据。 <strong>callback </strong>(Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法默认使用 GET 方式来传递的，如果[data]参数有传递数据进去，就会自动转换为POST方式的。jQuery 1.2 中，可以指定选择符，来筛选载入的 HTML 文档，DOM 中将仅插入筛选出的 HTML 代码。语法形如 “url #some &gt; selector”。 这个方法可以很方便的动态加载一些HTML文件，例如表单。 示例代码：</p>
-<p>$(“.ajax.load”).load(“<a href="http://www.cnblogs.com/yeer/archive/2009/06/10/1500682.html" target="_blank" rel="noopener">http://www.cnblogs.com/yeer/archive/2009/06/10/1500682.html</a> .post”,<br>function (responseText, textStatus, XMLHttpRequest){<br>this;//在这里this指向的是当前的DOM对象，即$(“.ajax.load”)[0]<br>//alert(responseText);//请求返回的内容//alert(textStatus);//请求状态：success，error//alert(XMLHttpRequest);//XMLHttpRequest对象<br>});</p>
-<p>这里将显示结果。</p>
-<p>  <strong>注：</strong>不知道为什么URL写绝对路径在FF下会出错，知道的麻烦告诉下。下面的get()和post()示例使用的是绝对路径，所以在FF下你将会出错并不会看到返回结果。还有get()和post()示例都是跨域调用的，发现传上来后没办法获取结果，所以把运行按钮去掉了。   <strong>2. jQuery.get</strong>( url, [data], [callback] )：使用GET方式来进行异步请求</p>
-<blockquote>
-<p>参数： <strong>url </strong>(String) :  发送请求的URL地址. <strong>data </strong>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示，会做为QueryString附加到请求URL中。 <strong>callback </strong>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。</p>
-</blockquote>
-<p>这是一个简单的 GET 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。示例代码：</p>
-<p> $.get(“./Ajax.aspx”, {Action:”get”,Name:”lulu”}, function (data, textStatus){<br>//返回的 data 可以是 xmlDoc, jsonObj, html, text, 等等.this; // 在这里this指向的是Ajax请求的选项配置信息，请参考下图alert(data);<br>//alert(textStatus);//请求状态：success，error等等。<br>当然这里捕捉不到error，因为error的时候根本不会运行该回调函数//alert(this);<br>});</p>
-<p>点击发送请求： jQuery.get()回调函数里面的 this ，指向的是Ajax请求的选项配置信息： <a href="http://images.cnblogs.com/cnblogs_com/QLeelulu/WindowsLiveWriter/jQueryAjax_B934/image_4.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_1.png" alt="image"></a>   <strong>3. jQuery.post</strong>( url, [data], [callback], [type] ) ：使用POST方式来进行异步请求  </p>
-<blockquote>
-<p>参数： <strong>url </strong>(String) : 发送请求的URL地址. <strong>data </strong>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示。 <strong>callback </strong>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。 <strong>type</strong> (String) : (可选)官方的说明是：Type of data to be sent。其实应该为客户端请求的类型(JSON,XML,等等)</p>
-</blockquote>
-<p>这是一个简单的 POST 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。示例代码： Ajax.aspx：</p>
-<p>Response.ContentType = “application/json”;<br>Response.Write(“{result: ‘“ + Request[“Name”] + “,你好！(这消息来自服务器)’}”);</p>
-<p>jQuery 代码：</p>
-<p>$.post(“Ajax.aspx”, { Action: “post”, Name: “lulu” },<br>function (data, textStatus){<br>// data 可以是 xmlDoc, jsonObj, html, text, 等等.//this; // 这个Ajax请求的选项配置信息，请参考jQuery.get()说到的thisalert(data.result);<br>}, “json”);</p>
-<p>点击提交： 这里设置了请求的格式为”json”： <a href="http://images.cnblogs.com/cnblogs_com/QLeelulu/WindowsLiveWriter/jQueryAjax_B934/image_6.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_2.png" alt="image"></a> 如果你设置了请求的格式为”json”，此时你没有设置Response回来的ContentType 为：Response.ContentType = “application/json”; 那么你将无法捕捉到返回的数据。 注意一下，alert(data.result); 由于设置了Accept报头为“json”，这里返回的data就是一个对象，并不需要用eval()来转换为对象。   <strong>4. jQuery.getScript</strong>( url, [callback] ) : 通过 GET 方式请求载入并执行一个 JavaScript 文件。</p>
-<blockquote>
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p><strong>url </strong>(String) : 待载入 JS 文件地址。 <strong>callback </strong>(Function) : (可选) 成功载入后回调函数。</p>
-</blockquote>
-<p>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。 这个方法可以用在例如当只有编辑器focus()的时候才去加载编辑器需要的JS文件.下面看一些示例代码： 加载并执行 test.js。<strong>jQuery 代码:</strong> $.getScript(“test.js”);</p>
-<hr>
-<p>加载并执行 AjaxEvent.js ，成功后显示信息。 <strong>jQuery 代码:</strong></p>
-<p>$.getScript(“AjaxEvent.js”, function(){<br>alert(“AjaxEvent.js 加载完成并执行完成.你再点击上面的Get或Post按钮看看有什么不同？”);<br>});</p>
-<p>加载完后请重新点击一下上面的 Load 请求看看有什么不同。 <strong>jQuery Ajax 事件</strong> Ajax请求会产生若干不同的事件，我们可以订阅这些事件并在其中处理我们的逻辑。在jQuery这里有两种Ajax事件：局部事件 和 全局事件。 <strong>局部事件</strong>就是在每次的Ajax请求时在方法内定义的，例如：</p>
-<p> $.ajax({<br>beforeSend: function(){<br>// Handle the beforeSend event<br>},<br>complete: function(){<br>// Handle the complete event<br>}<br>// …<br>});</p>
-<p><strong>全局事件</strong>是每次的Ajax请求都会触发的，它会向DOM中的所有元素广播，在上面 getScript() 示例中加载的脚本就是全局Ajax事件。全局事件可以如下定义：</p>
-<p> $(“#loading”).bind(“ajaxSend”, function(){<br>$(this).show();<br>}).bind(“ajaxComplete”, function(){<br>$(this).hide();<br>});</p>
-<p>或者：</p>
-<p> $(“#loading”).ajaxStart(function(){<br>$(this).show();<br>}); </p>
-<p>我们可以在特定的请求将全局事件禁用，只要设置下 global 选项就可以了：</p>
-<p> $.ajax({<br>url: “test.html”,<br>global: false,// 禁用全局Ajax事件.// …<br>});</p>
-<p>下面是jQuery官方给出的完整的Ajax事件列表：</p>
-<ul>
-<li><strong>ajaxStart</strong> (Global Event) This event is broadcast if an Ajax request is started and no other Ajax requests are currently running.<ul>
-<li><strong>beforeSend</strong> (Local Event) This event, which is triggered before an Ajax request is started, allows you to modify the XMLHttpRequest object (setting additional headers, if need be.)</li>
-<li><strong>ajaxSend</strong> (Global Event) This global event is also triggered before the request is run.</li>
-<li><strong>success</strong> (Local Event) This event is only called if the request was successful (no errors from the server, no errors with the data).</li>
-<li><strong>ajaxSuccess</strong> (Global Event) This event is also only called if the request was successful.</li>
-<li><strong>error</strong> (Local Event) This event is only called if an error occurred with the request (you can never have both an error and a success callback with a request).</li>
-<li><strong>ajaxError</strong> (Global Event) This global event behaves the same as the local error event.</li>
-<li><strong>complete</strong> (Local Event) This event is called regardless of if the request was successful, or not. You will always receive a complete callback, even for synchronous requests.</li>
-<li><strong>ajaxComplete</strong> (Global Event) This event behaves the same as the complete event and will be triggered every time an Ajax request finishes.</li>
-</ul>
-</li>
-<li><p><strong>ajaxStop</strong> (Global Event) This global event is triggered if there are no more Ajax requests being processed.具体的全局事件请参考API文档。 好了，下面开始说jQuery里面功能最强的Ajax请求方法 $.ajax();   <strong>jQuery.ajax</strong>( options ) : 通过 HTTP 请求加载远程数据 这个是jQuery 的底层 AJAX 实现。简单易用的高层实现见 $.get, $.post 等。 $.ajax() 返回其创建的 XMLHttpRequest 对象。大多数情况下你无需直接操作该对象，但特殊情况下可用于手动终止请求。 <strong>注意：</strong> 如果你指定了 dataType 选项，请确保服务器返回正确的 MIME 信息，(如 xml 返回 “text/xml”)。错误的 MIME 类型可能导致不可预知的错误。见 <a href="http://docs.jquery.com/Specifying_the_Data_Type_for_AJAX_Requests" target="_blank" rel="noopener">Specifying the Data Type for AJAX Requests</a> 。 当设置 datatype 类型为 ‘script’ 的时候，所有的远程(不在同一个域中)POST请求都回转换为GET方式。 $.ajax() 只有一个参数：参数 key/value 对象，包含各配置及回调函数信息。详细参数选项见下。 jQuery 1.2 中，您可以跨域加载 JSON 数据，使用时需将数据类型设置为 <a href="http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/" target="_blank" rel="noopener">JSONP</a>。使用 <a href="http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/" target="_blank" rel="noopener">JSONP</a> 形式调用函数时，如 “myurl?callback=?” jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。数据类型设置为 “jsonp” 时，jQuery 将自动调用回调函数。(这个我不是很懂) 参数列表：</p>
-<p>参数名</p>
-<p>类型</p>
-<p>描述</p>
-<p><strong>url</strong></p>
-<p>String</p>
-<p>(默认: 当前页地址) 发送请求的地址。</p>
-<p><strong>type</strong></p>
-<p>String</p>
-<p>(默认: “GET”) 请求方式 (“POST” 或 “GET”)， 默认为 “GET”。注意：其它 HTTP 请求方法，如 PUT 和 DELETE 也可以使用，但仅部分浏览器支持。</p>
-<p><strong>timeout</strong></p>
-<p>Number</p>
-<p>设置请求超时时间（毫秒）。此设置将覆盖全局设置。</p>
-<p><strong>async</strong></p>
-<p>Boolean</p>
-<p>(默认: true) 默认设置下，所有请求均为异步请求。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行。</p>
-<p><strong>beforeSend</strong></p>
-<p>Function</p>
-<p>发送请求前可修改 XMLHttpRequest 对象的函数，如添加自定义 HTTP 头。XMLHttpRequest 对象是唯一的参数。</p>
-<p>function (XMLHttpRequest) {<br>​         this; // the options for this ajax request<br>​         }</p>
-<p><strong>cache</strong></p>
-<p>Boolean</p>
-<p>(默认: true) jQuery 1.2 新功能，设置为 false 将不会从浏览器缓存中加载请求信息。</p>
-<p><strong>complete</strong></p>
-<p>Function</p>
-<p>请求完成后回调函数 (请求成功或失败时均调用)。参数： XMLHttpRequest 对象，成功信息字符串。</p>
-<p>function (XMLHttpRequest, textStatus) {<br>​         this; // the options for this ajax request<br>​         }</p>
-<p><strong>contentType</strong></p>
-<p>String</p>
-<p>(默认: “application/x-www-form-urlencoded”) 发送信息至服务器时内容编码类型。默认值适合大多数应用场合。</p>
-<p><strong>data</strong></p>
-<p>Object, String</p>
-<p>发送到服务器的数据。将自动转换为请求字符串格式。GET 请求中将附加在 URL 后。查看 processData 选项说明以禁止此自动转换。必须为 Key/Value 格式。如果为数组，jQuery 将自动为不同值对应同一个名称。如 {foo:[“bar1”, “bar2”]} 转换为 ‘&amp;foo=bar1&amp;foo=bar2’。</p>
-<p><strong>dataType</strong></p>
-<p>String</p>
-<p>预期服务器返回的数据类型。如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息返回 responseXML 或 responseText，并作为回调函数参数传递，可用值: “xml”: 返回 XML 文档，可用 jQuery 处理。 “html”: 返回纯文本 HTML 信息；包含 script 元素。 “script”: 返回纯文本 JavaScript 代码。不会自动缓存结果。 “json”: 返回 JSON 数据 。 “jsonp”: <a href="http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/" target="_blank" rel="noopener">JSONP</a> 格式。使用 <a href="http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/" target="_blank" rel="noopener">JSONP</a> 形式调用函数时，如 “myurl?callback=?” jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。</p>
-<p><strong>error</strong></p>
-<p>Function</p>
-<p>(默认: 自动判断 (xml 或 html)) 请求失败时将调用此方法。这个方法有三个参数：XMLHttpRequest 对象，错误信息，（可能）捕获的错误对象。</p>
-<p>function (XMLHttpRequest, textStatus, errorThrown) {<br>​         // 通常情况下textStatus和errorThown只有其中一个有值<br>​         this; // the options for this ajax request<br>​         }</p>
-<p><strong>global</strong></p>
-<p>Boolean</p>
-<p>(默认: true) 是否触发全局 AJAX 事件。设置为 false 将不会触发全局 AJAX 事件，如 ajaxStart 或 ajaxStop 。可用于控制不同的Ajax事件</p>
-<p><strong>ifModified</strong></p>
-<p>Boolean</p>
-<p>(默认: false) 仅在服务器数据改变时获取新数据。使用 HTTP 包 Last-Modified 头信息判断。</p>
-<p><strong>processData</strong></p>
-<p>Boolean</p>
-<p>(默认: true) 默认情况下，发送的数据将被转换为对象(技术上讲并非字符串) 以配合默认内容类型 “application/x-www-form-urlencoded”。如果要发送 DOM 树信息或其它不希望转换的信息，请设置为 false。</p>
-<p><strong>success</strong></p>
-<p>Function</p>
-<p>请求成功后回调函数。这个方法有两个参数：服务器返回数据，返回状态</p>
-<p>function (data, textStatus) {<br>​         // data could be xmlDoc, jsonObj, html, text, etc…<br>​         this; // the options for this ajax request<br>​         }</p>
-<p>这里有几个Ajax事件参数：<strong>beforeSend </strong>，<strong>success </strong>，<strong>complete ，error 。</strong>我们可以定义这些事件来很好的处理我们的每一次的Ajax请求。注意一下，这些Ajax事件里面的 this 都是指向Ajax请求的选项信息的(请参考说 get() 方法时的this的图片)。 请认真阅读上面的参数列表，如果你要用jQuery来进行Ajax开发，那么这些参数你都必需熟知的。</p>
-<h4 id="示例代码，获取博客园首页的文章题目："><a href="#示例代码，获取博客园首页的文章题目：" class="headerlink" title="示例代码，获取博客园首页的文章题目："></a>示例代码，获取博客园首页的文章题目：</h4><p>$.ajax({<br>type: “get”,<br>url: “<a href="http://www.cnblogs.com/rss&quot;" target="_blank" rel="noopener">http://www.cnblogs.com/rss&quot;</a>,<br>beforeSend: function(XMLHttpRequest){<br>//ShowLoading();<br>},<br>success: function(data, textStatus){<br>$(“.ajax.ajaxResult”).html(“”);<br>$(“item”,data).each(function(i, domEle){<br>$(“.ajax.ajaxResult”).append(“<li>“+$(domEle).children(“title”).text()+”</li>“);<br>});<br>},<br>complete: function(XMLHttpRequest, textStatus){<br>//HideLoading();<br>},<br>error: function(){<br>//请求出错处理<br>}<br>});</p>
-<p>这里将显示首页文章列表。     <strong>其他</strong> <strong>jQuery.ajaxSetup</strong>( options ) : 设置全局 AJAX 默认选项。 设置 AJAX 请求默认地址为 “/xmlhttp/“，禁止触发全局 AJAX 事件，用 POST 代替默认 GET 方法。其后的 AJAX 请求不再设置任何选项参数。 <strong>jQuery 代码:</strong></p>
-<p>$.ajaxSetup({<br>url: “/xmlhttp/“,<br>global: false,<br>type: “POST”<br>});<br>$.ajax({ data: myData });</p>
-<p>  <strong>serialize() 与 serializeArray()</strong> serialize() : 序列表表格内容为字符串。 serializeArray() : 序列化表格元素 (类似 ‘.serialize()’ 方法) 返回 JSON 数据结构数据。 示例： HTML代码：</p>
-<p></p><p id="results"><b>Results: </b> </p><form><select name="single"><option>Single</option><option>Single2</option></select><select name="multiple" multiple="multiple"><option selected="selected">Multiple</option><option>Multiple2</option><option selected="selected">Multiple3</option></select><br><input type="checkbox" name="check" value="check1"> check1<br>&lt;input type=”checkbox” name=”check” value=”check2” <p></p>
-<p>checked=”checked”/&gt; check2<br>&lt;input type=”radio” name=”radio” value=”radio1” </p>
-<p>checked=”checked”/&gt; radio1<br><input type="radio" name="radio" value="radio2"> radio2</p>
-<p></p></form><p></p>
-</li>
-<li><p><a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_3.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_3.png" alt=""></a> <strong>serializeArray() 结果为：</strong> <a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_4.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_4.png" alt="image"></a></p>
-</li>
-<li>以上转自：<a href="http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html" target="_blank" rel="noopener">http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html</a></li>
-</ul>
-<p>博客园大道至简 <a href="http://www.cnblogs.com/jams742003/" target="_blank" rel="noopener">http://www.cnblogs.com/jams742003/</a> 转载请注明：博客园</p>
-<p>分类: <a href="http://www.cnblogs.com/jams742003/category/142842.html" target="_blank" rel="noopener">Ajax</a></p>
-<p>绿色通道： 好文要顶 关注我 收藏该文<a href="http://space.cnblogs.com/msg/send/%e6%a2%85%e6%a1%a6" target="_blank" rel="noopener">与我联系</a> <img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/icon_weibo_24.png" alt=""></p>
-<p><a href="http://home.cnblogs.com/u/jams742003/" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/u33655.jpg" alt=""></a></p>
-<p><a href="http://home.cnblogs.com/u/jams742003/" target="_blank" rel="noopener">梅桦</a> <a href="http://home.cnblogs.com/u/jams742003/followees" target="_blank" rel="noopener">关注 - 13</a> <a href="http://home.cnblogs.com/u/jams742003/followers" target="_blank" rel="noopener">粉丝 - 248</a></p>
-<p>+加关注</p>
-<p>2</p>
-<p>0</p>
-<p>(请您对文章做出评价)</p>
-<p><a href="http://www.cnblogs.com/jams742003/archive/2009/09/16/1567771.html" target="_blank" rel="noopener">« </a>上一篇：<a href="http://www.cnblogs.com/jams742003/archive/2009/09/16/1567771.html" target="_blank" rel="noopener" title="发布于2009-09-16 14:56">Jquery ajax参数设置</a> <a href="http://www.cnblogs.com/jams742003/archive/2009/09/16/1567885.html" target="_blank" rel="noopener">» </a>下一篇：<a href="http://www.cnblogs.com/jams742003/archive/2009/09/16/1567885.html" target="_blank" rel="noopener" title="发布于2009-09-16 16:15">jquery Ajax示例</a></p>
-<p>posted @ 2009-09-16 15:23 <a href="http://www.cnblogs.com/jams742003/" target="_blank" rel="noopener">梅桦</a> 阅读(3318) 评论(0) <a href="http://i.cnblogs.com/EditPosts.aspx?postid=1567800" target="_blank" rel="noopener">编辑</a> <a href="http://www.cnblogs.com/jams742003/archive/2009/09/16/1567800.html#" target="_blank" rel="noopener">收藏</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="../../ajax_example/">展开全文 >></a>
         </p>
       
 

@@ -164,6 +164,199 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python-with" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../python-with/">理解Python的With语句</a>
+    </h1>
+  
+
+        
+        <a href="../../python-with/" class="archive-article-date">
+  	<time datetime="2015-08-04T08:22:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="With语句是什么？"><a href="#With语句是什么？" class="headerlink" title="With语句是什么？"></a><a href="http://python.42qu.com/11155501#h20" target="_blank" rel="noopener">With语句是什么？</a></h2><p>Python’s with statement provides a very convenient way of dealing with the situation where you have to do a setup and teardown to make something happen. A very good example for this is the situation where you want to gain a handler to a file, read data from the file and the close the file handler. 有一些任务，可能事先需要设置，事后做清理工作。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。 Without the with statement, one would write something along the lines of: 如果不用with语句，代码如下：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p><code>file</code> <code>=</code> <code>open`</code>(<code>&quot;/tmp/foo.txt&quot;</code>)`</p>
+<p><code>data</code> <code>=</code> <code>file`</code>.read()`</p>
+<p><code>file`</code>.close()`</p>
+<p>There are two annoying things here. First, you end up forgetting to close the file handler. The second is how to handle exceptions that may occur once the file handler has been obtained. One could write something like this to get around this: 这里有两个问题。一是可能忘记关闭文件句柄；二是文件读取数据发生异常，没有进行任何处理。下面是处理异常的加强版本：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p><code>file</code> <code>=</code> <code>open`</code>(<code>&quot;/tmp/foo.txt&quot;</code>)`</p>
+<p><code>try`</code>:`</p>
+<p><code>data</code> <code>=</code> <code>file`</code>.read()`</p>
+<p><code>finally`</code>:`</p>
+<p><code>file`</code>.close()`</p>
+<p>While this works well, it is unnecessarily verbose. This is where with is useful. The good thing about with apart from the better syntax is that it is very good handling exceptions. The above code would look like this, when using with: 虽然这段代码运行良好，但是太冗长了。这时候就是with一展身手的时候了。除了有更优雅的语法，with还可以很好的处理上下文环境产生的异常。下面是with版本的代码：</p>
+<p>1</p>
+<p>2</p>
+<p><code>with</code> <code>open`</code>(<code>&quot;/tmp/foo.txt&quot;</code>) as<code></code>file<code></code>:`</p>
+<p><code>data</code> <code>=</code> <code>file`</code>.read()`</p>
+<h2 id="with如何工作？"><a href="#with如何工作？" class="headerlink" title="with如何工作？"></a><a href="http://python.42qu.com/11155501#h21" target="_blank" rel="noopener">with如何工作？</a></h2><p>while this might look like magic, the way Python handles with is more clever than magic. The basic idea is that the statement after with has to evaluate an object that responds to an __enter__() as well as an __exit__() function. 这看起来充满魔法，但不仅仅是魔法，Python对with的处理还很聪明。基本思想是with所求值的对象必须有一个__enter__()方法，一个__exit__()方法。 After the statement that follows with is evaluated, the __enter__() function on the resulting object is called. The value returned by this function is assigned to the variable following as. After every statement in the block is evaluated, the __exit__() function is called. 紧跟with后面的语句被求值后，返回对象的__enter__()方法被调用，这个方法的返回值将被赋值给as后面的变量。当with后面的代码块全部被执行完之后，将调用前面返回对象的__exit__()方法。 This can be demonstrated with the following example: 下面例子可以具体说明with如何工作：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<p>14</p>
+<p>15</p>
+<p>16</p>
+<p>17</p>
+<p>18</p>
+<p>19</p>
+<p><code>#!/usr/bin/env python</code></p>
+<p><code># with_example01.py</code></p>
+<p><code>class</code> <code>Sample:</code></p>
+<p><code>def</code> <code>__enter__(`</code>self<code></code>):`</p>
+<p><code>print</code> <code>&quot;In __enter__()&quot;</code></p>
+<p><code>return</code> <code>&quot;Foo&quot;</code></p>
+<p><code>def</code> <code>__exit__(`</code>self<code>,` `type</code>, value, trace):`</p>
+<p><code>print</code> <code>&quot;In __exit__()&quot;</code></p>
+<p><code>def</code> <code>get_sample():</code></p>
+<p><code>return</code> <code>Sample()</code></p>
+<p><code>with get_sample() as sample:</code></p>
+<p><code>print</code> <code>&quot;sample:&quot;`</code>, sample`</p>
+<p>When executed, this will result in: 运行代码，输出如下</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p><code>bash`</code>-<code>3.2</code>$ .<code>/</code>with_example01.py`</p>
+<p><code>In __enter__()</code></p>
+<p><code>sample: Foo</code></p>
+<p><code>In __exit__()</code></p>
+<p>As you can see, The __enter__() function is executed The value returned by it - in this case “Foo” is assigned to sample The body of the block is executed, thereby printing the value of sample ie. “Foo” The __exit__() function is called. What makes with really powerful is the fact that it can handle exceptions. You would have noticed that the __exit__() function for Sample takes three arguments - val, type and trace. These are useful in exception handling. Let’s see how this works by modifying the above example. 正如你看到的， 1. __enter__()方法被执行 2. __enter__()方法返回的值 - 这个例子中是”Foo”，赋值给变量’sample’ 3. 执行代码块，打印变量”sample”的值为 “Foo” 4. __exit__()方法被调用 with真正强大之处是它可以处理异常。可能你已经注意到Sample类的__exit__方法有三个参数- val, type 和 trace。 这些参数在异常处理中相当有用。我们来改一下代码，看看具体如何工作的。</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<p>14</p>
+<p>15</p>
+<p>16</p>
+<p>17</p>
+<p>18</p>
+<p>19</p>
+<p><code>#!/usr/bin/env python</code></p>
+<p><code># with_example02.py</code></p>
+<p><code>class</code> <code>Sample:</code></p>
+<p><code>def</code> <code>__enter__(`</code>self<code></code>):`</p>
+<p><code>return</code> <code>self</code></p>
+<p><code>def</code> <code>__exit__(`</code>self<code>,` `type</code>, value, trace):`</p>
+<p><code>print</code> <code>&quot;type:&quot;`</code>,<code></code>type`</p>
+<p><code>print</code> <code>&quot;value:&quot;`</code>, value`</p>
+<p><code>print</code> <code>&quot;trace:&quot;`</code>, trace`</p>
+<p><code>def</code> <code>do_something(`</code>self<code></code>):`</p>
+<p><code>bar</code> <code>=</code> <code>1`</code>/<code></code>0`</p>
+<p><code>return</code> <code>bar</code> <code>+</code> <code>10</code></p>
+<p><code>with Sample() as sample:</code></p>
+<p><code>sample.do_something()</code></p>
+<p>Notice how in this example, instead of get_sample(), with takes Sample(). It does not matter, as long as the statement that follows with evaluates to an object that has an __enter__() and __exit__() functions. In this case, Sample()’s __enter__() returns the newly created instance of Sample and that is what gets passed to sample. 这个例子中，with后面的get_sample()变成了Sample()。这没有任何关系，只要紧跟with后面的语句所返回的对象有__enter__()和__exit__()方法即可。此例中，Sample()的__enter__()方法返回新创建的Sample对象，并赋值给变量sample。 When executed: 代码执行后：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p><code>bash`</code>-<code>3.2</code>$ .<code>/</code>with_example02.py`</p>
+<p><code>type`</code>: &lt;<code>type` `&#39;exceptions.ZeroDivisionError&#39;</code>&gt;`</p>
+<p><code>value: integer division</code> <code>or</code> <code>modulo by zero</code></p>
+<p><code>trace: &lt;traceback</code> <code>object</code> <code>at</code> <code>0x1004a8128`</code>&gt;`</p>
+<p><code>Traceback (most recent call last):</code></p>
+<p><code>File</code> <code>&quot;./with_example02.py&quot;`</code>, line<code></code>19<code></code>,<code></code>in<code></code><module>`</module></p>
+<p><code>sample.do_something()</code></p>
+<p><code>File</code> <code>&quot;./with_example02.py&quot;`</code>, line<code></code>15<code></code>,<code></code>in<code></code>do_something`</p>
+<p><code>bar</code> <code>=</code> <code>1`</code>/<code></code>0`</p>
+<p><code>ZeroDivisionError: integer division</code> <code>or</code> <code>modulo by zero</code></p>
+<p>Essentially, if there are exceptions being thrown from anywhere inside the block, the __exit__() function for the object is called. As you can see, the type, value and the stack trace associated with the exception thrown is passed to this function. In this case, you can see that there was a ZeroDivisionError exception being thrown. People implementing libraries can write code that clean up resources, close files etc. in their __exit__() functions. 实际上，在with后面的代码块抛出任何异常时，__exit__()方法被执行。正如例子所示，异常抛出时，与之关联的type，value和stack trace传给__exit__()方法，因此抛出的ZeroDivisionError异常被打印出来了。开发库时，清理资源，关闭文件等等操作，都可以放在__exit__方法当中。 Thus, Python’s with is a nifty construct that makes code a little less verbose and makes cleaning up during exceptions a bit easier. 因此，Python的with语句是提供一个有效的机制，让代码更简练，同时在异常产生时，清理工作更简单。 I have put the code examples given here on <a href="https://github.com/sdqali/python_dojo/tree/master/with" target="_blank" rel="noopener" title="https://github.com/sdqali/python_dojo/tree/master/with">Github</a>. 示例代码可以在<a href="https://github.com/sdqali/python_dojo/tree/master/with" target="_blank" rel="noopener" title="https://github.com/sdqali/python_dojo/tree/master/with">Github</a>上面找到。 译注：本文原文见<a href="http://blog.sdqali.in/blog/2012/07/09/understanding-pythons-with/" target="_blank" rel="noopener" title="http://blog.sdqali.in/blog/2012/07/09/understanding-pythons-with/">Understanding Python’s “With” Statement</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="../../python-with/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-php-jsonp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1060,96 +1253,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="../../route-add/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-oop-five-principle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../oop-five-principle/">面向对象的设计原则</a>
-    </h1>
-  
-
-        
-        <a href="../../oop-five-principle/" class="archive-article-date">
-  	<time datetime="2015-05-12T15:01:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-面向对象设计五大原则"><a href="#1-面向对象设计五大原则" class="headerlink" title="1.面向对象设计五大原则"></a>1.面向对象设计五大原则</h3><p>面向对象设计的五大原则分别是单一职责原则、接口隔离原则、开放-封闭原则、替换原则、依赖倒置原则。</p>
-<h3 id="2-单一职责原则（single-Pesponsibility-Principle，SRP）"><a href="#2-单一职责原则（single-Pesponsibility-Principle，SRP）" class="headerlink" title="2.单一职责原则（single Pesponsibility Principle，SRP）"></a>2.单一职责原则（single Pesponsibility Principle，SRP）</h3><p>单一职责有两个含义：一个是避免相同的职责分散到不同的累中，另一个是避免一个类承担太多职责。 为什么遵守SRP：可以减少类之间的耦合，提高类的复用性。 SRP在实际代码中的应用： 工厂模式（Factory）：根据不同的参数生成不同的实例化对象。它只负责生成对象而不负责对象的具体内容。如数据库操作，缓存操作。 命令模式：分离“命令的请求者”和“命令的实现者”方面的职责，达到请求和实现的解耦。如你去餐馆吃饭，餐馆有顾客，服务员，厨师三种职责。作为顾客只要列出菜单，传给服务员，服务员通知厨师，厨师去实现的过程。</p>
-<h3 id="3-接口隔离原则（Interface-Segregation-Principle，ISP）"><a href="#3-接口隔离原则（Interface-Segregation-Principle，ISP）" class="headerlink" title="3.接口隔离原则（Interface Segregation Principle，ISP）"></a>3.接口隔离原则（Interface Segregation Principle，ISP）</h3><p>接口隔离原则：表面客户端不应该被强迫实现一些他们不会使用的接口，应该把胖接口中的方法分组，然后用多个接口代替它，每个接口服务于一个子模块，简单地说就是使用多个专门的接口比使用单个接口要好的多。 “接口隔离”其实就是定制化服务设计的原则。使用接口的多重继承实现对不同的接口的组合，从而对外提供组合功能–达到“按需提供服务”。如PDO是一个抽象的数据接口层，它告诉我们接口应该是通用的、基本的、不易变化的，对于其他数据库特定的操作方法不应该出现到该接口里，减少对接口的污染。 接口污染的处理方式：利用委托分离接口，利用多继承分离接口。 委托方式中，有两个对象参与处理同一个请求，接受请求的对象将请求委托给另一个对象来处理，如策略模式、代理模式。</p>
-<h3 id="4-开放-封闭原则（Open-Close-Principle，OCP）"><a href="#4-开放-封闭原则（Open-Close-Principle，OCP）" class="headerlink" title="4.开放-封闭原则（Open-Close Principle，OCP）"></a>4.开放-封闭原则（Open-Close Principle，OCP）</h3><p>Open（Open for extension）模块的行为必须是开放的，支持扩展的，而不是僵化的。Close（Closed for modification）在对模块的功能进行扩展时，不应该影响或大规模地影响已有的模块。一个模块在扩展性方面应该是开放的而在更改性应该是封闭的。 实现开放-封闭的核心思想是对抽象编程，而不对具体编程。因为抽象相对稳定。让类依赖固定的抽象，这样修改就是封闭的；而通过面向对象的继承和多态机制，可以实现对抽象体的继承，通过方法的覆写改变固有行为，实现扩展新的方法，所以对于扩展是开放的。 在设计方面充分应用“抽象”和封装的思想：一方面在软件系统中找出“可变因素”，将之封装起来；另一方面一种可变性因素不应当散落在多个不同代码模块中，而应当被封装到一个对象中。 在设计模式中，装饰模式比较明显地用到OCP。</p>
-<h3 id="5-替换原则（Liskov-Substitution-Principle，LSP）"><a href="#5-替换原则（Liskov-Substitution-Principle，LSP）" class="headerlink" title="5.替换原则（Liskov Substitution Principle，LSP）"></a>5.替换原则（Liskov Substitution Principle，LSP）</h3><p>替换原则：子类型必须能够替换掉它们父类型，并出现在父类能够出现的任何地方。LSP主要是针对继承的设计原则。 如何遵守该设计原则：父类的方法都要在子类中实现或重写，并且派生类只实现抽象类中声明的方法，而不应当给出多余方法的定义或实现；在客户端程序中只应该使用父类对象而不应当直接使用子类对象，这样可以实现运行期绑定（动态多态）。 LSP包括使用多态实现隐藏基类和派生类对象的区别，以及组合的方式解决继承中的基类与派生类中不符合语意的情况。</p>
-<h3 id="6-依赖倒置原则（Dependence-Inversion-Principle，DIP）"><a href="#6-依赖倒置原则（Dependence-Inversion-Principle，DIP）" class="headerlink" title="6.依赖倒置原则（Dependence Inversion Principle，DIP）"></a>6.依赖倒置原则（Dependence Inversion Principle，DIP）</h3><p>依赖倒置原则：将依赖关系倒置为依赖接口。上层模块不应该依赖于下层模块，它们共同依赖于一个抽象；抽象不能依赖于具体，具体应该依赖于抽象。 专门由一个程序检测配置是否正确以及加载配置中所依赖的实现，这检测程序称为IOC容器。在J2EE中通常把DAO层和Service层细分为接口层和实现层，然后在配置文件中进行依赖关系倒置，这是常见的DIP应用。 如何满足DIP：每个较高层次类都为它所需要的服务提出一个接口声明，较低层次类实现这个接口；每个高层类都通过该抽象接口使用服务。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">OOP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/OOP//" class="article-tag-list-link color4">OOP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="../../oop-five-principle/">展开全文 >></a>
         </p>
       
 
