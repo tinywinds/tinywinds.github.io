@@ -200,19 +200,24 @@
 </ul>
 <p>Github下载地址：<a href="https://github.com/pandao/editor.md" target="_blank" rel="noopener">https://github.com/pandao/editor.md</a></p>
 <h4 id="前端js配置"><a href="#前端js配置" class="headerlink" title="前端js配置"></a>前端js配置</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* 配置editormd */</span></span><br><span class="line"> <span class="keyword">var</span> editor = editormd(<span class="string">"editormd"</span>, &#123;</span><br><span class="line">      path: <span class="string">"&#123;&#123; asset('/editor.md/lib/') &#125;&#125;"</span>,</span><br><span class="line">      height: <span class="number">700</span>,</span><br><span class="line">      syncScrolling: <span class="string">"single"</span>,</span><br><span class="line">      toolbarAutoFixed: <span class="keyword">false</span>,</span><br><span class="line">      saveHTMLToTextarea: <span class="keyword">false</span>,</span><br><span class="line">      imageUpload: <span class="keyword">true</span>,</span><br><span class="line">      imageFormats : [<span class="string">"jpg"</span>,<span class="string">"jpeg"</span>,<span class="string">"gif"</span>,<span class="string">"png"</span>,<span class="string">"bmp"</span>,<span class="string">"webp"</span>],</span><br><span class="line">      imageUploadURL:<span class="string">"&#123;&#123;url('backend/uploadimage')&#125;&#125;"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h4 id="方法和路由"><a href="#方法和路由" class="headerlink" title="方法和路由"></a>方法和路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">uploadimage</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $message=<span class="string">''</span>;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">$this</span>-&gt;disk-&gt;exists(<span class="string">'/article'</span>)) &#123;</span><br><span class="line">            $message = <span class="string">"article 文件夹不存在,请先创建"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            $pathDir=date(<span class="string">'Ymd'</span>);</span><br><span class="line">            <span class="keyword">if</span>(!<span class="keyword">$this</span>-&gt;disk-&gt;exists(<span class="string">'/article/'</span>.$pathDir))&#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;disk-&gt;makeDirectory(<span class="string">'/article/'</span>.$pathDir);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>($request-&gt;file(<span class="string">'editormd-image-file'</span>))&#123;</span><br><span class="line">            $path=<span class="string">"uploads/article/"</span>.$pathDir;</span><br><span class="line">            $pic = $request-&gt;file(<span class="string">'editormd-image-file'</span>);</span><br><span class="line">            <span class="keyword">if</span>($pic-&gt;isValid())&#123;</span><br><span class="line">                $newName=md5(time() . rand(<span class="number">0</span>, <span class="number">10000</span>)).<span class="string">"."</span>.$pic-&gt;getClientOriginalExtension();</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;disk-&gt;exists($path.<span class="string">'/'</span>.$newName))&#123;</span><br><span class="line">                    $message = <span class="string">"文件名已存在或文件已存在"</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>($pic-&gt;move($path,$newName))&#123;</span><br><span class="line">                        $url = asset($path.<span class="string">'/'</span>.$newName);</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        $message=<span class="string">"系统异常，文件保存失败"</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                $message = <span class="string">"文件无效"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            $message=<span class="string">"Not File"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $data = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'success'</span> =&gt; <span class="keyword">empty</span>($message) ? <span class="number">1</span> : <span class="number">0</span>,  <span class="comment">//1：上传成功  0：上传失败</span></span><br><span class="line">            <span class="string">'message'</span> =&gt; $message,</span><br><span class="line">            <span class="string">'url'</span> =&gt; !<span class="keyword">empty</span>($url) ? $url : <span class="string">''</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        header(<span class="string">'Content-Type:application/json;charset=utf8'</span>);</span><br><span class="line">        <span class="keyword">exit</span>(json_encode($data));</span><br><span class="line">    &#125;</span><br><span class="line">Route::group([<span class="string">'prefix'</span> =&gt; <span class="string">'backend'</span>], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  Route::post(<span class="string">'uploadimage'</span>,[<span class="string">'uses'</span>=&gt;<span class="string">'Backend\UploadController@uploadimage'</span>]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h4 id="上传报错"><a href="#上传报错" class="headerlink" title="上传报错"></a>上传报错</h4><p>我们可以发现会出现500错误，这是由Laravel 的TokenMismatchException异常导致的，也就是Laravel默认开启了防CSRF，而Editor.md 的上传表单中并没有包含token，所以才会出现这个错误。</p>
 <h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>当我们点击上传图片的时候会弹出上传框，这个就是上传的表单，我们可以用调试器查出这是请求了image-dialog.js，具体路径为editor.md/plugins/image-dialog/image-dialog.js。我们可以对其中的var dialogContent变量进行就修改。</p>
 <p>具体的修改代码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (settings.crossDomainUpload)</span><br><span class="line">&#123;</span><br><span class="line">     action += <span class="string">"&amp;callback="</span> + settings.uploadCallbackURL + <span class="string">"&amp;dialog_id=editormd-image-dialog-"</span> + guid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> csrfToken = $(<span class="string">'meta[name="_token"]'</span>).attr(<span class="string">'content'</span>);</span><br><span class="line"><span class="keyword">var</span> csrfField = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">if</span> (csrfToken) &#123;</span><br><span class="line">       csrfField = <span class="string">"&lt;input type='hidden' name='_token' value='"</span> + csrfToken + <span class="string">"' /&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>在if(settings.crossDomainUpload)结束后加上这5行代码，接下来，将csrfField 变量加入到下面的代码中。</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dialogContent = ( (settings.imageUpload) ? <span class="string">"&lt;form action=\""</span> + action + <span class="string">"\" target=\""</span> + iframeName + <span class="string">"\" method=\"post\" enctype=\"multipart/form-data\" class=\""</span> + classPrefix + <span class="string">"form\"&gt;"</span> : <span class="string">"&lt;div class=\""</span> + classPrefix + <span class="string">"form\"&gt;"</span> ) +</span><br><span class="line">    ( (settings.imageUpload) ? <span class="string">"&lt;iframe name=\""</span> + iframeName + <span class="string">"\" id=\""</span> + iframeName + <span class="string">"\" guid=\""</span> + guid + <span class="string">"\"&gt;&lt;/iframe&gt;"</span> : <span class="string">""</span> ) +</span><br><span class="line">    <span class="string">"&lt;label&gt;"</span> + imageLang.url + <span class="string">"&lt;/label&gt;"</span> +</span><br><span class="line">    <span class="string">"&lt;input type=\"text\" data-url /&gt;"</span> + (<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (settings.imageUpload) ? <span class="string">"&lt;div class=\""</span> + classPrefix + <span class="string">"file-input\"&gt;"</span> +</span><br><span class="line">            <span class="string">"&lt;input type=\"file\" name=\""</span> + classPrefix + <span class="string">"image-file\" accept=\"image/*\" /&gt;"</span> +</span><br><span class="line"></span><br><span class="line">            csrfField +</span><br><span class="line"></span><br><span class="line">            <span class="string">"&lt;input type=\"submit\" value=\""</span> + imageLang.uploadButton + <span class="string">"\" /&gt;"</span> +</span><br><span class="line">            <span class="string">"&lt;/div&gt;"</span> : <span class="string">""</span>;</span><br><span class="line">    &#125;)() +</span><br><span class="line">    <span class="string">"&lt;br/&gt;"</span> +</span><br><span class="line">    <span class="string">"&lt;label&gt;"</span> + imageLang.alt + <span class="string">"&lt;/label&gt;"</span> +</span><br><span class="line">    <span class="string">"&lt;input type=\"text\" value=\""</span> + selection + <span class="string">"\" data-alt /&gt;"</span> +</span><br><span class="line">    <span class="string">"&lt;br/&gt;"</span> +</span><br><span class="line">    <span class="string">"&lt;label&gt;"</span> + imageLang.link + <span class="string">"&lt;/label&gt;"</span> +</span><br><span class="line">    <span class="string">"&lt;input type=\"text\" value=\"http://\" data-link /&gt;"</span> +</span><br><span class="line"></span><br><span class="line">    <span class="string">"&lt;br/&gt;"</span> + csrfField +</span><br><span class="line"></span><br><span class="line">    ( (settings.imageUpload) ? <span class="string">"&lt;/form&gt;"</span> : <span class="string">"&lt;/div&gt;"</span>);</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>然后在请求的页面头部加上这行代码</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"_token"</span> content=<span class="string">"&#123;&#123; csrf_token() &#125;&#125;"</span>/&gt;</span><br></pre></td></tr></table></figure>
+
 <p>这样再次请求上传图片就可以把token带过去。</p>
 
       
@@ -459,6 +464,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
@@ -467,15 +476,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,6 +485,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -503,11 +508,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,15 +532,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SEO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,11 +548,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,15 +564,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

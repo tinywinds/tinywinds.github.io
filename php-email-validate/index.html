@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://tinywind.cn">
   <title>PHP邮件地址验证 | Tinywind</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Web 应用可能需要做的一件常见任务是检测用户是否输入了一个有效的邮件地址。毫无疑问你可以在网上找到一些声称可以解决该问题的复杂的正则表达式，但是最简单的方法是使用 PHP 的内建 filter_val() 函数。 &lt;?php filter_var(&#39;sgamgee@example.com&#39;, FILTER_VALIDATE_EMAIL); &#x2F;&#x2F;Returns &quot;s">
+  <meta name="description" content="Web 应用可能需要做的一件常见任务是检测用户是否输入了一个有效的邮件地址。毫无疑问你可以在网上找到一些声称可以解决该问题的复杂的正则表达式，但是最简单的方法是使用 PHP 的内建 filter_val() 函数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP邮件地址验证">
 <meta property="og:url" content="http://tinywind.cn/php-email-validate/index.html">
 <meta property="og:site_name" content="Tinywind">
-<meta property="og:description" content="Web 应用可能需要做的一件常见任务是检测用户是否输入了一个有效的邮件地址。毫无疑问你可以在网上找到一些声称可以解决该问题的复杂的正则表达式，但是最简单的方法是使用 PHP 的内建 filter_val() 函数。 &lt;?php filter_var(&#39;sgamgee@example.com&#39;, FILTER_VALIDATE_EMAIL); &#x2F;&#x2F;Returns &quot;s">
+<meta property="og:description" content="Web 应用可能需要做的一件常见任务是检测用户是否输入了一个有效的邮件地址。毫无疑问你可以在网上找到一些声称可以解决该问题的复杂的正则表达式，但是最简单的方法是使用 PHP 的内建 filter_val() 函数。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2015-08-12T08:23:49.000Z">
 <meta property="article:modified_time" content="2019-05-20T03:04:01.498Z">
@@ -186,7 +186,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Web 应用可能需要做的一件常见任务是检测用户是否输入了一个有效的邮件地址。毫无疑问你可以在网上找到一些声称可以解决该问题的复杂的正则表达式，但是最简单的方法是使用 PHP 的内建 <code>filter_val()</code> 函数。 &lt;?php <code>filter_var(&#39;sgamgee@example.com&#39;, FILTER_VALIDATE_EMAIL);</code> <code>//Returns &quot;sgamgee@example.com&quot;. This is a valid email address.</code> filter_var(‘sauron@mordor’, FILTER_VALIDATE_EMAIL); // Returns boolean false! This is *not* a valid email address. ?&gt;</p>
+        <p>Web 应用可能需要做的一件常见任务是检测用户是否输入了一个有效的邮件地址。毫无疑问你可以在网上找到一些声称可以解决该问题的复杂的正则表达式，但是最简单的方法是使用 PHP 的内建 <code>filter_val()</code> 函数。 <?php `filter_var('sgamgee@example.com', FILTER_VALIDATE_EMAIL);` `//Returns "sgamgee@example.com". This is a valid email address.` filter_var('sauron@mordor', FILTER\_VALIDATE\_EMAIL); // Returns boolean false! This is \*not\* a valid email address. ?></p>
 
       
 
@@ -428,6 +428,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
@@ -436,15 +440,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -453,6 +449,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,11 +472,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,15 +496,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SEO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,11 +512,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,15 +528,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

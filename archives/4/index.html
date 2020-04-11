@@ -187,6 +187,7 @@
         <p>php中常用的去重函数array_unique很好用，遗憾的是不能处理二维的数组。实际开发中，遇到此类问题，考虑的办法去二维数组降维，然后去重复，然后恢复二维。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span><span class="params">($data = array<span class="params">()</span>)</span></span>&#123;</span><br><span class="line">       $tmp = <span class="keyword">array</span>();</span><br><span class="line">       <span class="keyword">foreach</span>($data <span class="keyword">as</span> $key =&gt; $value)&#123;</span><br><span class="line">           <span class="comment">//把一维数组键值与键名组合</span></span><br><span class="line">           <span class="keyword">foreach</span>($value <span class="keyword">as</span> $key1 =&gt; $value1)&#123;</span><br><span class="line">               $value[$key1] = $key1 . <span class="string">'|'</span> . $value1;<span class="comment">//|分隔符复杂点以免冲突</span></span><br><span class="line">           &#125;</span><br><span class="line">           $tmp[$key] = implode(<span class="string">',|,'</span>, $value);<span class="comment">//,|,分隔符复杂点以免冲突</span></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//对降维后的数组去重复处理</span></span><br><span class="line">       $tmp = array_unique($tmp);</span><br><span class="line">       <span class="comment">//重组二维数组</span></span><br><span class="line">       $newArr = <span class="keyword">array</span>();</span><br><span class="line">       <span class="keyword">foreach</span>($tmp <span class="keyword">as</span> $k =&gt; $tmp_v)&#123;</span><br><span class="line">           $tmp_v2 = explode(<span class="string">',|,'</span>, $tmp_v);</span><br><span class="line">           <span class="keyword">foreach</span>($tmp_v2 <span class="keyword">as</span> $k2 =&gt; $v2)&#123;</span><br><span class="line">               $v2 = explode(<span class="string">'|'</span>, $v2);</span><br><span class="line">               $tmp_v3[$v2[<span class="number">0</span>]] = $v2[<span class="number">1</span>];</span><br><span class="line">           &#125;</span><br><span class="line">           $newArr[$k] = $tmp_v3;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> $newArr;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
+
       
 
       
@@ -1083,6 +1084,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
@@ -1091,15 +1096,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1108,6 +1105,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1127,11 +1128,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1147,15 +1152,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SEO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,11 +1168,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1183,15 +1184,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

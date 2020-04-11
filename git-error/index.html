@@ -189,11 +189,9 @@
         <p>在服务器上pull最新的代码，但是由于服务器上的一些配置文件有了变动，会出现错误 error: Your local changes to the following files would be overwritten by merge: protected/config/main.php Please, commit your changes or stash them before you can merge. 如果希望保留生产服务器上所做的改动,仅仅并入新配置项, 处理方法如下:</p>
 <pre><code>git stash 
 git pull 
-git stash pop
-</code></pre><p>然后可以使用git diff -w +文件名 来确认代码自动合并的情况. 反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:</p>
+git stash pop</code></pre><p>然后可以使用git diff -w +文件名 来确认代码自动合并的情况. 反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:</p>
 <pre><code>git reset --hard 
-git pull
-</code></pre><p>其中git reset是针对版本,如果想针对文件回退本地修改,使用 git checkout HEAD file/to/restore</p>
+git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回退本地修改,使用 git checkout HEAD file/to/restore</p>
 
       
 
@@ -435,6 +433,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
@@ -443,15 +445,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -460,6 +454,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,11 +477,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,15 +501,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SEO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,11 +517,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,15 +533,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

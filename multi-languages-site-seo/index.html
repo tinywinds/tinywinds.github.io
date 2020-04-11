@@ -286,9 +286,13 @@
 <p>您应在 <code>&lt;head&gt;</code> 元素中为网页的每个变体分别添加一组 <code>&lt;link&gt;</code> 元素（由每个网页变体（包括网页自身）的链接组成）。网页的每个版本所对应的那组链接都应是相同的。</p>
 <p>以下是每个 <code>link</code> 元素的语法：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"alternate"</span> <span class="attribute">hreflang</span>=<span class="string">"lang_code"</span> <span class="attribute">href</span>=<span class="string">"url_of_page"</span> /&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>lang_code</code> 此网页版本所定位的受支持的语言/区域代码，或 <code>x-default</code>（以与该网页上的 <code>hreflang</code> 标记未明确列出的任何语言匹配）。</p>
 <p><code>url_of_page</code> 此网页版本的完全限定网址（与指定的语言/区域对应）。 示例：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Widgets, Inc<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en-gb"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en-gb.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en-us"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en-us.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"en"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://en.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"de"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://de.example.com/page.html"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"alternate"</span> <span class="attr">hreflang</span>=<span class="string">"x-default"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"http://www.example.com/"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+
+
 <p><img src="/.cn//3.jpg" alt="img"></p>
 <p>使用hreflang中的常见错误：</p>
 <ul>
@@ -299,6 +303,7 @@
 </ul>
 <h3 id="（2）HTTP-响应标头"><a href="#（2）HTTP-响应标头" class="headerlink" title="（2）HTTP 响应标头"></a>（2）HTTP 响应标头</h3><p>您可以将相应网页所有语言、区域的变体告知搜索引擎，这种方法对不能设置 html 标记的 pdf 很有用。 标头格式如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Link: <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">en-gb.example.com</span>/<span class="attr">page.html</span>&gt;</span>; rel="alternate"; hreflang="en-gb", <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">en-us.example.com</span>/<span class="attr">page.html</span>&gt;</span>; rel="alternate"; hreflang="en-us", ...</span><br></pre></td></tr></table></figure>
+
 <h3 id="（3）XML-sitemap-站点地图"><a href="#（3）XML-sitemap-站点地图" class="headerlink" title="（3）XML sitemap 站点地图"></a>（3）XML sitemap 站点地图</h3><p>您可以使用站点地图将每个网址的所有语言和区域变体告知搜索引擎。为此，请添加一个用于指定单个网址的 <code>&lt;loc&gt;</code> 元素，其中的子 <code>&lt;xhtml:link&gt;</code> 条目应列出相应网页的每种语言/语言区域变体（包括网页自身）。因此，如果您的某个网页有 3 个版本，那么您的站点地图便应包含 3 个条目，每个条目都应包含 3 个完全相同的子条目。</p>
 <p>站点地图规则：</p>
 <ul>
@@ -310,6 +315,7 @@
 <li><code>www.example.com/de</code> ，以德语用户为目标用户。</li>
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">urlset</span> <span class="attr">xmlns</span>=<span class="string">"http://www.sitemaps.org/schemas/sitemap/0.9"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:xhtml</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">loc</span>&gt;</span>http://www.example.com/en<span class="tag">&lt;/<span class="name">loc</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xhtml:link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">rel</span>=<span class="string">"alternate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">hreflang</span>=<span class="string">"de"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">href</span>=<span class="string">"http://www.example.com/de"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xhtml:link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">rel</span>=<span class="string">"alternate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">hreflang</span>=<span class="string">"en"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">href</span>=<span class="string">"http://www.example.com/en"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">loc</span>&gt;</span>http://www.example.com/de<span class="tag">&lt;/<span class="name">loc</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xhtml:link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">rel</span>=<span class="string">"alternate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">hreflang</span>=<span class="string">"de"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">href</span>=<span class="string">"http://www.example.com/de"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xhtml:link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">rel</span>=<span class="string">"alternate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">hreflang</span>=<span class="string">"en"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">href</span>=<span class="string">"http://www.example.com/en"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">urlset</span>&gt;</span></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
 <p>更多 sitemap 的相关知识请参考： <a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.sitemaps.org%2Fprotocol.html">sitemaps.org - Sitemaps XML format</a></p>
 <h3 id="（4）语言元标记"><a href="#（4）语言元标记" class="headerlink" title="（4）语言元标记"></a>（4）语言元标记</h3><p>虽然Google和Yandex目前使用hreflang属性，但Bing使用的是<a href="https://link.juejin.im/?target=http%3A%2F%2Fblogs.bing.com%2Fwebmaster%2F2011%2F03%2F01%2Fhow-to-tell-bing-your-websites-country-and-language%2F">语言元标记</a> ： <code>&lt;meta http-equiv=“content-language” content =“en-us” /&gt;</code></p>
 <h3 id="（5）注意事项："><a href="#（5）注意事项：" class="headerlink" title="（5）注意事项："></a>（5）注意事项：</h3><ol>
@@ -657,6 +663,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
@@ -665,15 +675,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,6 +684,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,11 +707,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,15 +731,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SEO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -741,11 +747,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,15 +763,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

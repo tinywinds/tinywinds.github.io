@@ -191,7 +191,7 @@
 <p><strong>环境准备</strong>：在有赞开通微小店（免费）-&gt; 注册有赞云 -&gt; 创建自用型应用 -&gt; 绑定微小店 -&gt; 开通 push (推送交易状态)</p>
 <p><strong>交易流程</strong>：调用有赞云的收银 API ，创建支付二维码(并存储二维码 id 到自有网站订单) -&gt; 用户扫描二维码并支付 -&gt; 推送交易状态到你的网站 -&gt; 更新网站订单状态 -&gt; 完成购买</p>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a><strong>环境准备</strong></h2><p><strong>第一步：开通微小店</strong></p>
-<p>去这里注册并开通小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc">有赞微小店<em>微店怎么开</em>微店网页登录/下载 - 做生意，用有赞</a></p>
+<p>去这里注册并开通小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc">有赞微小店_微店怎么开_微店网页登录/下载 - 做生意，用有赞</a></p>
 <p><strong>第二步：注册有赞云</strong></p>
 <p>去这里注册个人开发者：<a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/">有赞云 - 做软件，用有赞云</a>，然后创建<strong>自用型</strong>应用，默认微商城，填写应用名称点下一步，授权店铺，选择你上面开通的小店名称并完成授权绑定。</p>
 <p><strong>第三步：开通应用动态推送</strong></p>
@@ -207,8 +207,12 @@
 <h2 id="交易流程"><a href="#交易流程" class="headerlink" title="交易流程"></a><strong>交易流程</strong></h2><p><strong>第一步：创建收款二维码</strong></p>
 <p>这一步一般是用户在你的网站选择完商品，或者在购物车点结算，你在自己网站创建完订单后，调用有赞云收银 API 创建二维码，以我的包为例（大同小异啦）：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$result = \Youzan::request(<span class="string">'youzan.pay.qrcode.create'</span>, [</span><br><span class="line">                <span class="string">'qr_type'</span> =&gt; <span class="string">'QR_TYPE_DYNAMIC'</span>,  <span class="comment">// 这个就不要动了</span></span><br><span class="line">                <span class="string">'qr_price'</span> =&gt; <span class="number">100</span>,  <span class="comment">// 金额：分</span></span><br><span class="line">                <span class="string">'qr_name'</span> =&gt; <span class="string">'iPhone 8 plus 64G 金色'</span>, <span class="comment">// 收款理由</span></span><br><span class="line">                <span class="string">'qr_source'</span> =&gt; <span class="string">'102828399222'</span>, <span class="comment">// 自定义字段，你可以设置为网站订单号</span></span><br><span class="line">            ])<span class="string">'</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>得到的结果呢包含三个值：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"qr_id": "19707",</span><br><span class="line">"qr_url": "https://trade.koudaitong.com/wxpay/confirmQr?qr_id=19707&amp;kdt_id=55",</span><br><span class="line">"qr_code": "data:image/png;base64,iV......"</span><br></pre></td></tr></table></figure>
+
 <p>其中 qr_id 你需要与刚才的订单绑定（这里取决于你自己的实现了，比如你在网站应该有 payments 表用于专门记录支付记录）</p>
 <p>qr_url 呢其实就是扫码完打开的页面，qr_code 是图片内容，可以直接放到 img 的 src 中，data-url 格式。就是一个二维码图片。</p>
 <p>用户扫码后打开一个网址完成付款。这时候你的手机 app 微小店会告诉你有新的订单。</p>
@@ -216,18 +220,20 @@
 <p><strong>第二步：主动查询订单</strong></p>
 <p>为啥要主动查询呢，不是有推送么，对，但是推送的时间以及成功率是无法保证的，所以我们应该主动去查询，我的做法是在交易创建完成后，定时（2秒左右）查询一次订单信息：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$payment = Payment::whereQrId(<span class="string">'19707'</span>);</span><br><span class="line">$result = Youzan::request(<span class="string">'youzan.trades.qr.get'</span>, [</span><br><span class="line">     <span class="string">'qr_id'</span> =&gt; $payment-&gt;qr_id, </span><br><span class="line">     <span class="string">'status'</span> =&gt; <span class="string">'TRADE_RECEIVED'</span></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($result[<span class="string">'total_results'</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    $order = array_pop($result[<span class="string">'qr_trades'</span>]);</span><br><span class="line">    $payment-&gt;status = Payment::STATUS_SUCCEED;</span><br><span class="line">    $payment-&gt;save();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>上面我们先从自己的数据库根据 qr_id 查询交易记录得到 $payment，然后调用了有赞云 API 的二维码订单列表得到这个二维码产生的成功的交易订单。</p>
 <p>如果得到成功交易的订单数量大于 0 （一般就一笔），就更新支付状态为成功。</p>
 <p>反之，继续查，这里一般有一个限制，比如查10次没有交易就关闭，或者其它你觉得 OK 的策略都可以。</p>
 <p><strong>第三步：处理推送</strong></p>
 <p>这一步与其它支付的情况不太一样，因为推送过来的内容不是直接就能与你的订单关联上的，推送过来的内容中有一个 id 字段，这是有赞的订单 ID ，不是我们的订单 ID，我们先要拿这个 ID 去他们的 API 取到交易详情，然后再从交易详情得到 qr_id 才能查出我们订单的关联信息。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($request-&gt;get(<span class="string">'type'</span>) == <span class="string">'TRADE_ORDER_STATE'</span> </span><br><span class="line">    &amp;&amp; $request-&gt;get(<span class="string">'status'</span>) == <span class="string">'TRADE_SUCCESS'</span>) &#123;</span><br><span class="line">    $order = Youzan::request(<span class="string">'youzan.trade.get'</span>, [<span class="string">'tid'</span> =&gt; $request-&gt;id]);</span><br><span class="line"></span><br><span class="line">    $payment = Payment::WhereQrId($order[<span class="string">'trade'</span>][<span class="string">'qr_id'</span>])-&gt;first();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($payment &amp;&amp; $payment-&gt;status !== <span class="keyword">self</span>::STATUS_SUCCEED) &#123;</span><br><span class="line">        $payment-&gt;status = Payment::STATUS_SUCCEED;</span><br><span class="line">        $payment-&gt;save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>获取交易详情 API 为 youzan.trade.get，传入的 tid 就是推送内容里的 id。二维码 ID 在交易详情的 trade 里。</p>
 <p>那这一套流程就实现完了，个人感觉还是非常容易的，收款完成你就可以在微小店提现了。</p>
 <p>个人觉得这一套下来接入成本非常的低，然后还有一个非常大的好处是给你省去很多开发工作，因为在手机 app 上随时有推送，以及订单管理，每天的收益统计等，很方便，当然 1% 的手续费感觉其实还好吧，毕竟你的个人站交易也大不到百万千万这样的额度去。</p>
 <p>相关资料：</p>
 <p>有赞云：<a href="http://link.zhihu.com/?target=http%3A//www.youzanyun.com/">www.youzanyun.com</a></p>
-<p>微小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc">有赞微小店<em>微店怎么开</em>微店网页登录/下载 - 做生意，用有赞</a></p>
+<p>微小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc">有赞微小店_微店怎么开_微店网页登录/下载 - 做生意，用有赞</a></p>
 <p>收银台 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/pay_qrcode">收银台API - 有赞云</a></p>
 <p>交易 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/trade">商家管理订单API - 有赞云</a></p>
 <p>overtrue/laravel-youzan: <a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan">overtrue/laravel-youzan</a></p>
@@ -463,6 +469,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
@@ -471,15 +481,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,6 +490,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,11 +513,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,15 +537,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SEO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,11 +553,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,15 +569,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

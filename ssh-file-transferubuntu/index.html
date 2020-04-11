@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://tinywind.cn">
   <title>SSH File Transfer(Ubuntu) | Tinywind</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[1] It’s the exmaple for using SCP (Secure Copy). # scp [Option] Source Target# copy the [test.txt] on local to remote server [www.srv.world\]ubuntu@dlp:~$ scp .&#x2F;test.txt ubuntu@www.srv.world:~&#x2F;ubuntu">
+  <meta name="description" content="[1] It’s the exmaple for using SCP (Secure Copy). # scp [Option] Source Target# copy the [test.txt] on local to remote server [www.srv.world\]ubuntu@dlp:$ scp .&#x2F;test.txt ubuntu@www.srv.world:&#x2F;ubuntu@1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSH File Transfer(Ubuntu)">
 <meta property="og:url" content="http://tinywind.cn/ssh-file-transferubuntu/index.html">
 <meta property="og:site_name" content="Tinywind">
-<meta property="og:description" content="[1] It’s the exmaple for using SCP (Secure Copy). # scp [Option] Source Target# copy the [test.txt] on local to remote server [www.srv.world\]ubuntu@dlp:~$ scp .&#x2F;test.txt ubuntu@www.srv.world:~&#x2F;ubuntu">
+<meta property="og:description" content="[1] It’s the exmaple for using SCP (Secure Copy). # scp [Option] Source Target# copy the [test.txt] on local to remote server [www.srv.world\]ubuntu@dlp:$ scp .&#x2F;test.txt ubuntu@www.srv.world:&#x2F;ubuntu@1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-11-08T05:23:17.000Z">
 <meta property="article:modified_time" content="2019-05-20T03:04:01.500Z">
@@ -187,10 +187,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>[1] It’s the exmaple for using SCP (Secure Copy).</p>
-<p># scp [Option] Source Target<br># copy the [test.txt] on local to remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a><br>ubuntu@dlp:~$ scp ./test.txt <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:~/<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:     # password of the user<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
+<p># scp [Option] Source Target<br># copy the [test.txt] on local to remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a><br>ubuntu@dlp:<del>$ scp ./test.txt <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:</del>/<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:     # password of the user<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
 <p># copy the [/home/ubuntu/test.txt] on remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a> to the local<br>ubuntu@dlp:~$ scp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:/home/ubuntu/test.txt ./test.txt<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
 <p>[2] It’s example to use SFTP (SSH File Transfer Protocol). SFTP server function is enabled by default, but if not, enable it to add the line [Subsystem sftp /usr/lib/openssh/sftp-server] in [/etc/ssh/sshd_config].</p>
-<p># sftp [Option] [user@host]<br>ubuntu@dlp:~$ sftp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a><br><a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>‘s password:     # password of the user<br>Connected to <a href="http://www.srv.world" target="_blank" rel="noopener">www.srv.world</a>.<br>sftp&gt;<br># show current directory on remote server<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu<br># show current directory on local server<br>sftp&gt; !pwd<br>/home/ubuntu<br># show files in current directory on FTP server<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># show files in current directory on local server<br>sftp&gt; !ls -l<br>total 4<br>-rw-rw-r– 1 ubuntu ubuntu 10 Jul 29 21:31 test.txt<br># change directory<br>sftp&gt; cd public_html<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu/public_html<br># upload a file to remote server<br>sftp&gt; put test.txt ubuntu.txt<br>Uploading test.txt to /home/ubuntu/ubuntu.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># upload some files to remote server<br>sftp&gt; put <em>.txt<br>Uploading test.txt to /home/ubuntu/test.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>Uploading test2.txt to /home/ubuntu/test2.txt<br>test2.txt 100% 0 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># download a file from remote server<br>sftp&gt; get test.txt<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br># download some files from remote server<br>sftp&gt; get </em>.txt<br>Fetching /home/ubuntu/ubuntu.txt to ubuntu.txt<br>/home/ubuntu/ubuntu.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test2.txt to test2.txt<br>/home/ubuntu/test2.txt 100% 10 0.0KB/s 00:00<br># create a directory on remote server<br>sftp&gt; mkdir testdir<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:53 testdir<br># delete a directory on remote server<br>sftp&gt; rmdir testdir<br>rmdir ok, `testdir’ removed<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># delete a file on remote server<br>sftp&gt; rm test2.txt<br>Removing /home/ubuntu/test2.txt<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br># execute commands with “![command]“<br>sftp&gt; !cat /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>bin:x:1:1:bin:/bin:/sbin/nologin<br>…<br>…<br>ubuntu:x:1001:1001::/home/ubuntu:/bin/bash<br># exit<br>sftp&gt; quit<br>221 Goodbye.</p>
+<p># sftp [Option] [user@host]<br>ubuntu@dlp:~$ sftp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a><br><a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>‘s password:     # password of the user<br>Connected to <a href="http://www.srv.world" target="_blank" rel="noopener">www.srv.world</a>.<br>sftp&gt;<br># show current directory on remote server<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu<br># show current directory on local server<br>sftp&gt; !pwd<br>/home/ubuntu<br># show files in current directory on FTP server<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># show files in current directory on local server<br>sftp&gt; !ls -l<br>total 4<br>-rw-rw-r– 1 ubuntu ubuntu 10 Jul 29 21:31 test.txt<br># change directory<br>sftp&gt; cd public_html<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu/public_html<br># upload a file to remote server<br>sftp&gt; put test.txt ubuntu.txt<br>Uploading test.txt to /home/ubuntu/ubuntu.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># upload some files to remote server<br>sftp&gt; put *.txt<br>Uploading test.txt to /home/ubuntu/test.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>Uploading test2.txt to /home/ubuntu/test2.txt<br>test2.txt 100% 0 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># download a file from remote server<br>sftp&gt; get test.txt<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br># download some files from remote server<br>sftp&gt; get *.txt<br>Fetching /home/ubuntu/ubuntu.txt to ubuntu.txt<br>/home/ubuntu/ubuntu.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test2.txt to test2.txt<br>/home/ubuntu/test2.txt 100% 10 0.0KB/s 00:00<br># create a directory on remote server<br>sftp&gt; mkdir testdir<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:53 testdir<br># delete a directory on remote server<br>sftp&gt; rmdir testdir<br>rmdir ok, `testdir’ removed<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># delete a file on remote server<br>sftp&gt; rm test2.txt<br>Removing /home/ubuntu/test2.txt<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br># execute commands with “![command]“<br>sftp&gt; !cat /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>bin:x:1:1:bin:/bin:/sbin/nologin<br>…<br>…<br>ubuntu:x:1001:1001::/home/ubuntu:/bin/bash<br># exit<br>sftp&gt; quit<br>221 Goodbye.</p>
 
       
 
@@ -422,6 +422,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
@@ -430,15 +434,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -447,6 +443,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,11 +466,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,15 +490,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SEO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Development</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,11 +506,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color4">OOP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,15 +522,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>
