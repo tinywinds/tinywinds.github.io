@@ -194,19 +194,14 @@
 </ol>
 <h3 id="第一步-添加可用的语言信息"><a href="#第一步-添加可用的语言信息" class="headerlink" title="第一步,  添加可用的语言信息"></a>第一步,  添加可用的语言信息</h3><p>打开 config/app.php  ，增加如下格式的内容， ‘locale’ =&gt; ‘xx’</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locales =&gt; [<span class="string">'en'</span>=&gt;<span class="string">'English'</span>, <span class="string">'zh'</span>=&gt;<span class="string">'Chinese'</span>],</span><br></pre></td></tr></table></figure>
-
 <h3 id="第二部，给路由增加前缀"><a href="#第二部，给路由增加前缀" class="headerlink" title="第二部，给路由增加前缀"></a>第二部，给路由增加前缀</h3><p>为了给路由增加前缀，我们修改 App/Providers/RouteServiceProvider.php 中的 map 方法，修改内容如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">map</span><span class="params">(Router $router, Request $request)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $locale = $request-&gt;segment(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">$this</span>-&gt;app-&gt;setLocale($locale);</span><br><span class="line">    $router-&gt;group([<span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace, <span class="string">'prefix'</span> =&gt; $locale], <span class="function"><span class="keyword">function</span><span class="params">($router)</span> 	</span>&#123;</span><br><span class="line">    <span class="keyword">require</span> app_path(<span class="string">'Http/routes.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>当然，不要忘记在文件顶部引入命名空间：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Routing</span>\<span class="title">Router</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br></pre></td></tr></table></figure>
-
 <h3 id="第三步-增加语言控制中间件"><a href="#第三步-增加语言控制中间件" class="headerlink" title="第三步 增加语言控制中间件"></a>第三步 增加语言控制中间件</h3><p>在app/Http/Middleware目录下，创建一个名为 Language.php 的中间件，内容如下:</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Middleware</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Closure</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Routing</span>\<span class="title">Redirector</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Application</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Contracts</span>\<span class="title">Routing</span>\<span class="title">Middleware</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Language</span> <span class="keyword">implements</span> <span class="title">Middleware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Application $app, Redirector $redirector, Request $request)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;app = $app;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;redirector = $redirector;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;request = $request;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Handle an incoming request.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  \Illuminate\Http\Request  $request</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  \Closure  $next</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> mixed</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Make sure current locale exists.</span></span><br><span class="line">    $locale = $request-&gt;segment(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( ! array_key_exists($locale, <span class="keyword">$this</span>-&gt;app-&gt;config-&gt;get(<span class="string">'app.locales'</span>))) &#123;</span><br><span class="line">        $segments = $request-&gt;segments();</span><br><span class="line">        $segments[<span class="number">0</span>] = <span class="keyword">$this</span>-&gt;app-&gt;config-&gt;get(<span class="string">'app.fallback_locale'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;redirector-&gt;to(implode(<span class="string">'/'</span>, $segments));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">$this</span>-&gt;app-&gt;setLocale($locale);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $next($request);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>现在，把这个中间件在 app/Http/Kernel.php 中注册，并确保他是第一个。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $middleware = [</span><br><span class="line"><span class="string">'App\Http\Middleware\Language'</span>,</span><br><span class="line"><span class="string">'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode'</span>,</span><br><span class="line"><span class="string">'Illuminate\Cookie\Middleware\EncryptCookies'</span>,</span><br><span class="line"><span class="string">'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse'</span>,</span><br><span class="line"><span class="string">'Illuminate\Session\Middleware\StartSession'</span>,</span><br><span class="line"><span class="string">'Illuminate\View\Middleware\ShareErrorsFromSession'</span>,</span><br><span class="line"><span class="string">'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken'</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
 <p>然后就ok了，试一下。</p>
 
       
@@ -449,7 +444,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,11 +452,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,10 +469,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,11 +488,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +544,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

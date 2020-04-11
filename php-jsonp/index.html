@@ -188,20 +188,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If you’ve ever needed to make a cross-domain call via AJAX you’ve probably run into the dreaded <a href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank" rel="noopener">same origin policy</a>: _The policy permits scripts running on pages originating from the same site to access each other’s methods and properties with no specific restrictions, but prevents access to most methods and properties across pages on different sites._Today I’ll show you how you can use <a href="http://jquery.com/" target="_blank" rel="noopener">JQuery</a> to easily do this and I’ll do it with the additional help of <a href="http://php.net/" target="_blank" rel="noopener">PHP</a>.   <strong>Note:</strong> With HTML5 a method was formalized for this particular thing (cross-domain calls) and it’s known as the <strong>postMessage interface</strong>. It would be great to use this but sadly it’s not implemented on all browsers yet and of course HTML5 has yet to fully reach maturity so things can change (take a look at the <a href="http://www.google.com/search?ie=UTF-8&q=websocket+changes" target="_blank" rel="noopener">recent changes</a> with WebSocket circa 2010 early 2011). The easy part is setting up a PHP page to listen for incoming data and send back a result. Not only will we send back data but we will also send back the function name we want to call on the client’s browser. Here is the PHP code:</p>
+        <p>If you’ve ever needed to make a cross-domain call via AJAX you’ve probably run into the dreaded <a href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank" rel="noopener">same origin policy</a>: _The policy permits scripts running on pages originating from the same site to access each other’s methods and properties with no specific restrictions, but prevents access to most methods and properties across pages on different sites._Today I’ll show you how you can use <a href="http://jquery.com/" target="_blank" rel="noopener">JQuery</a> to easily do this and I’ll do it with the additional help of <a href="http://php.net/" target="_blank" rel="noopener">PHP</a>.   <strong>Note:</strong> With HTML5 a method was formalized for this particular thing (cross-domain calls) and it’s known as the <strong>postMessage interface</strong>. It would be great to use this but sadly it’s not implemented on all browsers yet and of course HTML5 has yet to fully reach maturity so things can change (take a look at the <a href="http://www.google.com/search?ie=UTF-8&amp;q=websocket+changes" target="_blank" rel="noopener">recent changes</a> with WebSocket circa 2010 early 2011). The easy part is setting up a PHP page to listen for incoming data and send back a result. Not only will we send back data but we will also send back the function name we want to call on the client’s browser. Here is the PHP code:</p>
 <p><code>&lt;!--?php</code></p>
-<p><code>header(``&quot;content-type: text/javascript&quot;``);</code></p>
-<p><code>if``(isset(``$_GET``[``&#39;name&#39;``]) &amp;&amp; isset(``$_GET``[``&#39;callback&#39;``]))</code></p>
+<p><code>header(`</code>“content-type: text/javascript”<code></code>);`</p>
+<p><code>if`</code>(isset(<code>$_GET</code>[<code>&#39;name&#39;</code>]) &amp;&amp; isset(<code>$_GET</code>[<code>&#39;callback&#39;</code>]))`</p>
 <p><code>{</code></p>
-<p><code>$obj``---&gt;name =</code> <code>$_GET``[``&#39;name&#39;``];</code></p>
-<p><code>$obj``-&gt;message =</code> <code>&quot;Hello &quot;</code> <code>.</code> <code>$obj``-&gt;name;</code></p>
-<p><code>echo</code> <code>$_GET``[``&#39;callback&#39;``].</code> <code>&#39;(&#39;</code> <code>. json_encode(``$obj``) .</code> <code>&#39;);&#39;``;</code></p>
+<p><code>$obj`</code>—&gt;name =<code></code>$_GET<code>[</code>‘name’<code></code>];`</p>
+<p><code>$obj`</code>-&gt;message =<code></code>“Hello “<code></code>.<code></code>$obj<code></code>-&gt;name;`</p>
+<p><code>echo</code> <code>$_GET`</code>[<code>&#39;callback&#39;</code>].<code></code>‘(‘<code></code>. json_encode(<code>$obj</code>) .<code></code>‘);’<code></code>;`</p>
 <p><code>}</code></p>
 <p><code>?&gt;</code></p>
 <p>You can see two parameters come in: <strong>name</strong> and <strong>callback</strong> The name is some user defined string, in this case I will use my actual name. I then format the response to be JavaScript. <strong>Note:</strong> Keep in mind when you go to test this that you put your HTML file on one site and the PHP file on a different one and that way you can assure it’s working. If you put both the PHP and HTML file on the same site JQuery will actually just default back to a regular AJAX call from what I’ve read. The HTML file is actually pretty simple as well if your familiar with JQuery AJAX:</p>
-<p><code>&lt;``title``&gt;JQuery JSONP&lt;/``title``&gt;</code></p>
-<p><code>&lt;``script</code> <code>src``=``&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js&quot;``&gt;&lt;/``script``&gt;</code></p>
-<p><code>&lt;``script``&gt;</code></p>
+<p><code>&lt;`</code>title<code>&gt;JQuery JSONP&lt;/</code>title<code></code>&gt;`</p>
+<p><code>&lt;`</code>script<code></code>src<code>=</code>“<a href="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js&quot;``&gt;" target="_blank" rel="noopener">http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js&quot;``&gt;</a>&lt;/<code>script</code>&gt;`</p>
+<p><code>&lt;`</code>script<code></code>&gt;`</p>
 <p><code>$(document).ready(function(){</code></p>
 <p><code>$(&quot;#useJSONP&quot;).click(function(){</code></p>
 <p><code>$.ajax({</code></p>
@@ -219,16 +219,16 @@
 <p><code>function jsonpCallback(data){</code></p>
 <p><code>$(&#39;#jsonpResult&#39;).text(data.message);</code></p>
 <p><code>}</code></p>
-<p><code>&lt;/``script``&gt;</code></p>
-<p><code>&lt;``input</code> <code>type``=``&quot;button&quot;</code> <code>id``=``&quot;useJSONP&quot;</code> <code>value``=``&quot;Use JSONP&quot;``&gt;&lt;``br``&gt;&lt;``br``&gt;</code></p>
-<p><code>&lt;``span</code> <code>id``=``&quot;jsonpResult&quot;``&gt;&lt;/``span``&gt;</code></p>
+<p><code>&lt;/`</code>script<code></code>&gt;`</p>
+<p><code>&lt;`</code>input<code></code>type<code>=</code>“button”<code></code>id<code>=</code>“useJSONP”<code></code>value<code>=</code>“Use JSONP”<code>&gt;&lt;</code>br<code>&gt;&lt;</code>br<code></code>&gt;`</p>
+<p><code>&lt;`</code>span<code></code>id<code>=</code>“jsonpResult”<code>&gt;&lt;/</code>span<code></code>&gt;`</p>
 <p>This creates a simple HTML page with a button and clicking on it produces the desired result (see below). There are two things to note here: 1. You need to set the <strong>dataType</strong> as <strong>jsonp</strong> 2. Setting <strong>jsonp</strong> to <strong>callback</strong> and then setting <strong>jsonpCallback</strong> to <strong>jsonpCallback</strong> makes the querystring look like this:</p>
 <p><code>http://domain.com/jsonp-demo.php?callback=jsonpCallback&amp;name=Chad</code></p>
 <p>Calling the PHP file with the proper querystring produces a result like this:</p>
 <p><code>jsonpCallback({&quot;name&quot;:&quot;Chad&quot;,&quot;message&quot;:&quot;Hello Chad&quot;});</code></p>
-<p>Running the code from the HTML page will simply display the results. <a href="http://www.giantflyingsaucer.com/blog/wp-content/uploads/2011/04/jsonp-ajax-jquery-php-1.jpg" target="_blank" rel="noopener"><img src="http://www.giantflyingsaucer.com/blog/wp-content/uploads/2011/04/jsonp-ajax-jquery-php-1.jpg" alt></a> <strong>Update Sept. 21, 2011:</strong> A reader pointed out he had some issues with the PHP code in this article and needed to add an additional header to get this to work. If your having issues please try adding these headers to your PHP code:</p>
-<p><code>header(``&quot;content-type: Access-Control-Allow-Origin: *&quot;``);</code></p>
-<p><code>header(``&quot;content-type: Access-Control-Allow-Methods: GET&quot;``);</code></p>
+<p>Running the code from the HTML page will simply display the results. <a href="http://www.giantflyingsaucer.com/blog/wp-content/uploads/2011/04/jsonp-ajax-jquery-php-1.jpg" target="_blank" rel="noopener"><img src="http://www.giantflyingsaucer.com/blog/wp-content/uploads/2011/04/jsonp-ajax-jquery-php-1.jpg" alt=""></a> <strong>Update Sept. 21, 2011:</strong> A reader pointed out he had some issues with the PHP code in this article and needed to add an additional header to get this to work. If your having issues please try adding these headers to your PHP code:</p>
+<p><code>header(`</code>“content-type: Access-Control-Allow-Origin: *”<code></code>);`</p>
+<p><code>header(`</code>“content-type: Access-Control-Allow-Methods: GET”<code></code>);`</p>
 <p>Another thing to keep in mind if your using a hosting service or you don’t have complete control over the server that hosts your server side logic, it’s possible your host might block this type of thing (JSONP) as seen in the below Apache config:</p>
 <p><code>Header set Access-Control-Allow-Origin &quot;mydomain.com&quot;</code></p>
 <p>Make sure to check with your web host.</p>
@@ -473,7 +473,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,11 +481,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,10 +498,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,11 +517,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,15 +573,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

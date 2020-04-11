@@ -185,19 +185,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="  1.基本概念"></a>  1.基本概念</h1><p>面向对象的程序设计（Object-oriented Programming，OPP）是一种程序设计范型，同时也是一种程序开发方法。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和可扩展性。 面向过程、面向对象以及函数式编程被人们称为编程语言中的三大范式（实际上面向过程与面向对象都同属于命令式编程），其中面向对象的核心思想是对象、封装、可重用性和可扩展性。</p>
-<pre><code>2.类与对象</code></pre><p>==========</p>
+<pre><code>2.类与对象
+</code></pre><p>==========</p>
 <p>类是对象的抽象组织，对象是类的具体存在。类是定义一系列属性和操作的模板，而对象则把属性进行具体化，然后交给类处理。对象就是数据，对象本身不包含方法。但对象有一个“指针”指向一个类，这个类里可以有方法。方法描述不同属性所导致的不同表现。序列化后的对象会附带所属的类名，这个类保证此对象能够执行类的方法时可以正确找到方法所在的代码空间，另外，当一个对象的实例变量引用其他对象时，序列化该对象时也会对引用对象进行序列化。</p>
-<pre><code>3.对象与数组</code></pre><p>===========</p>
+<pre><code>3.对象与数组
+</code></pre><p>===========</p>
 <p>对象在底层的实现是采取“属性数组”+“方法数组”来实现，对象和数组的区别在于：对象还有个指针，指向了它所属的类。</p>
-<pre><code>4.魔术方法</code></pre><p>==========</p>
+<pre><code>4.魔术方法
+</code></pre><p>==========</p>
 <p>__construct()：构造方法，类每次创建对象时先调用此方法。 __destruct()：析构方法，当某个对象的所有引用都被删除，或者当对象被显式销毁时执行。 __set($name,$value)：当给对象属性进行赋值时，如果该属性不存在，会执行该方法。 __get($name)：当给对象属性进行取值时，如果该属性不存在，会执行该方法。 __call($fname,$argumentArray)：当给对象调用一个不可访问（未定义或不可见）的方法时，会执行该方法。 __callStatic($fname,$argumentArray)：当给对象调用一个不可访问的静态方法时，会执行该方法。可以进行方法的动态创建和延迟绑定。 __toString()：当echo打印对象体时会调用该方法。</p>
-<pre><code>5.类的属性</code></pre><p>==========</p>
+<pre><code>5.类的属性
+</code></pre><p>==========</p>
 <p>public：公共的 private：私有的 protected：受保护的 static：静态的，声明该属性可以不实例化类而直接访问，通过“::”方式调用。 final：最终的，当类中方法声明该属性，子类将无法覆写该方法，当类声明该属性，该类将无法继承。</p>
-<pre><code>6.类的继承和组合</code></pre><p>=============</p>
+<pre><code>6.类的继承和组合
+</code></pre><p>=============</p>
 <p>继承是一种“是、像”的关系，而组合是一种“需要”的关系。 从另一个角度看，组合偏重整体与局部的关系，而继承偏重父与子的关系。判断使用继承还是组合的标准就是“低耦合”。 耦合是一个软件结构内不同模块之间互连程度的度量，也就是不同模块之间的依赖关系。低耦合指模块与模块之间，尽可能地使模块间独立存在；模块之间的接口尽量少而简单。在两种均可用的情况下更倾向于使用组合。 继承存在的问题：继承破坏封装性，继承是紧耦合的，继承扩展复杂，不恰当的继承违反现实逻辑。 组合存在的问题：创建组合时需要一一创建局部对象，增加了不少代码量。 在建模设计中，底层代码多用组合，顶层/业务层代码多用继承。底层用组合可以提高效率，避免对象臃肿。顶层代码用继承可以提高灵活性，让业务使用更方便。同时多重继承里一个类可以继承多个父类，组合两个父类的功能。</p>
-<pre><code>7.类的多态和面向接口编程</code></pre><p>=================</p>
+<pre><code>7.类的多态和面向接口编程
+</code></pre><p>=================</p>
 <p>多态的含义：同一类的对象收到消息时，会得到不同的结果。多态性是一种通过多种状态或阶段描述相同对象的编程方式，它的真正意义在于：实际开发中，只要关心一个接口或基类的编程，而不关心一个对象所属于的具体类。判断是否是多态的关键在于看对象是否属于同一类型，如果把它们看成同一类型，调用相同函数返回不同结果，那么它就是多态，由于PHP是弱类型语言，本身具备多态的性质，但在子类中无法向上转型为父类，所以和传统强类型语言的多态有所区别。 面向接口的编程：这里的接口指的是狭义的接口，即interface关键字。广义的接口是任何一个对外提供服务的出口，比如USB接口，支付宝接口。接口定义一套规范，描述一个“物”的功能，要求如果“物”是可用的，就必须实现这些基本功能。接口是抽象类的变体，接口中所有的方法都是抽象的，没有一个程序体，接口除了包含方法外，还可以包含常量。接口为抽象而生。 PHP5的SPL（标准PHP库）中实现一些接口，其中最主要的就是Iterator迭代器接口。 混入式的Traits，被视为加强型接口。</p>
-<pre><code>8.反射</code></pre><p>========</p>
+<pre><code>8.反射
+</code></pre><p>========</p>
 <p>反射：直观理解就是根据到达地找到出发地和来源。即从对象找到所属类的属性和方法。 反射的作用：通过反射可以对对象进行调试，获取类的信息；实现hook插件功能；做动态代理。</p>
 
       
@@ -371,9 +378,11 @@
         <p>在服务器上pull最新的代码，但是由于服务器上的一些配置文件有了变动，会出现错误 error: Your local changes to the following files would be overwritten by merge: protected/config/main.php Please, commit your changes or stash them before you can merge. 如果希望保留生产服务器上所做的改动,仅仅并入新配置项, 处理方法如下:</p>
 <pre><code>git stash 
 git pull 
-git stash pop</code></pre><p>然后可以使用git diff -w +文件名 来确认代码自动合并的情况. 反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:</p>
+git stash pop
+</code></pre><p>然后可以使用git diff -w +文件名 来确认代码自动合并的情况. 反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:</p>
 <pre><code>git reset --hard 
-git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回退本地修改,使用 git checkout HEAD file/to/restore</p>
+git pull
+</code></pre><p>其中git reset是针对版本,如果想针对文件回退本地修改,使用 git checkout HEAD file/to/restore</p>
 
       
 
@@ -697,10 +706,8 @@ git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回�
 <p> 代码：略去 预先把这句SQL的结果在apc和memcached中都缓存了，然后测试读写速度。</p>
 <p> 在本机windows上结果： </p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">init</span>=====0.0341ms </span><br><span class="line">APC\<span class="attribute">_read</span>=====0.0439ms</span><br><span class="line">APC\<span class="attribute">_write</span>=====0.0920ms </span><br><span class="line">MEM\<span class="attribute">_connet</span>=====11.0571ms</span><br><span class="line">MEM\<span class="attribute">_read</span>=====0.2630ms</span><br><span class="line">MEM\<span class="attribute">_write</span>=====0.2270ms</span><br></pre></td></tr></table></figure>
-
 <p>在服务器上linux上结果：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">init</span>=====0.0131ms</span><br><span class="line">APC\<span class="attribute">_read</span>=====0.0520ms</span><br><span class="line">APC\<span class="attribute">_write</span>=====0.0489ms</span><br><span class="line">MEM\<span class="attribute">_connet</span>=====0.0501ms </span><br><span class="line">MEM\<span class="attribute">_read</span>=====0.1030ms </span><br><span class="line">MEM\<span class="attribute">_write</span>=====0.0801ms</span><br></pre></td></tr></table></figure>
-
 <p>当然反复刷新会有不同的值，这里只是取了一个较平均的值。 win下的不具备什么参考性，主要看linux上的结果。 不算connent时间，大概读写的速度apc都比memcached快上一倍左右。算上memcache_connect的时间，也就是快二倍。 APC即可以实现php文件的opcode缓存，也可以实现user cache，实在是个好东西。 </p>
 <p>所以，如果当网站规模还小的时候，所有功能可以在一台服务器上完成时，那么缓存的方案首选应该就是APC，不用考虑memcached。但如果考虑到网站规模会不断扩大，这点时间的性能差异其实可以忽略不计的，就应该部署memcached了。另外，跨服务器使用memcached，最好要使用内网。不然的话，受路由的影响，memcached经常会连接超时(超过100ms)，而且会凭空多出来两倍的宽带流量。</p>
 
@@ -892,18 +899,18 @@ git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回�
 <p><strong>不清楚什么第一第二步是什么？别担心，我们接下来详细讨论一下。让我们先看看第一步，也是最主要的一步。要记住的是，第一步的操作在任何请求到达之前就发生了。</strong></p>
 <p><strong>启动Apache后，PHP解释程序也随之启动。PHP调用各个扩展的MINIT方法，从而使这些扩展切换到可用状态。看看php.ini文件里打开了哪些扩展吧。 MINIT的意思是“模块初始化”。各个模块都定义了一组函数、类库等用以处理其他请求。</strong></p>
 <p><strong>一个典型的MINIT方法如下：</strong></p>
-<p><strong>PHP_MINIT_FUNCTION(extension_name){ /* Initialize functions, classes etc */ }</strong></p>
+<p><strong>PHP_MINIT_FUNCTION(extension_name){ /<em> Initialize functions, classes etc </em>/ }</strong></p>
 <p><strong>PHP启动第二步</strong></p>
 <p><strong>当一个页面请求发生时，SAPI层将控制权交给PHP层。于是PHP设置了用于回复本次请求所需的环境变量。同时，它还建立一个变量表，用来存放执行过程 中产生的变量名和值。PHP调用各个模块的RINIT方法，即“请求初始化”。一个经典的例子是Session模块的RINIT，如果在php.ini中 启用了Session模块，那在调用该模块的RINIT时就会初始化$_SESSION变量，并将相关内容读入；RINIT方法可以看作是一个准备过程， 在程序执行之间就会自动启动。 一个典型的RINIT方法如下：</strong></p>
-<p><strong>PHP_RINIT_FUNCTION(extension_name) { /* Initialize session variables,pre-populate variables, redefine global variables etc */ }</strong></p>
+<p><strong>PHP_RINIT_FUNCTION(extension_name) { /<em> Initialize session variables,pre-populate variables, redefine global variables etc </em>/ }</strong></p>
 <p><strong>PHP关闭第一步</strong></p>
 <p><strong>如同PHP启动一样，PHP的关闭也分两步。一旦页面执行完毕（无论是执行到了文件末尾还是用exit或die函数中止），PHP就会启动清理程序。它会按顺序调用各个模块的RSHUTDOWN方法。 RSHUTDOWN用以清除程序运行时产生的符号表，也就是对每个变量调用unset函数。</strong></p>
 <p><strong>一个典型的RSHUTDOWN方法如下：</strong></p>
-<p><strong>PHP_RSHUTDOWN_FUNCTION(extension_name) { /* Do memory management, unset all variables used in the last PHP call etc */ }</strong></p>
+<p><strong>PHP_RSHUTDOWN_FUNCTION(extension_name) { /<em> Do memory management, unset all variables used in the last PHP call etc </em>/ }</strong></p>
 <p><strong>PHP关闭第二步</strong></p>
 <p><strong>最后，所有的请求都已处理完毕，SAPI也准备关闭了，PHP开始执行第二步：PHP调用每个扩展的MSHUTDOWN方法，这是各个模块最后一次释放内存的机会。</strong></p>
 <p><strong>一个典型的RSHUTDOWN方法如下：</strong></p>
-<p><strong>PHP_MSHUTDOWN_FUNCTION(extension_name) { /* Free handlers and persistent memory etc */ }</strong></p>
+<p><strong>PHP_MSHUTDOWN_FUNCTION(extension_name) { /<em> Free handlers and persistent memory etc </em>/ }</strong></p>
 <p><strong>这样，整个PHP生命周期就结束了。要注意的是，只有在服务器没有请求的情况下才会执行“启动第一步”和“关闭第二步”。</strong></p>
 
       
@@ -978,18 +985,18 @@ git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1. load</strong>( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 *<em>url *</em>(String) : 请求的HTML页的URL地址。 *<em>data *</em>(Map) : (可选参数) 发送至服务器的 key/value 数据。 *<em>callback *</em>(Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法默认使用 GET 方式来传递的，如果[data]参数有传递数据进去，就会自动转换为POST方式的。jQuery 1.2 中，可以指定选择符，来筛选载入的 HTML 文档，DOM 中将仅插入筛选出的 HTML 代码。语法形如 “url #some &gt; selector”。 这个方法可以很方便的动态加载一些HTML文件，例如表单。 示例代码：</p>
+        <p><strong>1. load</strong>( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 <strong>url </strong>(String) : 请求的HTML页的URL地址。 <strong>data </strong>(Map) : (可选参数) 发送至服务器的 key/value 数据。 <strong>callback </strong>(Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法默认使用 GET 方式来传递的，如果[data]参数有传递数据进去，就会自动转换为POST方式的。jQuery 1.2 中，可以指定选择符，来筛选载入的 HTML 文档，DOM 中将仅插入筛选出的 HTML 代码。语法形如 “url #some &gt; selector”。 这个方法可以很方便的动态加载一些HTML文件，例如表单。 示例代码：</p>
 <p>$(“.ajax.load”).load(“<a href="http://www.cnblogs.com/yeer/archive/2009/06/10/1500682.html" target="_blank" rel="noopener">http://www.cnblogs.com/yeer/archive/2009/06/10/1500682.html</a> .post”,<br>function (responseText, textStatus, XMLHttpRequest){<br>this;//在这里this指向的是当前的DOM对象，即$(“.ajax.load”)[0]<br>//alert(responseText);//请求返回的内容//alert(textStatus);//请求状态：success，error//alert(XMLHttpRequest);//XMLHttpRequest对象<br>});</p>
 <p>这里将显示结果。</p>
 <p>  <strong>注：</strong>不知道为什么URL写绝对路径在FF下会出错，知道的麻烦告诉下。下面的get()和post()示例使用的是绝对路径，所以在FF下你将会出错并不会看到返回结果。还有get()和post()示例都是跨域调用的，发现传上来后没办法获取结果，所以把运行按钮去掉了。   <strong>2. jQuery.get</strong>( url, [data], [callback] )：使用GET方式来进行异步请求</p>
 <blockquote>
-<p>参数： *<em>url *</em>(String) :  发送请求的URL地址. *<em>data *</em>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示，会做为QueryString附加到请求URL中。 *<em>callback *</em>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。</p>
+<p>参数： <strong>url </strong>(String) :  发送请求的URL地址. <strong>data </strong>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示，会做为QueryString附加到请求URL中。 <strong>callback </strong>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。</p>
 </blockquote>
 <p>这是一个简单的 GET 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。示例代码：</p>
 <p> $.get(“./Ajax.aspx”, {Action:”get”,Name:”lulu”}, function (data, textStatus){<br>//返回的 data 可以是 xmlDoc, jsonObj, html, text, 等等.this; // 在这里this指向的是Ajax请求的选项配置信息，请参考下图alert(data);<br>//alert(textStatus);//请求状态：success，error等等。<br>当然这里捕捉不到error，因为error的时候根本不会运行该回调函数//alert(this);<br>});</p>
 <p>点击发送请求： jQuery.get()回调函数里面的 this ，指向的是Ajax请求的选项配置信息： <a href="http://images.cnblogs.com/cnblogs_com/QLeelulu/WindowsLiveWriter/jQueryAjax_B934/image_4.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_1.png" alt="image"></a>   <strong>3. jQuery.post</strong>( url, [data], [callback], [type] ) ：使用POST方式来进行异步请求  </p>
 <blockquote>
-<p>参数： <strong>url *<em>(String) : 发送请求的URL地址. *</em>data *<em>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示。 *</em>callback *<em>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。 *</em>type</strong> (String) : (可选)官方的说明是：Type of data to be sent。其实应该为客户端请求的类型(JSON,XML,等等)</p>
+<p>参数： <strong>url </strong>(String) : 发送请求的URL地址. <strong>data </strong>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示。 <strong>callback </strong>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。 <strong>type</strong> (String) : (可选)官方的说明是：Type of data to be sent。其实应该为客户端请求的类型(JSON,XML,等等)</p>
 </blockquote>
 <p>这是一个简单的 POST 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。示例代码： Ajax.aspx：</p>
 <p>Response.ContentType = “application/json”;<br>Response.Write(“{result: ‘“ + Request[“Name”] + “,你好！(这消息来自服务器)’}”);</p>
@@ -997,7 +1004,7 @@ git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回�
 <p>$.post(“Ajax.aspx”, { Action: “post”, Name: “lulu” },<br>function (data, textStatus){<br>// data 可以是 xmlDoc, jsonObj, html, text, 等等.//this; // 这个Ajax请求的选项配置信息，请参考jQuery.get()说到的thisalert(data.result);<br>}, “json”);</p>
 <p>点击提交： 这里设置了请求的格式为”json”： <a href="http://images.cnblogs.com/cnblogs_com/QLeelulu/WindowsLiveWriter/jQueryAjax_B934/image_6.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_2.png" alt="image"></a> 如果你设置了请求的格式为”json”，此时你没有设置Response回来的ContentType 为：Response.ContentType = “application/json”; 那么你将无法捕捉到返回的数据。 注意一下，alert(data.result); 由于设置了Accept报头为“json”，这里返回的data就是一个对象，并不需要用eval()来转换为对象。   <strong>4. jQuery.getScript</strong>( url, [callback] ) : 通过 GET 方式请求载入并执行一个 JavaScript 文件。</p>
 <blockquote>
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p>*<em>url *</em>(String) : 待载入 JS 文件地址。 *<em>callback *</em>(Function) : (可选) 成功载入后回调函数。</p>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p><strong>url </strong>(String) : 待载入 JS 文件地址。 <strong>callback </strong>(Function) : (可选) 成功载入后回调函数。</p>
 </blockquote>
 <p>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。 这个方法可以用在例如当只有编辑器focus()的时候才去加载编辑器需要的JS文件.下面看一些示例代码： 加载并执行 test.js。<strong>jQuery 代码:</strong> $.getScript(“test.js”);</p>
 <hr>
@@ -1013,8 +1020,7 @@ git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回�
 <p> $.ajax({<br>url: “test.html”,<br>global: false,// 禁用全局Ajax事件.// …<br>});</p>
 <p>下面是jQuery官方给出的完整的Ajax事件列表：</p>
 <ul>
-<li><p><strong>ajaxStart</strong> (Global Event) This event is broadcast if an Ajax request is started and no other Ajax requests are currently running.</p>
-<ul>
+<li><strong>ajaxStart</strong> (Global Event) This event is broadcast if an Ajax request is started and no other Ajax requests are currently running.<ul>
 <li><strong>beforeSend</strong> (Local Event) This event, which is triggered before an Ajax request is started, allows you to modify the XMLHttpRequest object (setting additional headers, if need be.)</li>
 <li><strong>ajaxSend</strong> (Global Event) This global event is also triggered before the request is run.</li>
 <li><strong>success</strong> (Local Event) This event is only called if the request was successful (no errors from the server, no errors with the data).</li>
@@ -1078,25 +1084,24 @@ git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回�
 <p>Function</p>
 <p>请求成功后回调函数。这个方法有两个参数：服务器返回数据，返回状态</p>
 <p>function (data, textStatus) {<br>​         // data could be xmlDoc, jsonObj, html, text, etc…<br>​         this; // the options for this ajax request<br>​         }</p>
-<p>这里有几个Ajax事件参数：<strong>beforeSend **，</strong>success <strong>，</strong>complete ，error 。**我们可以定义这些事件来很好的处理我们的每一次的Ajax请求。注意一下，这些Ajax事件里面的 this 都是指向Ajax请求的选项信息的(请参考说 get() 方法时的this的图片)。 请认真阅读上面的参数列表，如果你要用jQuery来进行Ajax开发，那么这些参数你都必需熟知的。</p>
+<p>这里有几个Ajax事件参数：<strong>beforeSend </strong>，<strong>success </strong>，<strong>complete ，error 。</strong>我们可以定义这些事件来很好的处理我们的每一次的Ajax请求。注意一下，这些Ajax事件里面的 this 都是指向Ajax请求的选项信息的(请参考说 get() 方法时的this的图片)。 请认真阅读上面的参数列表，如果你要用jQuery来进行Ajax开发，那么这些参数你都必需熟知的。</p>
 <h4 id="示例代码，获取博客园首页的文章题目："><a href="#示例代码，获取博客园首页的文章题目：" class="headerlink" title="示例代码，获取博客园首页的文章题目："></a>示例代码，获取博客园首页的文章题目：</h4><p>$.ajax({<br>type: “get”,<br>url: “<a href="http://www.cnblogs.com/rss&quot;" target="_blank" rel="noopener">http://www.cnblogs.com/rss&quot;</a>,<br>beforeSend: function(XMLHttpRequest){<br>//ShowLoading();<br>},<br>success: function(data, textStatus){<br>$(“.ajax.ajaxResult”).html(“”);<br>$(“item”,data).each(function(i, domEle){<br>$(“.ajax.ajaxResult”).append(“<li>“+$(domEle).children(“title”).text()+”</li>“);<br>});<br>},<br>complete: function(XMLHttpRequest, textStatus){<br>//HideLoading();<br>},<br>error: function(){<br>//请求出错处理<br>}<br>});</p>
 <p>这里将显示首页文章列表。     <strong>其他</strong> <strong>jQuery.ajaxSetup</strong>( options ) : 设置全局 AJAX 默认选项。 设置 AJAX 请求默认地址为 “/xmlhttp/“，禁止触发全局 AJAX 事件，用 POST 代替默认 GET 方法。其后的 AJAX 请求不再设置任何选项参数。 <strong>jQuery 代码:</strong></p>
 <p>$.ajaxSetup({<br>url: “/xmlhttp/“,<br>global: false,<br>type: “POST”<br>});<br>$.ajax({ data: myData });</p>
 <p>  <strong>serialize() 与 serializeArray()</strong> serialize() : 序列表表格内容为字符串。 serializeArray() : 序列化表格元素 (类似 ‘.serialize()’ 方法) 返回 JSON 数据结构数据。 示例： HTML代码：</p>
-<p id="results"><b>Results: </b> </p><form><select name="single"><option>Single</option><option>Single2</option></select><select name="multiple" multiple="multiple"><option selected="selected">Multiple</option><option>Multiple2</option><option selected="selected">Multiple3</option></select><br><input type="checkbox" name="check" value="check1"> check1
-<input type="checkbox" name="check" value="check2" <p>checked=”checked”/&gt; check2<br>&lt;input type=”radio” name=”radio” value=”radio1” <p></p>
+<p></p><p id="results"><b>Results: </b> </p><form><select name="single"><option>Single</option><option>Single2</option></select><select name="multiple" multiple="multiple"><option selected="selected">Multiple</option><option>Multiple2</option><option selected="selected">Multiple3</option></select><br><input type="checkbox" name="check" value="check1"> check1<br>&lt;input type=”checkbox” name=”check” value=”check2” <p></p>
+<p>checked=”checked”/&gt; check2<br>&lt;input type=”radio” name=”radio” value=”radio1” </p>
 <p>checked=”checked”/&gt; radio1<br><input type="radio" name="radio" value="radio2"> radio2</p>
-</form>
+<p></p></form><p></p>
 </li>
-<li><p><a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_3.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_3.png" alt></a> <strong>serializeArray() 结果为：</strong> <a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_4.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_4.png" alt="image"></a></p>
+<li><p><a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_3.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_3.png" alt=""></a> <strong>serializeArray() 结果为：</strong> <a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_4.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_4.png" alt="image"></a></p>
 </li>
-<li><p>以上转自：<a href="http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html" target="_blank" rel="noopener">http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html</a></p>
-</li>
+<li>以上转自：<a href="http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html" target="_blank" rel="noopener">http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html</a></li>
 </ul>
 <p>博客园大道至简 <a href="http://www.cnblogs.com/jams742003/" target="_blank" rel="noopener">http://www.cnblogs.com/jams742003/</a> 转载请注明：博客园</p>
 <p>分类: <a href="http://www.cnblogs.com/jams742003/category/142842.html" target="_blank" rel="noopener">Ajax</a></p>
-<p>绿色通道： 好文要顶 关注我 收藏该文<a href="http://space.cnblogs.com/msg/send/%e6%a2%85%e6%a1%a6" target="_blank" rel="noopener">与我联系</a> <img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/icon_weibo_24.png" alt></p>
-<p><a href="http://home.cnblogs.com/u/jams742003/" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/u33655.jpg" alt></a></p>
+<p>绿色通道： 好文要顶 关注我 收藏该文<a href="http://space.cnblogs.com/msg/send/%e6%a2%85%e6%a1%a6" target="_blank" rel="noopener">与我联系</a> <img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/icon_weibo_24.png" alt=""></p>
+<p><a href="http://home.cnblogs.com/u/jams742003/" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/u33655.jpg" alt=""></a></p>
 <p><a href="http://home.cnblogs.com/u/jams742003/" target="_blank" rel="noopener">梅桦</a> <a href="http://home.cnblogs.com/u/jams742003/followees" target="_blank" rel="noopener">关注 - 13</a> <a href="http://home.cnblogs.com/u/jams742003/followers" target="_blank" rel="noopener">粉丝 - 248</a></p>
 <p>+加关注</p>
 <p>2</p>
@@ -1265,7 +1270,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1273,11 +1278,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1286,10 +1295,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1309,11 +1314,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1365,15 +1370,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

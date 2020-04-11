@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://tinywind.cn">
   <title>jQuery Ajax 实例 全解析 | Tinywind</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. load( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 *url *(String) : 请求的HTML页的URL地址。 *data *(Map) : (可选参数) 发送至服务器的 key&#x2F;value 数据。 *callback *(Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法">
+  <meta name="description" content="1. load( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 url (String) : 请求的HTML页的URL地址。 data (Map) : (可选参数) 发送至服务器的 key&#x2F;value 数据。 callback (Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法默认使用 G">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery Ajax 实例 全解析">
 <meta property="og:url" content="http://tinywind.cn/ajax_example/index.html">
 <meta property="og:site_name" content="Tinywind">
-<meta property="og:description" content="1. load( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 *url *(String) : 请求的HTML页的URL地址。 *data *(Map) : (可选参数) 发送至服务器的 key&#x2F;value 数据。 *callback *(Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法">
+<meta property="og:description" content="1. load( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 url (String) : 请求的HTML页的URL地址。 data (Map) : (可选参数) 发送至服务器的 key&#x2F;value 数据。 callback (Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法默认使用 G">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_1.png">
 <meta property="og:image" content="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_2.png">
@@ -194,18 +194,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1. load</strong>( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 *<em>url *</em>(String) : 请求的HTML页的URL地址。 *<em>data *</em>(Map) : (可选参数) 发送至服务器的 key/value 数据。 *<em>callback *</em>(Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法默认使用 GET 方式来传递的，如果[data]参数有传递数据进去，就会自动转换为POST方式的。jQuery 1.2 中，可以指定选择符，来筛选载入的 HTML 文档，DOM 中将仅插入筛选出的 HTML 代码。语法形如 “url #some &gt; selector”。 这个方法可以很方便的动态加载一些HTML文件，例如表单。 示例代码：</p>
+        <p><strong>1. load</strong>( url, [data], [callback] ) ：载入远程 HTML 文件代码并插入至 DOM 中。 <strong>url </strong>(String) : 请求的HTML页的URL地址。 <strong>data </strong>(Map) : (可选参数) 发送至服务器的 key/value 数据。 <strong>callback </strong>(Callback) : (可选参数) 请求完成时(不需要是success的)的回调函数。 这个方法默认使用 GET 方式来传递的，如果[data]参数有传递数据进去，就会自动转换为POST方式的。jQuery 1.2 中，可以指定选择符，来筛选载入的 HTML 文档，DOM 中将仅插入筛选出的 HTML 代码。语法形如 “url #some &gt; selector”。 这个方法可以很方便的动态加载一些HTML文件，例如表单。 示例代码：</p>
 <p>$(“.ajax.load”).load(“<a href="http://www.cnblogs.com/yeer/archive/2009/06/10/1500682.html" target="_blank" rel="noopener">http://www.cnblogs.com/yeer/archive/2009/06/10/1500682.html</a> .post”,<br>function (responseText, textStatus, XMLHttpRequest){<br>this;//在这里this指向的是当前的DOM对象，即$(“.ajax.load”)[0]<br>//alert(responseText);//请求返回的内容//alert(textStatus);//请求状态：success，error//alert(XMLHttpRequest);//XMLHttpRequest对象<br>});</p>
 <p>这里将显示结果。</p>
 <p>  <strong>注：</strong>不知道为什么URL写绝对路径在FF下会出错，知道的麻烦告诉下。下面的get()和post()示例使用的是绝对路径，所以在FF下你将会出错并不会看到返回结果。还有get()和post()示例都是跨域调用的，发现传上来后没办法获取结果，所以把运行按钮去掉了。   <strong>2. jQuery.get</strong>( url, [data], [callback] )：使用GET方式来进行异步请求</p>
 <blockquote>
-<p>参数： *<em>url *</em>(String) :  发送请求的URL地址. *<em>data *</em>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示，会做为QueryString附加到请求URL中。 *<em>callback *</em>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。</p>
+<p>参数： <strong>url </strong>(String) :  发送请求的URL地址. <strong>data </strong>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示，会做为QueryString附加到请求URL中。 <strong>callback </strong>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。</p>
 </blockquote>
 <p>这是一个简单的 GET 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。示例代码：</p>
 <p> $.get(“./Ajax.aspx”, {Action:”get”,Name:”lulu”}, function (data, textStatus){<br>//返回的 data 可以是 xmlDoc, jsonObj, html, text, 等等.this; // 在这里this指向的是Ajax请求的选项配置信息，请参考下图alert(data);<br>//alert(textStatus);//请求状态：success，error等等。<br>当然这里捕捉不到error，因为error的时候根本不会运行该回调函数//alert(this);<br>});</p>
 <p>点击发送请求： jQuery.get()回调函数里面的 this ，指向的是Ajax请求的选项配置信息： <a href="http://images.cnblogs.com/cnblogs_com/QLeelulu/WindowsLiveWriter/jQueryAjax_B934/image_4.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_1.png" alt="image"></a>   <strong>3. jQuery.post</strong>( url, [data], [callback], [type] ) ：使用POST方式来进行异步请求  </p>
 <blockquote>
-<p>参数： <strong>url *<em>(String) : 发送请求的URL地址. *</em>data *<em>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示。 *</em>callback *<em>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。 *</em>type</strong> (String) : (可选)官方的说明是：Type of data to be sent。其实应该为客户端请求的类型(JSON,XML,等等)</p>
+<p>参数： <strong>url </strong>(String) : 发送请求的URL地址. <strong>data </strong>(Map) : (可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示。 <strong>callback </strong>(Function) : (可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。 <strong>type</strong> (String) : (可选)官方的说明是：Type of data to be sent。其实应该为客户端请求的类型(JSON,XML,等等)</p>
 </blockquote>
 <p>这是一个简单的 POST 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。示例代码： Ajax.aspx：</p>
 <p>Response.ContentType = “application/json”;<br>Response.Write(“{result: ‘“ + Request[“Name”] + “,你好！(这消息来自服务器)’}”);</p>
@@ -213,7 +213,7 @@
 <p>$.post(“Ajax.aspx”, { Action: “post”, Name: “lulu” },<br>function (data, textStatus){<br>// data 可以是 xmlDoc, jsonObj, html, text, 等等.//this; // 这个Ajax请求的选项配置信息，请参考jQuery.get()说到的thisalert(data.result);<br>}, “json”);</p>
 <p>点击提交： 这里设置了请求的格式为”json”： <a href="http://images.cnblogs.com/cnblogs_com/QLeelulu/WindowsLiveWriter/jQueryAjax_B934/image_6.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_2.png" alt="image"></a> 如果你设置了请求的格式为”json”，此时你没有设置Response回来的ContentType 为：Response.ContentType = “application/json”; 那么你将无法捕捉到返回的数据。 注意一下，alert(data.result); 由于设置了Accept报头为“json”，这里返回的data就是一个对象，并不需要用eval()来转换为对象。   <strong>4. jQuery.getScript</strong>( url, [callback] ) : 通过 GET 方式请求载入并执行一个 JavaScript 文件。</p>
 <blockquote>
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p>*<em>url *</em>(String) : 待载入 JS 文件地址。 *<em>callback *</em>(Function) : (可选) 成功载入后回调函数。</p>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p><strong>url </strong>(String) : 待载入 JS 文件地址。 <strong>callback </strong>(Function) : (可选) 成功载入后回调函数。</p>
 </blockquote>
 <p>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。 这个方法可以用在例如当只有编辑器focus()的时候才去加载编辑器需要的JS文件.下面看一些示例代码： 加载并执行 test.js。<strong>jQuery 代码:</strong> $.getScript(“test.js”);</p>
 <hr>
@@ -229,8 +229,7 @@
 <p> $.ajax({<br>url: “test.html”,<br>global: false,// 禁用全局Ajax事件.// …<br>});</p>
 <p>下面是jQuery官方给出的完整的Ajax事件列表：</p>
 <ul>
-<li><p><strong>ajaxStart</strong> (Global Event) This event is broadcast if an Ajax request is started and no other Ajax requests are currently running.</p>
-<ul>
+<li><strong>ajaxStart</strong> (Global Event) This event is broadcast if an Ajax request is started and no other Ajax requests are currently running.<ul>
 <li><strong>beforeSend</strong> (Local Event) This event, which is triggered before an Ajax request is started, allows you to modify the XMLHttpRequest object (setting additional headers, if need be.)</li>
 <li><strong>ajaxSend</strong> (Global Event) This global event is also triggered before the request is run.</li>
 <li><strong>success</strong> (Local Event) This event is only called if the request was successful (no errors from the server, no errors with the data).</li>
@@ -294,25 +293,24 @@
 <p>Function</p>
 <p>请求成功后回调函数。这个方法有两个参数：服务器返回数据，返回状态</p>
 <p>function (data, textStatus) {<br>​         // data could be xmlDoc, jsonObj, html, text, etc…<br>​         this; // the options for this ajax request<br>​         }</p>
-<p>这里有几个Ajax事件参数：<strong>beforeSend **，</strong>success <strong>，</strong>complete ，error 。**我们可以定义这些事件来很好的处理我们的每一次的Ajax请求。注意一下，这些Ajax事件里面的 this 都是指向Ajax请求的选项信息的(请参考说 get() 方法时的this的图片)。 请认真阅读上面的参数列表，如果你要用jQuery来进行Ajax开发，那么这些参数你都必需熟知的。</p>
+<p>这里有几个Ajax事件参数：<strong>beforeSend </strong>，<strong>success </strong>，<strong>complete ，error 。</strong>我们可以定义这些事件来很好的处理我们的每一次的Ajax请求。注意一下，这些Ajax事件里面的 this 都是指向Ajax请求的选项信息的(请参考说 get() 方法时的this的图片)。 请认真阅读上面的参数列表，如果你要用jQuery来进行Ajax开发，那么这些参数你都必需熟知的。</p>
 <h4 id="示例代码，获取博客园首页的文章题目："><a href="#示例代码，获取博客园首页的文章题目：" class="headerlink" title="示例代码，获取博客园首页的文章题目："></a>示例代码，获取博客园首页的文章题目：</h4><p>$.ajax({<br>type: “get”,<br>url: “<a href="http://www.cnblogs.com/rss&quot;" target="_blank" rel="noopener">http://www.cnblogs.com/rss&quot;</a>,<br>beforeSend: function(XMLHttpRequest){<br>//ShowLoading();<br>},<br>success: function(data, textStatus){<br>$(“.ajax.ajaxResult”).html(“”);<br>$(“item”,data).each(function(i, domEle){<br>$(“.ajax.ajaxResult”).append(“<li>“+$(domEle).children(“title”).text()+”</li>“);<br>});<br>},<br>complete: function(XMLHttpRequest, textStatus){<br>//HideLoading();<br>},<br>error: function(){<br>//请求出错处理<br>}<br>});</p>
 <p>这里将显示首页文章列表。     <strong>其他</strong> <strong>jQuery.ajaxSetup</strong>( options ) : 设置全局 AJAX 默认选项。 设置 AJAX 请求默认地址为 “/xmlhttp/“，禁止触发全局 AJAX 事件，用 POST 代替默认 GET 方法。其后的 AJAX 请求不再设置任何选项参数。 <strong>jQuery 代码:</strong></p>
 <p>$.ajaxSetup({<br>url: “/xmlhttp/“,<br>global: false,<br>type: “POST”<br>});<br>$.ajax({ data: myData });</p>
 <p>  <strong>serialize() 与 serializeArray()</strong> serialize() : 序列表表格内容为字符串。 serializeArray() : 序列化表格元素 (类似 ‘.serialize()’ 方法) 返回 JSON 数据结构数据。 示例： HTML代码：</p>
-<p id="results"><b>Results: </b> </p><form><select name="single"><option>Single</option><option>Single2</option></select><select name="multiple" multiple="multiple"><option selected="selected">Multiple</option><option>Multiple2</option><option selected="selected">Multiple3</option></select><br><input type="checkbox" name="check" value="check1"> check1
-<input type="checkbox" name="check" value="check2" <p>checked=”checked”/&gt; check2<br>&lt;input type=”radio” name=”radio” value=”radio1” <p></p>
+<p></p><p id="results"><b>Results: </b> </p><form><select name="single"><option>Single</option><option>Single2</option></select><select name="multiple" multiple="multiple"><option selected="selected">Multiple</option><option>Multiple2</option><option selected="selected">Multiple3</option></select><br><input type="checkbox" name="check" value="check1"> check1<br>&lt;input type=”checkbox” name=”check” value=”check2” <p></p>
+<p>checked=”checked”/&gt; check2<br>&lt;input type=”radio” name=”radio” value=”radio1” </p>
 <p>checked=”checked”/&gt; radio1<br><input type="radio" name="radio" value="radio2"> radio2</p>
-</form>
+<p></p></form><p></p>
 </li>
-<li><p><a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_3.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_3.png" alt></a> <strong>serializeArray() 结果为：</strong> <a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_4.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_4.png" alt="image"></a></p>
+<li><p><a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_3.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_3.png" alt=""></a> <strong>serializeArray() 结果为：</strong> <a href="http://images.cnblogs.com/cnblogs_com/yeer/image_thumb_4.png" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/image_thumb_4.png" alt="image"></a></p>
 </li>
-<li><p>以上转自：<a href="http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html" target="_blank" rel="noopener">http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html</a></p>
-</li>
+<li>以上转自：<a href="http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html" target="_blank" rel="noopener">http://www.cnblogs.com/yeer/archive/2009/07/23/1529460.html</a></li>
 </ul>
 <p>博客园大道至简 <a href="http://www.cnblogs.com/jams742003/" target="_blank" rel="noopener">http://www.cnblogs.com/jams742003/</a> 转载请注明：博客园</p>
 <p>分类: <a href="http://www.cnblogs.com/jams742003/category/142842.html" target="_blank" rel="noopener">Ajax</a></p>
-<p>绿色通道： 好文要顶 关注我 收藏该文<a href="http://space.cnblogs.com/msg/send/%e6%a2%85%e6%a1%a6" target="_blank" rel="noopener">与我联系</a> <img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/icon_weibo_24.png" alt></p>
-<p><a href="http://home.cnblogs.com/u/jams742003/" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/u33655.jpg" alt></a></p>
+<p>绿色通道： 好文要顶 关注我 收藏该文<a href="http://space.cnblogs.com/msg/send/%e6%a2%85%e6%a1%a6" target="_blank" rel="noopener">与我联系</a> <img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/icon_weibo_24.png" alt=""></p>
+<p><a href="http://home.cnblogs.com/u/jams742003/" target="_blank" rel="noopener"><img src="file:///C:/Users/CUIXU_~1/AppData/Local/Temp/enhtmlclip/u33655.jpg" alt=""></a></p>
 <p><a href="http://home.cnblogs.com/u/jams742003/" target="_blank" rel="noopener">梅桦</a> <a href="http://home.cnblogs.com/u/jams742003/followees" target="_blank" rel="noopener">关注 - 13</a> <a href="http://home.cnblogs.com/u/jams742003/followers" target="_blank" rel="noopener">粉丝 - 248</a></p>
 <p>+加关注</p>
 <p>2</p>
@@ -572,7 +570,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,11 +578,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,10 +595,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Programming paradigm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,11 +614,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,15 +670,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>
