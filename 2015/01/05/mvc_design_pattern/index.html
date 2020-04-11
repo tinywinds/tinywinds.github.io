@@ -176,8 +176,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>目前主流的PHP框架设计模式均为MVC模式，比如yii或codeigniter，均是由控制器接收页面请求，并沟通模型与视图的交互。如果我们把网站整体看作一个矩阵，把网站接收用户请求并处理看作是网站的竖向，而把网站的每一个模块（比如文章模块，投票模块，论坛模块等）看作是网站的横向。那么我们可以画出这样的图：</p>
-<pre><code>模块1  模块2 模块3 用户请求 ---------------------- |      |      | |      |      | 数据处理 ---------------------- |      |      | |      |      | 页面呈现 ----------------------MVC的缺陷 MVC模式，侧重于竖向即请求、处理、呈现之间的协调，而忽略了模块之间的协调，从图里我们可以看出，当用户发起请求的时候，由哪个模块来处理用户的请求已经确定了，这就使模块之间呈现非常强的独立性，这该怎么理解呢，举个例子来说。 假设现在，你有两个模块，一个是新闻模块，一个是图片模块，新闻模块展示一些新闻文章，图片模块用来展示图片。 如果用MVC,我们这样实现：定义两个控制器news,pic,两个模型news\_model,pic\_model,两个视图 news\_view,pic\_view,当有用户请求news控制器时，先调用news\_model取得需要的数据，再用这些数据渲染 news\_view，最后呈现给用户。 有一天，你的领导忽然有了新想法，HEY,伙计，新闻模块只显示新闻太单调，让新闻模块，能显示图片模块里最热门的图片。这下不好办 了，new\_model里没有图片相关的模型，news\_view里也没有显示图片列表的视图。你有解决办法？把显示图片列表相关的模型和视图分别复制一 份到news的模型和视图？不，这么做不好，如果我现在全站都要显示热门图片列表你怎么办？还复制吗？不可以的。后期维护会累死人。 在codeigniter框架里，有更好一点儿的解决办法，就是把显示图片列表这个功能做成一个library，每需要的地方，调用library就可 以，因为library有与控制器相同的沟通模型视图的功能。但这会带来一个新的问题：数据共享，如果页面分割成不同的library来实现，不同的 library的数据很难共享，library之间是完全独立的。 现在来看，这一切的一切都是因为mvc模式注重竖向的沟通，而忽略了横向的沟通，完全割裂了模块之间的关系。 模块沟通 TextPattern(简称TXP)是一个小型的BLOG系统，它最大的特点是注重模块之间的沟通，完全模糊了不同模块间的界限，对与用户的一个请 求，TXP完全没必要知道用户请求的是什么模块，新闻还是图片，只需要知道请求的页面要呈现些什么功能点。每一个小功能点都是完全独立的。 这是一种视图驱动的模式，接收到用户请求后，首先取到要请求的视图，视图文件再调用不同的功能点，这样就弱化了模块之间独立性。通俗点儿说：用户想看什么，你就给什么，不要管它是不是同一个模块，是不是有关系。wordpress也是基于视图驱动的模式的。 HMVC 层叠式的MVC,这是MVC模式的升级版本。首先把系统按功能点分，每个功能点的实现再采用MVC模式。HMVC同时兼顾了横向和竖向的沟通。 我所认为理想的模式 基于视图驱动的HMVC，基于视图驱动，就是以用户为基础，呈现用户想看到，以需求为驱动才是正确的。HMVC保证了代码的重用，易于维护。 视图驱动，可以借鉴WORDPRESS的实现，因为wordpress的模板开发、替换很容易；横向沟通的实现可以借鉴TXP;竖向沟通就是典型的MVC了。
-</code></pre>
+<pre><code>模块1  模块2 模块3 用户请求 ---------------------- |      |      | |      |      | 数据处理 ---------------------- |      |      | |      |      | 页面呈现 ----------------------MVC的缺陷 MVC模式，侧重于竖向即请求、处理、呈现之间的协调，而忽略了模块之间的协调，从图里我们可以看出，当用户发起请求的时候，由哪个模块来处理用户的请求已经确定了，这就使模块之间呈现非常强的独立性，这该怎么理解呢，举个例子来说。 假设现在，你有两个模块，一个是新闻模块，一个是图片模块，新闻模块展示一些新闻文章，图片模块用来展示图片。 如果用MVC,我们这样实现：定义两个控制器news,pic,两个模型news\_model,pic\_model,两个视图 news\_view,pic\_view,当有用户请求news控制器时，先调用news\_model取得需要的数据，再用这些数据渲染 news\_view，最后呈现给用户。 有一天，你的领导忽然有了新想法，HEY,伙计，新闻模块只显示新闻太单调，让新闻模块，能显示图片模块里最热门的图片。这下不好办 了，new\_model里没有图片相关的模型，news\_view里也没有显示图片列表的视图。你有解决办法？把显示图片列表相关的模型和视图分别复制一 份到news的模型和视图？不，这么做不好，如果我现在全站都要显示热门图片列表你怎么办？还复制吗？不可以的。后期维护会累死人。 在codeigniter框架里，有更好一点儿的解决办法，就是把显示图片列表这个功能做成一个library，每需要的地方，调用library就可 以，因为library有与控制器相同的沟通模型视图的功能。但这会带来一个新的问题：数据共享，如果页面分割成不同的library来实现，不同的 library的数据很难共享，library之间是完全独立的。 现在来看，这一切的一切都是因为mvc模式注重竖向的沟通，而忽略了横向的沟通，完全割裂了模块之间的关系。 模块沟通 TextPattern(简称TXP)是一个小型的BLOG系统，它最大的特点是注重模块之间的沟通，完全模糊了不同模块间的界限，对与用户的一个请 求，TXP完全没必要知道用户请求的是什么模块，新闻还是图片，只需要知道请求的页面要呈现些什么功能点。每一个小功能点都是完全独立的。 这是一种视图驱动的模式，接收到用户请求后，首先取到要请求的视图，视图文件再调用不同的功能点，这样就弱化了模块之间独立性。通俗点儿说：用户想看什么，你就给什么，不要管它是不是同一个模块，是不是有关系。wordpress也是基于视图驱动的模式的。 HMVC 层叠式的MVC,这是MVC模式的升级版本。首先把系统按功能点分，每个功能点的实现再采用MVC模式。HMVC同时兼顾了横向和竖向的沟通。 我所认为理想的模式 基于视图驱动的HMVC，基于视图驱动，就是以用户为基础，呈现用户想看到，以需求为驱动才是正确的。HMVC保证了代码的重用，易于维护。 视图驱动，可以借鉴WORDPRESS的实现，因为wordpress的模板开发、替换很容易；横向沟通的实现可以借鉴TXP;竖向沟通就是典型的MVC了。</code></pre>
       
 
       
@@ -452,11 +451,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,11 +467,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,11 +483,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,15 +523,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://tinywind.cn">
   <title>对Controller与Model体型问题的一些想法 | Tinywind</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="相信接触过Rails的朋友们都知道Skinny Controller__, Fat Model的说法 Skinny Controller__, Fat Model的说法出现在各大论坛和教程，帮助了很多初入Rails者放置自己的代码。 但是这种说法未免太过简洁。 可能新手偶尔会在一些细节上混淆，产生这些代码是放在Controller好些还是Model好些的疑问。 本文并非反对这种观点，而是讨论下什么">
+  <meta name="description" content="相信接触过Rails的朋友们都知道Skinny Controller_, Fat Model_的说法 Skinny Controller_, Fat Model_的说法出现在各大论坛和教程，帮助了很多初入Rails者放置自己的代码。 但是这种说法未免太过简洁。 可能新手偶尔会在一些细节上混淆，产生这些代码是放在Controller好些还是Model好些的疑问。 本文并非反对这种观点，而是讨论下什么">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对Controller与Model体型问题的一些想法">
 <meta property="og:url" content="http://tinywind.cn/2017/12/14/controller-and-model/index.html">
 <meta property="og:site_name" content="Tinywind">
-<meta property="og:description" content="相信接触过Rails的朋友们都知道Skinny Controller__, Fat Model的说法 Skinny Controller__, Fat Model的说法出现在各大论坛和教程，帮助了很多初入Rails者放置自己的代码。 但是这种说法未免太过简洁。 可能新手偶尔会在一些细节上混淆，产生这些代码是放在Controller好些还是Model好些的疑问。 本文并非反对这种观点，而是讨论下什么">
+<meta property="og:description" content="相信接触过Rails的朋友们都知道Skinny Controller_, Fat Model_的说法 Skinny Controller_, Fat Model_的说法出现在各大论坛和教程，帮助了很多初入Rails者放置自己的代码。 但是这种说法未免太过简洁。 可能新手偶尔会在一些细节上混淆，产生这些代码是放在Controller好些还是Model好些的疑问。 本文并非反对这种观点，而是讨论下什么">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-12-14T09:39:43.000Z">
 <meta property="article:modified_time" content="2019-05-20T03:04:01.483Z">
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>相信接触过Rails的朋友们都知道<em>Skinny Controller__, Fat Model</em>的说法 <em>Skinny Controller__, Fat Model</em>的说法出现在各大论坛和教程，帮助了很多初入Rails者放置自己的代码。 但是这种说法未免太过简洁。 可能新手偶尔会在一些细节上混淆，产生这些代码是放在Controller好些还是Model好些的疑问。 本文<strong>并非反对</strong>这种观点，而是讨论下<strong>什么情况</strong>下Controller需要减肥。 我认为Controller并非一直都应该皮包骨头，而且有时应该属于Controller的脂肪，<strong>初入者不应该仅仅抱着一句廋Controller胖Model就随便的丢到Model里面，而应抱着求知的心态去思考问题</strong>：</p>
+        <p>相信接触过Rails的朋友们都知道<em>Skinny Controller_</em>, Fat Model_的说法 <em>Skinny Controller_</em>, Fat Model_的说法出现在各大论坛和教程，帮助了很多初入Rails者放置自己的代码。 但是这种说法未免太过简洁。 可能新手偶尔会在一些细节上混淆，产生这些代码是放在Controller好些还是Model好些的疑问。 本文<strong>并非反对</strong>这种观点，而是讨论下<strong>什么情况</strong>下Controller需要减肥。 我认为Controller并非一直都应该皮包骨头，而且有时应该属于Controller的脂肪，<strong>初入者不应该仅仅抱着一句廋Controller胖Model就随便的丢到Model里面，而应抱着求知的心态去思考问题</strong>：</p>
 <ol>
 <li>为什么要说胖Model,廋Controller?</li>
 <li>这种说法适应于任何情况吗？</li>
@@ -440,11 +440,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -456,11 +456,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,11 +472,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,15 +512,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

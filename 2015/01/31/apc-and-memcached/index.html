@@ -178,8 +178,10 @@
 <p> 代码：略去 预先把这句SQL的结果在apc和memcached中都缓存了，然后测试读写速度。</p>
 <p> 在本机windows上结果： </p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">init</span>=====0.0341ms </span><br><span class="line">APC\<span class="attribute">_read</span>=====0.0439ms</span><br><span class="line">APC\<span class="attribute">_write</span>=====0.0920ms </span><br><span class="line">MEM\<span class="attribute">_connet</span>=====11.0571ms</span><br><span class="line">MEM\<span class="attribute">_read</span>=====0.2630ms</span><br><span class="line">MEM\<span class="attribute">_write</span>=====0.2270ms</span><br></pre></td></tr></table></figure>
+
 <p>在服务器上linux上结果：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">init</span>=====0.0131ms</span><br><span class="line">APC\<span class="attribute">_read</span>=====0.0520ms</span><br><span class="line">APC\<span class="attribute">_write</span>=====0.0489ms</span><br><span class="line">MEM\<span class="attribute">_connet</span>=====0.0501ms </span><br><span class="line">MEM\<span class="attribute">_read</span>=====0.1030ms </span><br><span class="line">MEM\<span class="attribute">_write</span>=====0.0801ms</span><br></pre></td></tr></table></figure>
+
 <p>当然反复刷新会有不同的值，这里只是取了一个较平均的值。 win下的不具备什么参考性，主要看linux上的结果。 不算connent时间，大概读写的速度apc都比memcached快上一倍左右。算上memcache_connect的时间，也就是快二倍。 APC即可以实现php文件的opcode缓存，也可以实现user cache，实在是个好东西。 </p>
 <p>所以，如果当网站规模还小的时候，所有功能可以在一台服务器上完成时，那么缓存的方案首选应该就是APC，不用考虑memcached。但如果考虑到网站规模会不断扩大，这点时间的性能差异其实可以忽略不计的，就应该部署memcached了。另外，跨服务器使用memcached，最好要使用内网。不然的话，受路由的影响，memcached经常会连接超时(超过100ms)，而且会凭空多出来两倍的宽带流量。</p>
 
@@ -451,11 +453,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,11 +469,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -483,11 +485,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,15 +525,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

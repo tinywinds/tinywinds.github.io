@@ -176,25 +176,25 @@
 <p>1</p>
 <p>2</p>
 <p>3</p>
-<p><code>file</code> <code>=</code> <code>open`</code>(<code>&quot;/tmp/foo.txt&quot;</code>)`</p>
-<p><code>data</code> <code>=</code> <code>file`</code>.read()`</p>
-<p><code>file`</code>.close()`</p>
+<p><code>file</code> <code>=</code> <code>open``(``&quot;/tmp/foo.txt&quot;``)</code></p>
+<p><code>data</code> <code>=</code> <code>file``.read()</code></p>
+<p><code>file``.close()</code></p>
 <p>There are two annoying things here. First, you end up forgetting to close the file handler. The second is how to handle exceptions that may occur once the file handler has been obtained. One could write something like this to get around this: 这里有两个问题。一是可能忘记关闭文件句柄；二是文件读取数据发生异常，没有进行任何处理。下面是处理异常的加强版本：</p>
 <p>1</p>
 <p>2</p>
 <p>3</p>
 <p>4</p>
 <p>5</p>
-<p><code>file</code> <code>=</code> <code>open`</code>(<code>&quot;/tmp/foo.txt&quot;</code>)`</p>
-<p><code>try`</code>:`</p>
-<p><code>data</code> <code>=</code> <code>file`</code>.read()`</p>
-<p><code>finally`</code>:`</p>
-<p><code>file`</code>.close()`</p>
+<p><code>file</code> <code>=</code> <code>open``(``&quot;/tmp/foo.txt&quot;``)</code></p>
+<p><code>try``:</code></p>
+<p><code>data</code> <code>=</code> <code>file``.read()</code></p>
+<p><code>finally``:</code></p>
+<p><code>file``.close()</code></p>
 <p>While this works well, it is unnecessarily verbose. This is where with is useful. The good thing about with apart from the better syntax is that it is very good handling exceptions. The above code would look like this, when using with: 虽然这段代码运行良好，但是太冗长了。这时候就是with一展身手的时候了。除了有更优雅的语法，with还可以很好的处理上下文环境产生的异常。下面是with版本的代码：</p>
 <p>1</p>
 <p>2</p>
-<p><code>with</code> <code>open`</code>(<code>&quot;/tmp/foo.txt&quot;</code>) as<code></code>file<code></code>:`</p>
-<p><code>data</code> <code>=</code> <code>file`</code>.read()`</p>
+<p><code>with</code> <code>open``(``&quot;/tmp/foo.txt&quot;``) as</code> <code>file``:</code></p>
+<p><code>data</code> <code>=</code> <code>file``.read()</code></p>
 <h2 id="with如何工作？"><a href="#with如何工作？" class="headerlink" title="with如何工作？"></a><a href="http://python.42qu.com/11155501#h21" target="_blank" rel="noopener">with如何工作？</a></h2><p>while this might look like magic, the way Python handles with is more clever than magic. The basic idea is that the statement after with has to evaluate an object that responds to an __enter__() as well as an __exit__() function. 这看起来充满魔法，但不仅仅是魔法，Python对with的处理还很聪明。基本思想是with所求值的对象必须有一个__enter__()方法，一个__exit__()方法。 After the statement that follows with is evaluated, the __enter__() function on the resulting object is called. The value returned by this function is assigned to the variable following as. After every statement in the block is evaluated, the __exit__() function is called. 紧跟with后面的语句被求值后，返回对象的__enter__()方法被调用，这个方法的返回值将被赋值给as后面的变量。当with后面的代码块全部被执行完之后，将调用前面返回对象的__exit__()方法。 This can be demonstrated with the following example: 下面例子可以具体说明with如何工作：</p>
 <p>1</p>
 <p>2</p>
@@ -218,21 +218,21 @@
 <p><code>#!/usr/bin/env python</code></p>
 <p><code># with_example01.py</code></p>
 <p><code>class</code> <code>Sample:</code></p>
-<p><code>def</code> <code>__enter__(`</code>self<code></code>):`</p>
+<p><code>def</code> <code>__enter__(``self``):</code></p>
 <p><code>print</code> <code>&quot;In __enter__()&quot;</code></p>
 <p><code>return</code> <code>&quot;Foo&quot;</code></p>
-<p><code>def</code> <code>__exit__(`</code>self<code>,` `type</code>, value, trace):`</p>
+<p><code>def</code> <code>__exit__(``self``,</code> <code>type``, value, trace):</code></p>
 <p><code>print</code> <code>&quot;In __exit__()&quot;</code></p>
 <p><code>def</code> <code>get_sample():</code></p>
 <p><code>return</code> <code>Sample()</code></p>
 <p><code>with get_sample() as sample:</code></p>
-<p><code>print</code> <code>&quot;sample:&quot;`</code>, sample`</p>
+<p><code>print</code> <code>&quot;sample:&quot;``, sample</code></p>
 <p>When executed, this will result in: 运行代码，输出如下</p>
 <p>1</p>
 <p>2</p>
 <p>3</p>
 <p>4</p>
-<p><code>bash`</code>-<code>3.2</code>$ .<code>/</code>with_example01.py`</p>
+<p><code>bash``-``3.2``$ .``/``with_example01.py</code></p>
 <p><code>In __enter__()</code></p>
 <p><code>sample: Foo</code></p>
 <p><code>In __exit__()</code></p>
@@ -259,14 +259,14 @@
 <p><code>#!/usr/bin/env python</code></p>
 <p><code># with_example02.py</code></p>
 <p><code>class</code> <code>Sample:</code></p>
-<p><code>def</code> <code>__enter__(`</code>self<code></code>):`</p>
+<p><code>def</code> <code>__enter__(``self``):</code></p>
 <p><code>return</code> <code>self</code></p>
-<p><code>def</code> <code>__exit__(`</code>self<code>,` `type</code>, value, trace):`</p>
-<p><code>print</code> <code>&quot;type:&quot;`</code>,<code></code>type`</p>
-<p><code>print</code> <code>&quot;value:&quot;`</code>, value`</p>
-<p><code>print</code> <code>&quot;trace:&quot;`</code>, trace`</p>
-<p><code>def</code> <code>do_something(`</code>self<code></code>):`</p>
-<p><code>bar</code> <code>=</code> <code>1`</code>/<code></code>0`</p>
+<p><code>def</code> <code>__exit__(``self``,</code> <code>type``, value, trace):</code></p>
+<p><code>print</code> <code>&quot;type:&quot;``,</code> <code>type</code></p>
+<p><code>print</code> <code>&quot;value:&quot;``, value</code></p>
+<p><code>print</code> <code>&quot;trace:&quot;``, trace</code></p>
+<p><code>def</code> <code>do_something(``self``):</code></p>
+<p><code>bar</code> <code>=</code> <code>1``/``0</code></p>
 <p><code>return</code> <code>bar</code> <code>+</code> <code>10</code></p>
 <p><code>with Sample() as sample:</code></p>
 <p><code>sample.do_something()</code></p>
@@ -281,15 +281,15 @@
 <p>8</p>
 <p>9</p>
 <p>10</p>
-<p><code>bash`</code>-<code>3.2</code>$ .<code>/</code>with_example02.py`</p>
-<p><code>type`</code>: &lt;<code>type` `&#39;exceptions.ZeroDivisionError&#39;</code>&gt;`</p>
+<p><code>bash``-``3.2``$ .``/``with_example02.py</code></p>
+<p><code>type``: &lt;``type</code> <code>&#39;exceptions.ZeroDivisionError&#39;``&gt;</code></p>
 <p><code>value: integer division</code> <code>or</code> <code>modulo by zero</code></p>
-<p><code>trace: &lt;traceback</code> <code>object</code> <code>at</code> <code>0x1004a8128`</code>&gt;`</p>
+<p><code>trace: &lt;traceback</code> <code>object</code> <code>at</code> <code>0x1004a8128``&gt;</code></p>
 <p><code>Traceback (most recent call last):</code></p>
-<p><code>File</code> <code>&quot;./with_example02.py&quot;`</code>, line<code></code>19<code></code>,<code></code>in<code></code><module>`</module></p>
+<p><code>File</code> <code>&quot;./with_example02.py&quot;``, line</code> <code>19``,</code> <code>in</code> <code>&lt;module&gt;</code></p>
 <p><code>sample.do_something()</code></p>
-<p><code>File</code> <code>&quot;./with_example02.py&quot;`</code>, line<code></code>15<code></code>,<code></code>in<code></code>do_something`</p>
-<p><code>bar</code> <code>=</code> <code>1`</code>/<code></code>0`</p>
+<p><code>File</code> <code>&quot;./with_example02.py&quot;``, line</code> <code>15``,</code> <code>in</code> <code>do_something</code></p>
+<p><code>bar</code> <code>=</code> <code>1``/``0</code></p>
 <p><code>ZeroDivisionError: integer division</code> <code>or</code> <code>modulo by zero</code></p>
 <p>Essentially, if there are exceptions being thrown from anywhere inside the block, the __exit__() function for the object is called. As you can see, the type, value and the stack trace associated with the exception thrown is passed to this function. In this case, you can see that there was a ZeroDivisionError exception being thrown. People implementing libraries can write code that clean up resources, close files etc. in their __exit__() functions. 实际上，在with后面的代码块抛出任何异常时，__exit__()方法被执行。正如例子所示，异常抛出时，与之关联的type，value和stack trace传给__exit__()方法，因此抛出的ZeroDivisionError异常被打印出来了。开发库时，清理资源，关闭文件等等操作，都可以放在__exit__方法当中。 Thus, Python’s with is a nifty construct that makes code a little less verbose and makes cleaning up during exceptions a bit easier. 因此，Python的with语句是提供一个有效的机制，让代码更简练，同时在异常产生时，清理工作更简单。 I have put the code examples given here on <a href="https://github.com/sdqali/python_dojo/tree/master/with" target="_blank" rel="noopener" title="https://github.com/sdqali/python_dojo/tree/master/with">Github</a>. 示例代码可以在<a href="https://github.com/sdqali/python_dojo/tree/master/with" target="_blank" rel="noopener" title="https://github.com/sdqali/python_dojo/tree/master/with">Github</a>上面找到。 译注：本文原文见<a href="http://blog.sdqali.in/blog/2012/07/09/understanding-pythons-with/" target="_blank" rel="noopener" title="http://blog.sdqali.in/blog/2012/07/09/understanding-pythons-with/">Understanding Python’s “With” Statement</a></p>
 
@@ -365,20 +365,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If you’ve ever needed to make a cross-domain call via AJAX you’ve probably run into the dreaded <a href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank" rel="noopener">same origin policy</a>: _The policy permits scripts running on pages originating from the same site to access each other’s methods and properties with no specific restrictions, but prevents access to most methods and properties across pages on different sites._Today I’ll show you how you can use <a href="http://jquery.com/" target="_blank" rel="noopener">JQuery</a> to easily do this and I’ll do it with the additional help of <a href="http://php.net/" target="_blank" rel="noopener">PHP</a>.   <strong>Note:</strong> With HTML5 a method was formalized for this particular thing (cross-domain calls) and it’s known as the <strong>postMessage interface</strong>. It would be great to use this but sadly it’s not implemented on all browsers yet and of course HTML5 has yet to fully reach maturity so things can change (take a look at the <a href="http://www.google.com/search?ie=UTF-8&amp;q=websocket+changes" target="_blank" rel="noopener">recent changes</a> with WebSocket circa 2010 early 2011). The easy part is setting up a PHP page to listen for incoming data and send back a result. Not only will we send back data but we will also send back the function name we want to call on the client’s browser. Here is the PHP code:</p>
+        <p>If you’ve ever needed to make a cross-domain call via AJAX you’ve probably run into the dreaded <a href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank" rel="noopener">same origin policy</a>: _The policy permits scripts running on pages originating from the same site to access each other’s methods and properties with no specific restrictions, but prevents access to most methods and properties across pages on different sites._Today I’ll show you how you can use <a href="http://jquery.com/" target="_blank" rel="noopener">JQuery</a> to easily do this and I’ll do it with the additional help of <a href="http://php.net/" target="_blank" rel="noopener">PHP</a>.   <strong>Note:</strong> With HTML5 a method was formalized for this particular thing (cross-domain calls) and it’s known as the <strong>postMessage interface</strong>. It would be great to use this but sadly it’s not implemented on all browsers yet and of course HTML5 has yet to fully reach maturity so things can change (take a look at the <a href="http://www.google.com/search?ie=UTF-8&q=websocket+changes" target="_blank" rel="noopener">recent changes</a> with WebSocket circa 2010 early 2011). The easy part is setting up a PHP page to listen for incoming data and send back a result. Not only will we send back data but we will also send back the function name we want to call on the client’s browser. Here is the PHP code:</p>
 <p><code>&lt;!--?php</code></p>
-<p><code>header(`</code>“content-type: text/javascript”<code></code>);`</p>
-<p><code>if`</code>(isset(<code>$_GET</code>[<code>&#39;name&#39;</code>]) &amp;&amp; isset(<code>$_GET</code>[<code>&#39;callback&#39;</code>]))`</p>
+<p><code>header(``&quot;content-type: text/javascript&quot;``);</code></p>
+<p><code>if``(isset(``$_GET``[``&#39;name&#39;``]) &amp;&amp; isset(``$_GET``[``&#39;callback&#39;``]))</code></p>
 <p><code>{</code></p>
-<p><code>$obj`</code>—&gt;name =<code></code>$_GET<code>[</code>‘name’<code></code>];`</p>
-<p><code>$obj`</code>-&gt;message =<code></code>“Hello “<code></code>.<code></code>$obj<code></code>-&gt;name;`</p>
-<p><code>echo</code> <code>$_GET`</code>[<code>&#39;callback&#39;</code>].<code></code>‘(‘<code></code>. json_encode(<code>$obj</code>) .<code></code>‘);’<code></code>;`</p>
+<p><code>$obj``---&gt;name =</code> <code>$_GET``[``&#39;name&#39;``];</code></p>
+<p><code>$obj``-&gt;message =</code> <code>&quot;Hello &quot;</code> <code>.</code> <code>$obj``-&gt;name;</code></p>
+<p><code>echo</code> <code>$_GET``[``&#39;callback&#39;``].</code> <code>&#39;(&#39;</code> <code>. json_encode(``$obj``) .</code> <code>&#39;);&#39;``;</code></p>
 <p><code>}</code></p>
 <p><code>?&gt;</code></p>
 <p>You can see two parameters come in: <strong>name</strong> and <strong>callback</strong> The name is some user defined string, in this case I will use my actual name. I then format the response to be JavaScript. <strong>Note:</strong> Keep in mind when you go to test this that you put your HTML file on one site and the PHP file on a different one and that way you can assure it’s working. If you put both the PHP and HTML file on the same site JQuery will actually just default back to a regular AJAX call from what I’ve read. The HTML file is actually pretty simple as well if your familiar with JQuery AJAX:</p>
-<p><code>&lt;`</code>title<code>&gt;JQuery JSONP&lt;/</code>title<code></code>&gt;`</p>
-<p><code>&lt;`</code>script<code></code>src<code>=</code>“<a href="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js&quot;``&gt;" target="_blank" rel="noopener">http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js&quot;``&gt;</a>&lt;/<code>script</code>&gt;`</p>
-<p><code>&lt;`</code>script<code></code>&gt;`</p>
+<p><code>&lt;``title``&gt;JQuery JSONP&lt;/``title``&gt;</code></p>
+<p><code>&lt;``script</code> <code>src``=``&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js&quot;``&gt;&lt;/``script``&gt;</code></p>
+<p><code>&lt;``script``&gt;</code></p>
 <p><code>$(document).ready(function(){</code></p>
 <p><code>$(&quot;#useJSONP&quot;).click(function(){</code></p>
 <p><code>$.ajax({</code></p>
@@ -396,16 +396,16 @@
 <p><code>function jsonpCallback(data){</code></p>
 <p><code>$(&#39;#jsonpResult&#39;).text(data.message);</code></p>
 <p><code>}</code></p>
-<p><code>&lt;/`</code>script<code></code>&gt;`</p>
-<p><code>&lt;`</code>input<code></code>type<code>=</code>“button”<code></code>id<code>=</code>“useJSONP”<code></code>value<code>=</code>“Use JSONP”<code>&gt;&lt;</code>br<code>&gt;&lt;</code>br<code></code>&gt;`</p>
-<p><code>&lt;`</code>span<code></code>id<code>=</code>“jsonpResult”<code>&gt;&lt;/</code>span<code></code>&gt;`</p>
+<p><code>&lt;/``script``&gt;</code></p>
+<p><code>&lt;``input</code> <code>type``=``&quot;button&quot;</code> <code>id``=``&quot;useJSONP&quot;</code> <code>value``=``&quot;Use JSONP&quot;``&gt;&lt;``br``&gt;&lt;``br``&gt;</code></p>
+<p><code>&lt;``span</code> <code>id``=``&quot;jsonpResult&quot;``&gt;&lt;/``span``&gt;</code></p>
 <p>This creates a simple HTML page with a button and clicking on it produces the desired result (see below). There are two things to note here: 1. You need to set the <strong>dataType</strong> as <strong>jsonp</strong> 2. Setting <strong>jsonp</strong> to <strong>callback</strong> and then setting <strong>jsonpCallback</strong> to <strong>jsonpCallback</strong> makes the querystring look like this:</p>
 <p><code>http://domain.com/jsonp-demo.php?callback=jsonpCallback&amp;name=Chad</code></p>
 <p>Calling the PHP file with the proper querystring produces a result like this:</p>
 <p><code>jsonpCallback({&quot;name&quot;:&quot;Chad&quot;,&quot;message&quot;:&quot;Hello Chad&quot;});</code></p>
-<p>Running the code from the HTML page will simply display the results. <a href="http://www.giantflyingsaucer.com/blog/wp-content/uploads/2011/04/jsonp-ajax-jquery-php-1.jpg" target="_blank" rel="noopener"><img src="http://www.giantflyingsaucer.com/blog/wp-content/uploads/2011/04/jsonp-ajax-jquery-php-1.jpg" alt=""></a> <strong>Update Sept. 21, 2011:</strong> A reader pointed out he had some issues with the PHP code in this article and needed to add an additional header to get this to work. If your having issues please try adding these headers to your PHP code:</p>
-<p><code>header(`</code>“content-type: Access-Control-Allow-Origin: *”<code></code>);`</p>
-<p><code>header(`</code>“content-type: Access-Control-Allow-Methods: GET”<code></code>);`</p>
+<p>Running the code from the HTML page will simply display the results. <a href="http://www.giantflyingsaucer.com/blog/wp-content/uploads/2011/04/jsonp-ajax-jquery-php-1.jpg" target="_blank" rel="noopener"><img src="http://www.giantflyingsaucer.com/blog/wp-content/uploads/2011/04/jsonp-ajax-jquery-php-1.jpg" alt></a> <strong>Update Sept. 21, 2011:</strong> A reader pointed out he had some issues with the PHP code in this article and needed to add an additional header to get this to work. If your having issues please try adding these headers to your PHP code:</p>
+<p><code>header(``&quot;content-type: Access-Control-Allow-Origin: *&quot;``);</code></p>
+<p><code>header(``&quot;content-type: Access-Control-Allow-Methods: GET&quot;``);</code></p>
 <p>Another thing to keep in mind if your using a hosting service or you don’t have complete control over the server that hosts your server side logic, it’s possible your host might block this type of thing (JSONP) as seen in the below Apache config:</p>
 <p><code>Header set Access-Control-Allow-Origin &quot;mydomain.com&quot;</code></p>
 <p>Make sure to check with your web host.</p>
@@ -1395,11 +1395,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1411,11 +1411,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1427,11 +1427,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1467,15 +1467,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

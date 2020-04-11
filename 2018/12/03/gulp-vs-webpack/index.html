@@ -213,8 +213,10 @@
 <p>扯谈完毕，接下来就来看看 <strong>gulp</strong> 是不是在装逼，他到底能不能帮我们实现自动化。</p>
 <p>作为一个 node 包，标准打开方式当然是：</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i -g gulp</span><br></pre></td></tr></table></figure>
+
 <p>然后呢，这里以编译 less 为例，首先安装编译 less 需要用到的 node 包：</p>
 <figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --<span class="built_in">save</span>-<span class="built_in">dev</span> gulp gulp-less</span><br></pre></td></tr></table></figure>
+
 <p><strong>前面已经全局安装过 gulp 了，怎么又本地安装了一遍</strong><br>前面的 <code>-g</code> 是全局安装，是为了执行你所编写的 gulp 任务，即 gulp yourTask。而后面的 –save-dev 是本地安装，是为了咱们编写任务时使用 gulp 提供的 api，例如 <code>gulp.src()</code>、<code>gulp.task()</code>、<code>gulp.dest()</code> 等等。当然也是可以直接使用全局安装的 gulp 的 api 的，但是强烈不推荐，因为这样涉及到 gulp 版本控制的问题，而且使用全局 gulp 的 api 的话就会产生环境依赖（你假设环境已经全局安装了gulp，万一没装呢，程序不就出错了）。</p>
 <p>接着在项目的根目录下新建一个 <strong>gulpfile.js</strong> 文件，这是 gulp 的默认配置文件。</p>
 <p><strong>gulpfile.js 必须放在项目根目录？</strong><br>当然也可放在其他目录，但这样的话就得在启动 gulp 任务时手动指定 gulp 配置文件 gulp yourTask –gulpfile yourGulpfilePath，可能还需要全局安装 gulp-cli，所以除非有特殊需要，否则就放在项目根目录就行了，这样最简单。</p>
@@ -224,6 +226,7 @@
 <p>构建前 gulp 工程目录结构</p>
 <p>接下来就是在 gulpfile.js 里编写 <strong>gulp task</strong>（gulp 把为每个痛苦又耗时任务编写的处理方法称为一个 <strong>task</strong>）：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">const</span> less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'build:less'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'./src/*.less'</span>)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./dist'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <p>最后就是打开一个终端，在终端里运行 gulp build:less。好了，编译后的文件已经被输出到了 <strong>dist</strong> 目录：</p>
 <p><img src="/.cn//2.png" alt="构建后 gulp 工程目录结构"></p>
 <p>构建后 gulp 工程目录结构</p>
@@ -247,6 +250,7 @@
 <p>接下来简单看一下 webpack 的主要工作方式。</p>
 <p>webpack 和 gulp 一样也是一个小 node 包，打开方式自然是：</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i -g webpack</span><br><span class="line"><span class="built_in">npm</span> i --save-dev webpack</span><br></pre></td></tr></table></figure>
+
 <p>和 gulp 一样，全局安装是为了执行 webpack 任务，本地安装是为了使用 webpack 提供的 api。</p>
 <p>安装完 webpack 之后在项目根目录下新建一个 <strong>webpack.config.js</strong>，这是 webpack 的默认配置文件，同 gulp 的 gulpfile.js 的功能类似。webpack.config.js 同样是不区分大小写的，取成 webPACk.CONfig.js 的话 webpack 也能认识，但是取成其他名字或放在别的目录就需要使用 –config 选项去指定配置文件了。</p>
 <p>现在工程目录结构如下：</p>
@@ -254,6 +258,7 @@
 <p>构建前webpack工程目录结构</p>
 <p>接下来就是在 webpack.config.js 里配置需要的选项，注意了，webpack 与 gulp 的重要不同就是使用方式 <strong>由编程式变成了配置式</strong>：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/index.js'</span>,        <span class="comment">// 告诉 webpack 你要编译哪个文件</span></span><br><span class="line">    output: &#123;                       <span class="comment">// 告诉 webpack 你要把编译后生成的文件放在哪</span></span><br><span class="line">        filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">        path: path.join(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>最后仍然和 gulp 类似，就是在终端里运行 webpack（终端里一般会出现一大坨编译信息）。好了，现在 webpack 已经把编译好的文件输出到了 dist 目录：</p>
 <p><img src="/.cn//4.png" alt="构建后webpack工程目录结构"></p>
 <p>构建后webpack工程目录结构</p>
@@ -273,8 +278,7 @@
 <th>Webpack</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>定位</td>
 <td>基于流的自动化构建工具</td>
 <td>一个万能模块打包器</td>
@@ -319,8 +323,7 @@
 <td>浏览器多页应用(MPA)首选方案</td>
 <td>浏览器单页应用(SPA)首选方案</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong>gulp 为何不吸取百家之长，把 webpack 的东西集成进来，反正都是开源的</strong><br>腾讯那么牛逼，你说他怎么不把阿里巴巴集成进来。集成应该是没可能，因为 gulp 和 webpack 的定位不一样。所以，没有放之天下而皆准的解决方案，只有具体问题具体分析选择适合的解决方案才能正确地解决问题。gulp 和 webpack 只是我们解决问题的工具，不要被工具束缚了手脚不能前进。</p>
 <p><strong>扯了这么多，到底谁会被拍死在沙滩上</strong><br>可以看出来，这两个工具其实各有优缺，都有用武之地。合理地配合使用，取长补短，才能发挥最大的威力，所以这俩基友并不是互斥的，而是互补的，谁也不会被拍死在沙滩上。</p>
 
@@ -592,11 +595,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,11 +611,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,11 +627,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,15 +667,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>

@@ -173,10 +173,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>[1] It’s the exmaple for using SCP (Secure Copy).</p>
-<p># scp [Option] Source Target<br># copy the [test.txt] on local to remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a><br>ubuntu@dlp:~$ scp ./test.txt <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:~/<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:     # password of the user<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
+<p># scp [Option] Source Target<br># copy the [test.txt] on local to remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a><br>ubuntu@dlp:<del>$ scp ./test.txt <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:</del>/<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:     # password of the user<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
 <p># copy the [/home/ubuntu/test.txt] on remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a> to the local<br>ubuntu@dlp:~$ scp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:/home/ubuntu/test.txt ./test.txt<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
 <p>[2] It’s example to use SFTP (SSH File Transfer Protocol). SFTP server function is enabled by default, but if not, enable it to add the line [Subsystem sftp /usr/lib/openssh/sftp-server] in [/etc/ssh/sshd_config].</p>
-<p># sftp [Option] [user@host]<br>ubuntu@dlp:~$ sftp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a><br><a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>‘s password:     # password of the user<br>Connected to <a href="http://www.srv.world" target="_blank" rel="noopener">www.srv.world</a>.<br>sftp&gt;<br># show current directory on remote server<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu<br># show current directory on local server<br>sftp&gt; !pwd<br>/home/ubuntu<br># show files in current directory on FTP server<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># show files in current directory on local server<br>sftp&gt; !ls -l<br>total 4<br>-rw-rw-r– 1 ubuntu ubuntu 10 Jul 29 21:31 test.txt<br># change directory<br>sftp&gt; cd public_html<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu/public_html<br># upload a file to remote server<br>sftp&gt; put test.txt ubuntu.txt<br>Uploading test.txt to /home/ubuntu/ubuntu.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># upload some files to remote server<br>sftp&gt; put <em>.txt<br>Uploading test.txt to /home/ubuntu/test.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>Uploading test2.txt to /home/ubuntu/test2.txt<br>test2.txt 100% 0 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># download a file from remote server<br>sftp&gt; get test.txt<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br># download some files from remote server<br>sftp&gt; get </em>.txt<br>Fetching /home/ubuntu/ubuntu.txt to ubuntu.txt<br>/home/ubuntu/ubuntu.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test2.txt to test2.txt<br>/home/ubuntu/test2.txt 100% 10 0.0KB/s 00:00<br># create a directory on remote server<br>sftp&gt; mkdir testdir<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:53 testdir<br># delete a directory on remote server<br>sftp&gt; rmdir testdir<br>rmdir ok, `testdir’ removed<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># delete a file on remote server<br>sftp&gt; rm test2.txt<br>Removing /home/ubuntu/test2.txt<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br># execute commands with “![command]“<br>sftp&gt; !cat /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>bin:x:1:1:bin:/bin:/sbin/nologin<br>…<br>…<br>ubuntu:x:1001:1001::/home/ubuntu:/bin/bash<br># exit<br>sftp&gt; quit<br>221 Goodbye.</p>
+<p># sftp [Option] [user@host]<br>ubuntu@dlp:~$ sftp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a><br><a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>‘s password:     # password of the user<br>Connected to <a href="http://www.srv.world" target="_blank" rel="noopener">www.srv.world</a>.<br>sftp&gt;<br># show current directory on remote server<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu<br># show current directory on local server<br>sftp&gt; !pwd<br>/home/ubuntu<br># show files in current directory on FTP server<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># show files in current directory on local server<br>sftp&gt; !ls -l<br>total 4<br>-rw-rw-r– 1 ubuntu ubuntu 10 Jul 29 21:31 test.txt<br># change directory<br>sftp&gt; cd public_html<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu/public_html<br># upload a file to remote server<br>sftp&gt; put test.txt ubuntu.txt<br>Uploading test.txt to /home/ubuntu/ubuntu.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># upload some files to remote server<br>sftp&gt; put *.txt<br>Uploading test.txt to /home/ubuntu/test.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>Uploading test2.txt to /home/ubuntu/test2.txt<br>test2.txt 100% 0 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># download a file from remote server<br>sftp&gt; get test.txt<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br># download some files from remote server<br>sftp&gt; get *.txt<br>Fetching /home/ubuntu/ubuntu.txt to ubuntu.txt<br>/home/ubuntu/ubuntu.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test2.txt to test2.txt<br>/home/ubuntu/test2.txt 100% 10 0.0KB/s 00:00<br># create a directory on remote server<br>sftp&gt; mkdir testdir<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:53 testdir<br># delete a directory on remote server<br>sftp&gt; rmdir testdir<br>rmdir ok, `testdir’ removed<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># delete a file on remote server<br>sftp&gt; rm test2.txt<br>Removing /home/ubuntu/test2.txt<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br># execute commands with “![command]“<br>sftp&gt; !cat /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>bin:x:1:1:bin:/bin:/sbin/nologin<br>…<br>…<br>ubuntu:x:1001:1001::/home/ubuntu:/bin/bash<br># exit<br>sftp&gt; quit<br>221 Goodbye.</p>
 
       
 
@@ -252,6 +252,7 @@
       
         <p>php中常用的去重函数array_unique很好用，遗憾的是不能处理二维的数组。实际开发中，遇到此类问题，考虑的办法去二维数组降维，然后去重复，然后恢复二维。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span><span class="params">($data = array<span class="params">()</span>)</span></span>&#123;</span><br><span class="line">       $tmp = <span class="keyword">array</span>();</span><br><span class="line">       <span class="keyword">foreach</span>($data <span class="keyword">as</span> $key =&gt; $value)&#123;</span><br><span class="line">           <span class="comment">//把一维数组键值与键名组合</span></span><br><span class="line">           <span class="keyword">foreach</span>($value <span class="keyword">as</span> $key1 =&gt; $value1)&#123;</span><br><span class="line">               $value[$key1] = $key1 . <span class="string">'|'</span> . $value1;<span class="comment">//|分隔符复杂点以免冲突</span></span><br><span class="line">           &#125;</span><br><span class="line">           $tmp[$key] = implode(<span class="string">',|,'</span>, $value);<span class="comment">//,|,分隔符复杂点以免冲突</span></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//对降维后的数组去重复处理</span></span><br><span class="line">       $tmp = array_unique($tmp);</span><br><span class="line">       <span class="comment">//重组二维数组</span></span><br><span class="line">       $newArr = <span class="keyword">array</span>();</span><br><span class="line">       <span class="keyword">foreach</span>($tmp <span class="keyword">as</span> $k =&gt; $tmp_v)&#123;</span><br><span class="line">           $tmp_v2 = explode(<span class="string">',|,'</span>, $tmp_v);</span><br><span class="line">           <span class="keyword">foreach</span>($tmp_v2 <span class="keyword">as</span> $k2 =&gt; $v2)&#123;</span><br><span class="line">               $v2 = explode(<span class="string">'|'</span>, $v2);</span><br><span class="line">               $tmp_v3[$v2[<span class="number">0</span>]] = $v2[<span class="number">1</span>];</span><br><span class="line">           &#125;</span><br><span class="line">           $newArr[$k] = $tmp_v3;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> $newArr;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -1078,11 +1079,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1094,11 +1095,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frontend</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1110,11 +1111,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,15 +1151,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ttfb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IE兼容</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">stdClass to array</a>
               </li>
             
             <div class="clearfix"></div>
