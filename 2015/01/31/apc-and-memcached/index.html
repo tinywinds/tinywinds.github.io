@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>缓存apc与memcached的选择 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="之前看到有文章说同台服务器上APC的效率是Memcached的7倍，APC效率比Memcached高是肯定的，至于倒底快多少，我写了个小程序测试了下。  代码：略去 预先把这句SQL的结果在apc和memcached中都缓存了，然后测试读写速度。  在本机windows上结果：  123456init&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0341ms APC\_read&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓存apc与memcached的选择">
+<meta property="og:url" content="http://tinywind.cn/2015/01/31/apc-and-memcached/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="之前看到有文章说同台服务器上APC的效率是Memcached的7倍，APC效率比Memcached高是肯定的，至于倒底快多少，我写了个小程序测试了下。  代码：略去 预先把这句SQL的结果在apc和memcached中都缓存了，然后测试读写速度。  在本机windows上结果：  123456init&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0341ms APC\_read&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-01-31T10:11:14.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.482Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-apc-and-memcached" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      缓存apc与memcached的选择
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/01/31/apc-and-memcached/" class="archive-article-date">
+        <time datetime="2015-01-31T10:11:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-01-31</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">435字</span>
     </span>
   </span>
 
@@ -238,7 +240,17 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>之前看到有文章说同台服务器上APC的效率是Memcached的7倍，APC效率比Memcached高是肯定的，至于倒底快多少，我写了个小程序测试了下。</p>
+<p> 代码：略去 预先把这句SQL的结果在apc和memcached中都缓存了，然后测试读写速度。</p>
+<p> 在本机windows上结果： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">init&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0341ms </span><br><span class="line">APC\_read&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0439ms</span><br><span class="line">APC\_write&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0920ms </span><br><span class="line">MEM\_connet&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;11.0571ms</span><br><span class="line">MEM\_read&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.2630ms</span><br><span class="line">MEM\_write&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.2270ms</span><br></pre></td></tr></table></figure>
+
+<p>在服务器上linux上结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">init&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0131ms</span><br><span class="line">APC\_read&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0520ms</span><br><span class="line">APC\_write&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0489ms</span><br><span class="line">MEM\_connet&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0501ms </span><br><span class="line">MEM\_read&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.1030ms </span><br><span class="line">MEM\_write&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;0.0801ms</span><br></pre></td></tr></table></figure>
+
+<p>当然反复刷新会有不同的值，这里只是取了一个较平均的值。 win下的不具备什么参考性，主要看linux上的结果。 不算connent时间，大概读写的速度apc都比memcached快上一倍左右。算上memcache_connect的时间，也就是快二倍。 APC即可以实现php文件的opcode缓存，也可以实现user cache，实在是个好东西。 </p>
+<p>所以，如果当网站规模还小的时候，所有功能可以在一台服务器上完成时，那么缓存的方案首选应该就是APC，不用考虑memcached。但如果考虑到网站规模会不断扩大，这点时间的性能差异其实可以忽略不计的，就应该部署memcached了。另外，跨服务器使用memcached，最好要使用内网。不然的话，受路由的影响，memcached经常会连接超时(超过100ms)，而且会凭空多出来两倍的宽带流量。</p>
+
     
 
     
@@ -284,7 +296,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/01/31/apc-and-memcached/" title="缓存apc与memcached的选择" target="_blank">http://tinywind.cn/2015/01/31/apc-and-memcached/</a>
         </li>
         
         <li>
@@ -302,6 +314,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +374,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/01/31/apc-and-memcached/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +386,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/02/28/navicate_mysql_connect_error_10061/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Navicat for mysql 远程连接 mySql数据库10061错误问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/31/uiueidueducd-e7-9a-84-e5-8c-ba-e5-88-ab/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UI/UE/ID/UED/UCD的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +474,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

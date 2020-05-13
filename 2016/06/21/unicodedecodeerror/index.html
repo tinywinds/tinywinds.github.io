@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>Python转码问题的解决方法 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="Python转码问题的解决方法 在Python中，可以对String调用decode和encode方法来实现转码。 比如，若要将某个String对象s从gbk内码转换为UTF-8，可以如下操作 s.decode(‘gbk’).encode(‘utf-8′) 可是，在实际开发中，我发现，这种办法经常会出现异常： UnicodeDecodeError: ‘gbk’ codec can’t decode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python转码问题的解决方法">
+<meta property="og:url" content="http://tinywind.cn/2016/06/21/unicodedecodeerror/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="Python转码问题的解决方法 在Python中，可以对String调用decode和encode方法来实现转码。 比如，若要将某个String对象s从gbk内码转换为UTF-8，可以如下操作 s.decode(‘gbk’).encode(‘utf-8′) 可是，在实际开发中，我发现，这种办法经常会出现异常： UnicodeDecodeError: ‘gbk’ codec can’t decode">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2016-06-21T01:51:02.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.501Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-unicodedecodeerror" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      Python转码问题的解决方法
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2016/06/21/unicodedecodeerror/" class="archive-article-date">
+        <time datetime="2016-06-21T01:51:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-21</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">406字</span>
     </span>
   </span>
 
@@ -238,7 +240,24 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>Python转码问题的解决方法</p>
+<p>在Python中，可以对String调用decode和encode方法来实现转码。</p>
+<p>比如，若要将某个String对象s从gbk内码转换为UTF-8，可以如下操作</p>
+<p>s.decode(‘gbk’).encode(‘utf-8′)</p>
+<p>可是，在实际开发中，我发现，这种办法经常会出现异常：</p>
+<p>UnicodeDecodeError: ‘gbk’ codec can’t decode bytes in position 30664-30665: illegal multibyte sequence</p>
+<p>这 是因为遇到了非法字符——尤其是在某些用C/C++编写的程序中，全角空格往往有多种不同的实现方式，比如\xa3\xa0，或者\xa4\x57，这些 字符，看起来都是全角空格，但它们并不是“合法”的全角空格（真正的全角空格是\xa1\xa1），因此在转码的过程中出现了异常。</p>
+<p>这样的问题很让人头疼，因为只要字符串中出现了一个非法字符，整个字符串——有时候，就是整篇文章——就都无法转码。</p>
+<p>解决办法：</p>
+<p>s.decode(‘gbk’, ‘ignore’).encode(‘utf-8′)</p>
+<p>因为decode的函数原型是decode([encoding], [errors=’strict’])，可以用第二个参数控制错误处理的策略，默认的参数就是strict，代表遇到非法字符时抛出异常；</p>
+<p>如果设置为ignore，则会忽略非法字符；</p>
+<p>如果设置为replace，则会用?取代非法字符；</p>
+<p>如果设置为xmlcharrefreplace，则使用XML的字符引用。</p>
+<p>python文档</p>
+<p>decode( [encoding[, errors]])</p>
+<p>Decodes the string using the codec registered for encoding. encoding defaults to the default string encoding. errors may be given to set a different error handling scheme. The default is ‘strict’, meaning that encoding errors raise UnicodeError. Other possible values are ‘ignore’, ‘replace’ and any other name registered via codecs.register_error, see section 4.8.1.</p>
+
     
 
     
@@ -284,7 +303,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2016/06/21/unicodedecodeerror/" title="Python转码问题的解决方法" target="_blank">http://tinywind.cn/2016/06/21/unicodedecodeerror/</a>
         </li>
         
         <li>
@@ -302,6 +321,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +381,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2016/06/21/unicodedecodeerror/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +393,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2016/07/12/session-share/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          session原理及实现共享
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/29/mysqldb-mysql-connector/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQLdb和mysql connector的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -380,16 +429,6 @@
         
     </div>
 </aside>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,7 +471,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

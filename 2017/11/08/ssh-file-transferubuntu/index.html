@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>SSH File Transfer(Ubuntu) | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="[1] It’s the exmaple for using SCP (Secure Copy). # scp [Option] Source Target# copy the [test.txt] on local to remote server [www.srv.world\]ubuntu@dlp:$ scp .&#x2F;test.txt ubuntu@www.srv.world:&#x2F;ubuntu@1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH File Transfer(Ubuntu)">
+<meta property="og:url" content="http://tinywind.cn/2017/11/08/ssh-file-transferubuntu/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="[1] It’s the exmaple for using SCP (Secure Copy). # scp [Option] Source Target# copy the [test.txt] on local to remote server [www.srv.world\]ubuntu@dlp:$ scp .&#x2F;test.txt ubuntu@www.srv.world:&#x2F;ubuntu@1">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2017-11-08T05:23:17.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.500Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-ssh-file-transferubuntu" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      SSH File Transfer(Ubuntu)
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2017/11/08/ssh-file-transferubuntu/" class="archive-article-date">
+        <time datetime="2017-11-08T05:23:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-08</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">724字</span>
     </span>
   </span>
 
@@ -227,7 +229,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -238,7 +240,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>[1] It’s the exmaple for using SCP (Secure Copy).</p>
+<p># scp [Option] Source Target<br># copy the [test.txt] on local to remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a><br>ubuntu@dlp:<del>$ scp ./test.txt <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:</del>/<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:     # password of the user<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
+<p># copy the [/home/ubuntu/test.txt] on remote server [<a href="http://www.srv.world\]" target="_blank" rel="noopener">www.srv.world\]</a> to the local<br>ubuntu@dlp:~$ scp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>:/home/ubuntu/test.txt ./test.txt<br><a href="mailto:ubuntu@10.0.0.30">ubuntu@10.0.0.30</a>‘s password:<br>test.txt                                                100%   10     0.0KB/s   00:00</p>
+<p>[2] It’s example to use SFTP (SSH File Transfer Protocol). SFTP server function is enabled by default, but if not, enable it to add the line [Subsystem sftp /usr/lib/openssh/sftp-server] in [/etc/ssh/sshd_config].</p>
+<p># sftp [Option] [user@host]<br>ubuntu@dlp:~$ sftp <a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a><br><a href="mailto:ubuntu@www.srv.world">ubuntu@www.srv.world</a>‘s password:     # password of the user<br>Connected to <a href="http://www.srv.world" target="_blank" rel="noopener">www.srv.world</a>.<br>sftp&gt;<br># show current directory on remote server<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu<br># show current directory on local server<br>sftp&gt; !pwd<br>/home/ubuntu<br># show files in current directory on FTP server<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># show files in current directory on local server<br>sftp&gt; !ls -l<br>total 4<br>-rw-rw-r– 1 ubuntu ubuntu 10 Jul 29 21:31 test.txt<br># change directory<br>sftp&gt; cd public_html<br>sftp&gt; pwd<br>Remote working directory: /home/ubuntu/public_html<br># upload a file to remote server<br>sftp&gt; put test.txt ubuntu.txt<br>Uploading test.txt to /home/ubuntu/ubuntu.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 28 22:53 test.txt<br># upload some files to remote server<br>sftp&gt; put *.txt<br>Uploading test.txt to /home/ubuntu/test.txt<br>test.txt 100% 10 0.0KB/s 00:00<br>Uploading test2.txt to /home/ubuntu/test2.txt<br>test2.txt 100% 0 0.0KB/s 00:00<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># download a file from remote server<br>sftp&gt; get test.txt<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br># download some files from remote server<br>sftp&gt; get *.txt<br>Fetching /home/ubuntu/ubuntu.txt to ubuntu.txt<br>/home/ubuntu/ubuntu.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test.txt to test.txt<br>/home/ubuntu/test.txt 100% 10 0.0KB/s 00:00<br>Fetching /home/ubuntu/test2.txt to test2.txt<br>/home/ubuntu/test2.txt 100% 10 0.0KB/s 00:00<br># create a directory on remote server<br>sftp&gt; mkdir testdir<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:53 testdir<br># delete a directory on remote server<br>sftp&gt; rmdir testdir<br>rmdir ok, `testdir’ removed<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:46 test2.txt<br># delete a file on remote server<br>sftp&gt; rm test2.txt<br>Removing /home/ubuntu/test2.txt<br>sftp&gt; ls -l<br>drwxrwxr-x    2 ubuntu     ubuntu            6 Jul 29 21:33 public_html<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:39 ubuntu.txt<br>-rw-rw-r–    1 ubuntu     ubuntu           10 Jul 29 21:45 test.txt<br># execute commands with “![command]“<br>sftp&gt; !cat /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>bin:x:1:1:bin:/bin:/sbin/nologin<br>…<br>…<br>ubuntu:x:1001:1001::/home/ubuntu:/bin/bash<br># exit<br>sftp&gt; quit<br>221 Goodbye.</p>
+
     
 
     
@@ -284,7 +291,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2017/11/08/ssh-file-transferubuntu/" title="SSH File Transfer(Ubuntu)" target="_blank">http://tinywind.cn/2017/11/08/ssh-file-transferubuntu/</a>
         </li>
         
         <li>
@@ -302,6 +309,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +369,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2017/11/08/ssh-file-transferubuntu/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +381,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2017/11/14/mysql-remote-connect-slow/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          mysql 远程链接反应迟缓的解决
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/07/2d-array-unique/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">二维数组的去重</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -380,16 +417,6 @@
         
     </div>
 </aside>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,7 +459,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

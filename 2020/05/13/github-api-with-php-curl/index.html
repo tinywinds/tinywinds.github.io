@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>PHP 调用 Github API(v3) | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="认证方法：curl -u username:access_token https:&#x2F;&#x2F;api&#x2F;github.com 获取文档内容curl https:&#x2F;&#x2F;api.github.com&#x2F;repos&#x2F;username&#x2F;repos-name&#x2F;contents&#x2F;file-path 指定返回内容的格式https:&#x2F;&#x2F;api.github.com&#x2F;repos&#x2F;username&#x2F;repos-name&#x2F;conte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 调用 Github API(v3)">
+<meta property="og:url" content="http://tinywind.cn/2020/05/13/github-api-with-php-curl/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="认证方法：curl -u username:access_token https:&#x2F;&#x2F;api&#x2F;github.com 获取文档内容curl https:&#x2F;&#x2F;api.github.com&#x2F;repos&#x2F;username&#x2F;repos-name&#x2F;contents&#x2F;file-path 指定返回内容的格式https:&#x2F;&#x2F;api.github.com&#x2F;repos&#x2F;username&#x2F;repos-name&#x2F;conte">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2020-05-13T08:26:25.000Z">
+<meta property="article:modified_time" content="2020-05-13T08:36:24.237Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-github-api-with-php-curl" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      PHP 调用 Github API(v3)
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2020/05/13/github-api-with-php-curl/" class="archive-article-date">
+        <time datetime="2020-05-13T08:26:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">70字</span>
     </span>
   </span>
 
@@ -238,7 +240,13 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h2 id="认证方法："><a href="#认证方法：" class="headerlink" title="认证方法："></a>认证方法：</h2><p><code>curl -u username:access_token https://api/github.com</code></p>
+<h2 id="获取文档内容"><a href="#获取文档内容" class="headerlink" title="获取文档内容"></a>获取文档内容</h2><p><code>curl https://api.github.com/repos/username/repos-name/contents/file-path</code></p>
+<h2 id="指定返回内容的格式"><a href="#指定返回内容的格式" class="headerlink" title="指定返回内容的格式"></a>指定返回内容的格式</h2><p><code>https://api.github.com/repos/username/repos-name/contents/file-path -H &quot;Accept: application/vnd.github.v3.raw&quot;</code></p>
+<blockquote>
+<p>详细文档链接：<a href="https://developer.github.com/v3/" target="_blank" rel="noopener">https://developer.github.com/v3/</a></p>
+</blockquote>
+
     
 
     
@@ -284,7 +292,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2020/05/13/github-api-with-php-curl/" title="PHP 调用 Github API(v3)" target="_blank">http://tinywind.cn/2020/05/13/github-api-with-php-curl/</a>
         </li>
         
         <li>
@@ -351,7 +359,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2020/05/13/github-api-with-php-curl/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +371,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2020/05/13/npm-error-caused-by-node/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          node版本导致的 npm 报错
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/13/composer-error-about-memory-exhausted/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">composer-error-about-memory-exhausted</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +459,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

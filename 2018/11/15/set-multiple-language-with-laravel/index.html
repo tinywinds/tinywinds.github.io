@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>Laravel站点多语言部署 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="部署多语言支持的Laravel 项目，主要有以下三件事情需要做： 增加可以用的 locales  在所有路由前加上语言前缀 增加一个中间件，用来检查当前是否用了一个合法的 locale  第一步,  添加可用的语言信息打开 config&#x2F;app.php  ，增加如下格式的内容， ‘locale’ &#x3D;&gt; ‘xx’ 1locales &#x3D;&gt; [&#39;en&#39;&#x3D;&gt;&#39;English&#39;, &#39;zh&#39;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel站点多语言部署">
+<meta property="og:url" content="http://tinywind.cn/2018/11/15/set-multiple-language-with-laravel/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="部署多语言支持的Laravel 项目，主要有以下三件事情需要做： 增加可以用的 locales  在所有路由前加上语言前缀 增加一个中间件，用来检查当前是否用了一个合法的 locale  第一步,  添加可用的语言信息打开 config&#x2F;app.php  ，增加如下格式的内容， ‘locale’ &#x3D;&gt; ‘xx’ 1locales &#x3D;&gt; [&#39;en&#39;&#x3D;&gt;&#39;English&#39;, &#39;zh&#39;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2018-11-15T06:22:35.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.499Z">
 <meta property="article:author" content="Nathan">
+<meta property="article:tag" content="Laravel">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Tinywind" type="application/atom+xml">
@@ -185,14 +188,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-set-multiple-language-with-laravel" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      Laravel站点多语言部署
     </h1>
   
 
@@ -204,8 +207,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2018/11/15/set-multiple-language-with-laravel/" class="archive-article-date">
+        <time datetime="2018-11-15T06:22:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-15</time>
 </a>
 
   
@@ -218,7 +221,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">437字</span>
     </span>
   </span>
 
@@ -227,7 +230,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -238,7 +241,28 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h2 id="部署多语言支持的Laravel-项目，主要有以下三件事情需要做："><a href="#部署多语言支持的Laravel-项目，主要有以下三件事情需要做：" class="headerlink" title="部署多语言支持的Laravel 项目，主要有以下三件事情需要做："></a>部署多语言支持的Laravel 项目，主要有以下三件事情需要做：</h2><ol>
+<li>增加可以用的 locales </li>
+<li>在所有路由前加上语言前缀</li>
+<li>增加一个中间件，用来检查当前是否用了一个合法的 locale</li>
+</ol>
+<h3 id="第一步-添加可用的语言信息"><a href="#第一步-添加可用的语言信息" class="headerlink" title="第一步,  添加可用的语言信息"></a>第一步,  添加可用的语言信息</h3><p>打开 config/app.php  ，增加如下格式的内容， ‘locale’ =&gt; ‘xx’</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locales =&gt; [<span class="string">'en'</span>=&gt;<span class="string">'English'</span>, <span class="string">'zh'</span>=&gt;<span class="string">'Chinese'</span>],</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二部，给路由增加前缀"><a href="#第二部，给路由增加前缀" class="headerlink" title="第二部，给路由增加前缀"></a>第二部，给路由增加前缀</h3><p>为了给路由增加前缀，我们修改 App/Providers/RouteServiceProvider.php 中的 map 方法，修改内容如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">map</span><span class="params">(Router $router, Request $request)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $locale = $request-&gt;segment(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">$this</span>-&gt;app-&gt;setLocale($locale);</span><br><span class="line">    $router-&gt;group([<span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace, <span class="string">'prefix'</span> =&gt; $locale], <span class="function"><span class="keyword">function</span><span class="params">($router)</span> 	</span>&#123;</span><br><span class="line">    <span class="keyword">require</span> app_path(<span class="string">'Http/routes.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然，不要忘记在文件顶部引入命名空间：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Routing</span>\<span class="title">Router</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三步-增加语言控制中间件"><a href="#第三步-增加语言控制中间件" class="headerlink" title="第三步 增加语言控制中间件"></a>第三步 增加语言控制中间件</h3><p>在app/Http/Middleware目录下，创建一个名为 Language.php 的中间件，内容如下:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Middleware</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Closure</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Routing</span>\<span class="title">Redirector</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Application</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Contracts</span>\<span class="title">Routing</span>\<span class="title">Middleware</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Language</span> <span class="keyword">implements</span> <span class="title">Middleware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Application $app, Redirector $redirector, Request $request)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;app = $app;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;redirector = $redirector;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;request = $request;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Handle an incoming request.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  \Illuminate\Http\Request  $request</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  \Closure  $next</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> mixed</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Make sure current locale exists.</span></span><br><span class="line">    $locale = $request-&gt;segment(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( ! array_key_exists($locale, <span class="keyword">$this</span>-&gt;app-&gt;config-&gt;get(<span class="string">'app.locales'</span>))) &#123;</span><br><span class="line">        $segments = $request-&gt;segments();</span><br><span class="line">        $segments[<span class="number">0</span>] = <span class="keyword">$this</span>-&gt;app-&gt;config-&gt;get(<span class="string">'app.fallback_locale'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;redirector-&gt;to(implode(<span class="string">'/'</span>, $segments));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">$this</span>-&gt;app-&gt;setLocale($locale);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $next($request);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，把这个中间件在 app/Http/Kernel.php 中注册，并确保他是第一个。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $middleware = [</span><br><span class="line"><span class="string">'App\Http\Middleware\Language'</span>,</span><br><span class="line"><span class="string">'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode'</span>,</span><br><span class="line"><span class="string">'Illuminate\Cookie\Middleware\EncryptCookies'</span>,</span><br><span class="line"><span class="string">'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse'</span>,</span><br><span class="line"><span class="string">'Illuminate\Session\Middleware\StartSession'</span>,</span><br><span class="line"><span class="string">'Illuminate\View\Middleware\ShareErrorsFromSession'</span>,</span><br><span class="line"><span class="string">'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken'</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>然后就ok了，试一下。</p>
+
     
 
     
@@ -284,7 +308,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2018/11/15/set-multiple-language-with-laravel/" title="Laravel站点多语言部署" target="_blank">http://tinywind.cn/2018/11/15/set-multiple-language-with-laravel/</a>
         </li>
         
         <li>
@@ -301,6 +325,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -351,7 +386,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2018/11/15/set-multiple-language-with-laravel/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +398,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2018/11/15/convention-over-configuration/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          设计范式 - 约定优于配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/13/laravel-markdown-editor/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">laravel-markdown-editor</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +486,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

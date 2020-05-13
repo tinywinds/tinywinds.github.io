@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>事件驱动编程 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="何为事件驱动编程在我们深入事件驱动应用之前，我们先看一下在维基百科里对事件驱动编程的定义:  事件驱动编程是一种编程模式，其中的程序流由诸如用户动作（鼠标点击，按键）、传感器输出或来自其他程序&#x2F;线程的消息等事件来决定确定。事件驱动编程是图形用户界面和其他应用程序（例如JavaScript Web应用程序）中使用的主要范例，用于执行某些操作来响应用户输入。  事件驱动应用程序会响应用户的动作，然后执">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件驱动编程">
+<meta property="og:url" content="http://tinywind.cn/2018/10/10/event-driven-programming/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="何为事件驱动编程在我们深入事件驱动应用之前，我们先看一下在维基百科里对事件驱动编程的定义:  事件驱动编程是一种编程模式，其中的程序流由诸如用户动作（鼠标点击，按键）、传感器输出或来自其他程序&#x2F;线程的消息等事件来决定确定。事件驱动编程是图形用户界面和其他应用程序（例如JavaScript Web应用程序）中使用的主要范例，用于执行某些操作来响应用户输入。  事件驱动应用程序会响应用户的动作，然后执">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2018-10-10T03:27:17.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.485Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-event-driven-programming" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      事件驱动编程
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2018/10/10/event-driven-programming/" class="archive-article-date">
+        <time datetime="2018-10-10T03:27:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-10</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">2k字</span>
     </span>
   </span>
 
@@ -227,7 +229,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">7分</span>
     </span>
   </span>
 </div>
@@ -238,7 +240,44 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h3 id="何为事件驱动编程"><a href="#何为事件驱动编程" class="headerlink" title="何为事件驱动编程"></a>何为事件驱动编程</h3><p>在我们深入事件驱动应用之前，我们先看一下在维基百科里对事件驱动编程的定义:</p>
+<blockquote>
+<p>事件驱动编程是一种编程模式，其中的程序流由诸如用户动作（鼠标点击，按键）、传感器输出或来自其他程序/线程的消息等事件来决定确定。事件驱动编程是图形用户界面和其他应用程序（例如JavaScript Web应用程序）中使用的主要范例，用于执行某些操作来响应用户输入。</p>
+</blockquote>
+<p>事件驱动应用程序会响应用户的动作，然后执行对应的代码来响应用户的动作。</p>
+<h3 id="Laravel-Events"><a href="#Laravel-Events" class="headerlink" title="Laravel Events"></a>Laravel Events</h3><p>通过上面的定义，事件是发生在应用程序中的动作。<code>Javascript</code>的事件是像鼠标点击、鼠标悬浮、按下键盘这样的用户动作。在Laravel中事件是发生在应用程序中的动作，像邮件通知、记录日志、用户注册、CRUD操作等。<code>Laravel Events</code>系统提供了简易的观察者模式实现，让开发者能够订阅和监听发生在应用中的动作。</p>
+<p>应用中有些事件是由Laravel框架自动发起。比如说当使用<code>Eloquent Model</code>执行create、save、update或者delete操作时Laravel将分别发起<code>created</code>、<code>saved</code>、<code>updated</code>、和<code>deleted</code>事件。如果需要的话我们可以监听这些事件从而执行相应的代码来完成自己的需求。除了Laravel框架自动发起的事件，我们还可以根据自己应用的需要让Laravel发起我们自己定义的事件。比如说你可以发起一个<code>userRegistered</code>事件，在事件处理程序中发送用户验证邮件好让新注册的用户能够验证自己的邮箱。</p>
+<p>发起一个事件并不会让应用程序执行任何相应的操作，我们必须在事件处理程序中对被发起的事件进行相应地回应。<code>Laravel Events</code>由两部分组成<code>Event Handler</code>和<code>Event Listener</code>。<code>Event Handler</code>中包含了发起事件相关的信息。<code>Event Listener</code>监听事件对象并对事件进行回应，<code>Event Listener</code>是我们实现事件逻辑的地方。在Laravel中Event类文件被存放在<code>app/Events</code>目录，Listener类文件被存放在<code>app/Listeners</code>目录。</p>
+<h3 id="为何使用事件驱动编程"><a href="#为何使用事件驱动编程" class="headerlink" title="为何使用事件驱动编程"></a>为何使用事件驱动编程</h3><p>我们已经了解事件驱动应用和<code>Laravel Events</code>的概念了，你可能会好奇为什么要采用事件驱动这种方法来构建你的应用程序。我们来看一下事件驱动编程带来的收益。</p>
+<p>首先，事件是一种解耦应用程序各个方面的好方法，因为单个事件可以有多个不依赖于彼此的监听器。通过解耦，不会因为你使用了不适合域逻辑的代码而污染了代码库。其次，由于应用程序是松散耦合的，你可以轻松扩展应用程序的功能，而不必打乱/重写应用程序或应用程序的某些其他功能。</p>
+<h3 id="应用示例"><a href="#应用示例" class="headerlink" title="应用示例"></a>应用示例</h3><p>现在假设新用户注册了我们的应用程序后，应用程序会给用户发送一封欢迎邮件，同时会自动给用户订阅应用上的每周新闻简报。在不应用事件驱动方式的情况下代码往往是如下这样:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// without event-driven approach</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// validate input</span></span><br><span class="line">    <span class="keyword">$this</span>-&gt;validate($request-&gt;all(), [</span><br><span class="line">      <span class="string">'name'</span> =&gt; <span class="string">'required'</span>,</span><br><span class="line">      <span class="string">'email'</span> =&gt; <span class="string">'required|unique:users'</span>,</span><br><span class="line">      <span class="string">'password'</span> =&gt; <span class="string">'required|min:6|confirmed'</span>,</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// create user and persist in database</span></span><br><span class="line">    $user = <span class="keyword">$this</span>-&gt;create($request-&gt;all());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// send welcome email</span></span><br><span class="line">    Mail::to($user)-&gt;send(<span class="keyword">new</span> WelcomeToSiteName($user));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Sign user up for weekly newsletter</span></span><br><span class="line">    Newsletter::subscribe($user-&gt;email, [</span><br><span class="line">      <span class="string">'FNAME'</span>: $user-&gt;fname,</span><br><span class="line">      <span class="string">'LNAME'</span>: $user-&gt;lname</span><br><span class="line">    ], <span class="string">'SiteName Weekly'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// login newly registered user</span></span><br><span class="line">    <span class="keyword">$this</span>-&gt;guard()-&gt;login($user);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/home'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以看到发送欢迎邮件和订阅新闻简报的逻辑紧密耦合到了<code>register</code>方法里， 根据<a href="https://baike.baidu.com/item/%E5%85%B3%E6%B3%A8%E7%82%B9%E5%88%86%E7%A6%BB" target="_blank" rel="noopener">关注点分离原则</a>，<code>register</code>方法不应该关心发送欢迎邮件和订阅新闻简报的具体实现。你可能会觉得发送欢迎邮件和订阅新闻放到<code>register</code>方法里也没什么，但是如果在注册时除了发送邮件还要给用户发送短信呢？继续写在<code>register</code>方法里：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// validate input</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// create user and persist in database</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// send welcome email</span></span><br><span class="line">    Mail::to($user)-&gt;send(<span class="keyword">new</span> WelcomeToSiteName($user));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// send SMS</span></span><br><span class="line">    Nexmo::message()-&gt;send([</span><br><span class="line">      <span class="string">'to'</span> =&gt; $user-&gt;phone_number,</span><br><span class="line">      <span class="string">'from'</span> =&gt; <span class="string">'SiteName'</span>,</span><br><span class="line">      <span class="string">'text'</span> =&gt; <span class="string">'Welcome and thanks for signup on SiteName.'</span></span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Sign user up for weekly newsletter</span></span><br><span class="line">    Newsletter::subscribe($user-&gt;email, [</span><br><span class="line">      <span class="string">'FNAME'</span>: $user-&gt;fname,</span><br><span class="line">      <span class="string">'LNAME'</span>: $user-&gt;lname</span><br><span class="line">    ], <span class="string">'SiteName Weekly'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// login newly registered user</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/home'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到代码库开始变得臃肿。现在让我们看看采用事件驱动编程方法如何实现上述相同的功能。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// with event-driven approach</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// validate input</span></span><br><span class="line">    <span class="keyword">$this</span>-&gt;validate($request-&gt;all(), [</span><br><span class="line">      <span class="string">'name'</span> =&gt; <span class="string">'required'</span>,</span><br><span class="line">      <span class="string">'email'</span> =&gt; <span class="string">'required|unique:users'</span>,</span><br><span class="line">      <span class="string">'password'</span> =&gt; <span class="string">'required|min:6|confirmed'</span>,</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// create user and persist in database</span></span><br><span class="line">    $user = <span class="keyword">$this</span>-&gt;create($request-&gt;all());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// fire event once user has been created</span></span><br><span class="line">    event(<span class="keyword">new</span> UserRegistered($user));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// login newly registered user</span></span><br><span class="line">    <span class="keyword">$this</span>-&gt;guard()-&gt;login($user);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/home'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一旦创建了用户，<code>UserRegistered</code>事件就会被触发。回想一下，我们之前提到，发起一个事件后应用并不会自己做任何事情，我们需要监听<code>UserRegistered</code>事件并执行必要的操作。让我们创建<code>UserRegistered</code>事件类和<code>SendWelcomeMail</code>以及<code>SignupForWeeklyNewsletter</code>监听器类：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:event UserRegistered</span><br><span class="line">php artisan make:listener SendWelcomeMail --event=UserRegistered</span><br><span class="line">php artisan make:listener SignupForWeeklyNewsletter --event=UserRegistered</span><br></pre></td></tr></table></figure>
+
+<p>事件和监听器之间的对应关系需要注册到EventServiceProvider的<code>$listen</code>属性里：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $listen = [</span><br><span class="line">    UserRegistered::class =&gt; [</span><br><span class="line">        SendWelcomeMail::class,</span><br><span class="line">        SignupForWeeklyNewsletter::class,</span><br><span class="line">    ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>打开<code>app/Events/UserRegistered.php</code>文件更新它的构造方法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> $user;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(User $user)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">$this</span>-&gt;user = $user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>声明$user为public，它将被传递给监听器，而监听器可以用它来执行必要的逻辑。接下来，事件监听器将在其handle方法中接收到事件实例。在handle方法中，我们可以执行响应事件的操作。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app/Listeners/SendWelcomeMail.php</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(UserRegistered $event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// send welcome email</span></span><br><span class="line">  Mail::to($event-&gt;user)-&gt;send(<span class="keyword">new</span> WelcomeToSiteName($event-&gt;user));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app/Listeners/SignupForWeeklyNewsletter.php</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(UserRegistered $event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Sign user up for weekly newsletter</span></span><br><span class="line">  Newsletter::subscribe($event-&gt;user-&gt;email, [</span><br><span class="line">    <span class="string">'FNAME'</span>: $event-&gt;user-&gt;fname,</span><br><span class="line">    <span class="string">'LNAME'</span>: $event-&gt;user-&gt;lname</span><br><span class="line">  ], <span class="string">'SiteName Weekly'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到通过事件驱动的方式我们让register方法的代码尽可能的少并且专注于用户注册这件事上，其它的逻辑由<code>UserRegistered</code>事件的监听器来负责，现在如果说我们想在用户注册后发送短信给新注册的用户，我们所要做的就是创建一个新的事件监听器来监听UserRegistered事件何时被触发</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:listener SendWelcomeSMS --event=UserRegistered</span><br><span class="line"></span><br><span class="line"><span class="comment">// app/Listeners/SendWelcomeSMS.php</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(UserRegistered $event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// send SMS</span></span><br><span class="line">  Nexmo::message()-&gt;send([</span><br><span class="line">    <span class="string">'to'</span> =&gt; $event-&gt;user-&gt;phone_number,</span><br><span class="line">    <span class="string">'from'</span> =&gt; <span class="string">'SiteName'</span>,</span><br><span class="line">    <span class="string">'text'</span> =&gt; <span class="string">'Welcome and thanks for signup on SiteName.'</span></span><br><span class="line">  ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：记得要更新EventServiceProvider里的$listen属性</strong></p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>在这篇文章中，我们已经能够理解事件驱动的编程是什么，事件驱动的应用程序是什么以及Laravel事件是什么。我们还研究了事件驱动应用程序的优势。但是，像跟所有有积极影响的编程概念一样，它也有缺点。事件驱动型应用程序的主要缺点是让程序流变得复杂了，尤其一些刚接触开发的人可能很难真正理解应用程序的流程。以上面的实现为例，通过<code>register</code>方法我们并不能直观地看到程序在创建用户后会向新用户发送一封欢迎邮件，并将其注册到新闻通讯中。</p>
+<p>所以在开发中应该根据场景创造性地使用它，利用它的优势为你的应用程序解耦，而不是过度使用它。</p>
+
     
 
     
@@ -284,7 +323,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2018/10/10/event-driven-programming/" title="事件驱动编程" target="_blank">http://tinywind.cn/2018/10/10/event-driven-programming/</a>
         </li>
         
         <li>
@@ -351,7 +390,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2018/10/10/event-driven-programming/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +402,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2018/11/13/laravel-markdown-editor/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          laravel-markdown-editor
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/31/which-doc-should-i-read/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">看文档，还是要看官方文档</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +490,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

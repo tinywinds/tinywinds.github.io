@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>HTML5：为什么我们不建议用Table布局 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="1、Table要比其它html标记占更多的字节。(延迟下载时间，占用服务器更多的流量资源。) 2、Tablle会阻挡浏览器渲染引擎的渲染顺序。 (会延迟页面的生成速度，让用户等待更久的时间。) 3、Table里显示图片时需要你把单个、有逻辑性的图片切成多个图。 (增加设计的复杂度，增加页面加载时间，增加HTTP会话数。) 4、在某些浏览器中Table里的文字的拷贝会出现问题。 (这会让用户不悦。)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5：为什么我们不建议用Table布局">
+<meta property="og:url" content="http://tinywind.cn/2016/04/26/no-table-in-html5/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="1、Table要比其它html标记占更多的字节。(延迟下载时间，占用服务器更多的流量资源。) 2、Tablle会阻挡浏览器渲染引擎的渲染顺序。 (会延迟页面的生成速度，让用户等待更久的时间。) 3、Table里显示图片时需要你把单个、有逻辑性的图片切成多个图。 (增加设计的复杂度，增加页面加载时间，增加HTTP会话数。) 4、在某些浏览器中Table里的文字的拷贝会出现问题。 (这会让用户不悦。)">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2016-04-26T03:39:47.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.497Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-no-table-in-html5" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      HTML5：为什么我们不建议用Table布局
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2016/04/26/no-table-in-html5/" class="archive-article-date">
+        <time datetime="2016-04-26T03:39:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-26</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">360字</span>
     </span>
   </span>
 
@@ -238,7 +240,26 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>1、Table要比其它html标记占更多的字节。(延迟下载时间，占用服务器更多的流量资源。)</p>
+<p>2、Tablle会阻挡浏览器渲染引擎的渲染顺序。</p>
+<p>(会延迟页面的生成速度，让用户等待更久的时间。)</p>
+<p>3、Table里显示图片时需要你把单个、有逻辑性的图片切成多个图。</p>
+<p>(增加设计的复杂度，增加页面加载时间，增加HTTP会话数。)</p>
+<p>4、在某些浏览器中Table里的文字的拷贝会出现问题。</p>
+<p>(这会让用户不悦。)</p>
+<p>5、Table会影响其内部的某些布局属性的生效(比如<td>里的元素的height:100%)</p>
+<p>(这会限制你页面设计的自由性。)</p>
+<p>6、一旦学了CSS知识，你会发现使用table做页面布局会变得更麻烦。</p>
+<p>(先花时间学一些CSS知识，会省去你以后大量的时间。)</p>
+<p>7、table对对于页面布局来说，从语义上看是不正确的。</p>
+<p>(它描述的是表现，而不是内容。)</p>
+<p>8、table代码会让阅读者抓狂。</p>
+<p>(不但无法利用CSS，而且会你不知所云)</p>
+<p>9、table一旦设计完成就变成死的，很难通过CSS让它展现新的面貌。</p>
+<p>(你看过CSS Zen Garden吗?)</p>
+<p>使用Talbes的好处</p>
+<p>在某些场合，使用Table是100%合适、恰当和正确的。比如，用table做表格是完全正确的。</p>
+
     
 
     
@@ -284,7 +305,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2016/04/26/no-table-in-html5/" title="HTML5：为什么我们不建议用Table布局" target="_blank">http://tinywind.cn/2016/04/26/no-table-in-html5/</a>
         </li>
         
         <li>
@@ -302,6 +323,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端技术//" class="article-tag-list-link color5">前端技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +383,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2016/04/26/no-table-in-html5/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +395,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2016/05/29/mysqldb-mysql-connector/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MySQLdb和mysql connector的区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/21/what-data-used-for/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据能干什么，值得我们好好思考</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -380,16 +431,6 @@
         
     </div>
 </aside>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,7 +473,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

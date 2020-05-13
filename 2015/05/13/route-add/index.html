@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>局域网增加路由 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="公司局域网内，区域一有外网，区域二没有，区域一中A电脑设置代理服务器，区域二中电脑B通过代理服务器连接外网。但是B电脑可以ping通A，A缺不能ping通B. 解决办法，在A电脑中增加一条路由。 在命令行中输入 route add 目标IP  mask 掩码 下一跳路由   route add 10.0.9.123 mask 255.255.255.255 210.27.48.30">
+<meta property="og:type" content="article">
+<meta property="og:title" content="局域网增加路由">
+<meta property="og:url" content="http://tinywind.cn/2015/05/13/route-add/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="公司局域网内，区域一有外网，区域二没有，区域一中A电脑设置代理服务器，区域二中电脑B通过代理服务器连接外网。但是B电脑可以ping通A，A缺不能ping通B. 解决办法，在A电脑中增加一条路由。 在命令行中输入 route add 目标IP  mask 掩码 下一跳路由   route add 10.0.9.123 mask 255.255.255.255 210.27.48.30">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-05-13T06:01:21.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.499Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-route-add" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      局域网增加路由
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/05/13/route-add/" class="archive-article-date">
+        <time datetime="2015-05-13T06:01:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-13</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">112字</span>
     </span>
   </span>
 
@@ -238,7 +240,11 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>公司局域网内，区域一有外网，区域二没有，区域一中A电脑设置代理服务器，区域二中电脑B通过代理服务器连接外网。但是B电脑可以ping通A，A缺不能ping通B.</p>
+<p>解决办法，在A电脑中增加一条路由。</p>
+<p>在命令行中输入 route add 目标IP  mask 掩码 下一跳路由</p>
+<p>  route add 10.0.9.123 mask 255.255.255.255 210.27.48.30</p>
+
     
 
     
@@ -284,7 +290,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/05/13/route-add/" title="局域网增加路由" target="_blank">http://tinywind.cn/2015/05/13/route-add/</a>
         </li>
         
         <li>
@@ -302,6 +308,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/其他//" class="article-tag-list-link color3">其他</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +368,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/05/13/route-add/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +380,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/05/14/table-width/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          table宽度失效的解决
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/12/oop-five-principle/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面向对象的设计原则</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +468,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

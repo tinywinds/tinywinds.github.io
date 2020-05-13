@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>CKEditor 调整工具栏项目 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="1、加载自定义配置文件 CKEDITOR.replace( ‘editor1’, {    customConfig: ‘&#x2F;custom&#x2F;ckeditor_config.js’});   2、 修改配置文件中的ToolbarGroup项目 config.toolbarGroups &#x3D; \[       { name: &amp;apos;insert&amp;apos; },     { name: &amp;apos;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CKEditor 调整工具栏项目">
+<meta property="og:url" content="http://tinywind.cn/2018/06/11/ckeditor-tools-modifiy/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="1、加载自定义配置文件 CKEDITOR.replace( ‘editor1’, {    customConfig: ‘&#x2F;custom&#x2F;ckeditor_config.js’});   2、 修改配置文件中的ToolbarGroup项目 config.toolbarGroups &#x3D; \[       { name: &amp;apos;insert&amp;apos; },     { name: &amp;apos;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2018-06-11T08:55:01.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.483Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-ckeditor-tools-modifiy" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      CKEditor 调整工具栏项目
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2018/06/11/ckeditor-tools-modifiy/" class="archive-article-date">
+        <time datetime="2018-06-11T08:55:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">78字</span>
     </span>
   </span>
 
@@ -238,7 +240,20 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>1、加载自定义配置文件</p>
+<p>CKEDITOR.replace( ‘editor1’, {<br>    customConfig: ‘/custom/ckeditor_config.js’<br>});</p>
+<p>  2、 修改配置文件中的ToolbarGroup项目</p>
+<pre><code>config.toolbarGroups = \[
+
+
+    { name: &apos;insert&apos; },
+    { name: &apos;forms&apos; },
+    { name: &apos;basicstyles&apos;, groups: \[ &apos;basicstyles&apos;, &apos;cleanup&apos; \] },
+    { name: &apos;paragraph&apos;,   groups: \[ &apos;list&apos;, &apos;indent&apos;, &apos;blocks&apos;, &apos;align&apos;, &apos;bidi&apos; \] },
+    { name: &apos;styles&apos; },
+    { name: &apos;colors&apos; },
+
+\];</code></pre>
     
 
     
@@ -284,7 +299,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2018/06/11/ckeditor-tools-modifiy/" title="CKEditor 调整工具栏项目" target="_blank">http://tinywind.cn/2018/06/11/ckeditor-tools-modifiy/</a>
         </li>
         
         <li>
@@ -302,6 +317,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +377,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2018/06/11/ckeditor-tools-modifiy/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +389,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2018/07/31/which-doc-should-i-read/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          看文档，还是要看官方文档
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/19/mysql-json/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mysql json字段的使用与意义</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -380,16 +425,6 @@
         
     </div>
 </aside>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,7 +467,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

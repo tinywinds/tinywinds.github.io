@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>面向对象的核心概念 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="1.基本概念面向对象的程序设计（Object-oriented Programming，OPP）是一种程序设计范型，同时也是一种程序开发方法。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和可扩展性。 面向过程、面向对象以及函数式编程被人们称为编程语言中的三大范式（实际上面向过程与面向对象都同属于命令式编程），其中面向对象的核心思想是对象、封装、可重用性和可扩展性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象的核心概念">
+<meta property="og:url" content="http://tinywind.cn/2015/05/12/oop-basic/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="1.基本概念面向对象的程序设计（Object-oriented Programming，OPP）是一种程序设计范型，同时也是一种程序开发方法。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和可扩展性。 面向过程、面向对象以及函数式编程被人们称为编程语言中的三大范式（实际上面向过程与面向对象都同属于命令式编程），其中面向对象的核心思想是对象、封装、可重用性和可扩展性">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-05-12T14:59:48.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.498Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-oop-basic" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      面向对象的核心概念
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/05/12/oop-basic/" class="archive-article-date">
+        <time datetime="2015-05-12T14:59:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-12</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">1.5k字</span>
     </span>
   </span>
 
@@ -227,7 +229,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">5分</span>
     </span>
   </span>
 </div>
@@ -238,7 +240,22 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="  1.基本概念"></a>  1.基本概念</h1><p>面向对象的程序设计（Object-oriented Programming，OPP）是一种程序设计范型，同时也是一种程序开发方法。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和可扩展性。 面向过程、面向对象以及函数式编程被人们称为编程语言中的三大范式（实际上面向过程与面向对象都同属于命令式编程），其中面向对象的核心思想是对象、封装、可重用性和可扩展性。</p>
+<pre><code>2.类与对象</code></pre><p>==========</p>
+<p>类是对象的抽象组织，对象是类的具体存在。类是定义一系列属性和操作的模板，而对象则把属性进行具体化，然后交给类处理。对象就是数据，对象本身不包含方法。但对象有一个“指针”指向一个类，这个类里可以有方法。方法描述不同属性所导致的不同表现。序列化后的对象会附带所属的类名，这个类保证此对象能够执行类的方法时可以正确找到方法所在的代码空间，另外，当一个对象的实例变量引用其他对象时，序列化该对象时也会对引用对象进行序列化。</p>
+<pre><code>3.对象与数组</code></pre><p>===========</p>
+<p>对象在底层的实现是采取“属性数组”+“方法数组”来实现，对象和数组的区别在于：对象还有个指针，指向了它所属的类。</p>
+<pre><code>4.魔术方法</code></pre><p>==========</p>
+<p>__construct()：构造方法，类每次创建对象时先调用此方法。 __destruct()：析构方法，当某个对象的所有引用都被删除，或者当对象被显式销毁时执行。 __set($name,$value)：当给对象属性进行赋值时，如果该属性不存在，会执行该方法。 __get($name)：当给对象属性进行取值时，如果该属性不存在，会执行该方法。 __call($fname,$argumentArray)：当给对象调用一个不可访问（未定义或不可见）的方法时，会执行该方法。 __callStatic($fname,$argumentArray)：当给对象调用一个不可访问的静态方法时，会执行该方法。可以进行方法的动态创建和延迟绑定。 __toString()：当echo打印对象体时会调用该方法。</p>
+<pre><code>5.类的属性</code></pre><p>==========</p>
+<p>public：公共的 private：私有的 protected：受保护的 static：静态的，声明该属性可以不实例化类而直接访问，通过“::”方式调用。 final：最终的，当类中方法声明该属性，子类将无法覆写该方法，当类声明该属性，该类将无法继承。</p>
+<pre><code>6.类的继承和组合</code></pre><p>=============</p>
+<p>继承是一种“是、像”的关系，而组合是一种“需要”的关系。 从另一个角度看，组合偏重整体与局部的关系，而继承偏重父与子的关系。判断使用继承还是组合的标准就是“低耦合”。 耦合是一个软件结构内不同模块之间互连程度的度量，也就是不同模块之间的依赖关系。低耦合指模块与模块之间，尽可能地使模块间独立存在；模块之间的接口尽量少而简单。在两种均可用的情况下更倾向于使用组合。 继承存在的问题：继承破坏封装性，继承是紧耦合的，继承扩展复杂，不恰当的继承违反现实逻辑。 组合存在的问题：创建组合时需要一一创建局部对象，增加了不少代码量。 在建模设计中，底层代码多用组合，顶层/业务层代码多用继承。底层用组合可以提高效率，避免对象臃肿。顶层代码用继承可以提高灵活性，让业务使用更方便。同时多重继承里一个类可以继承多个父类，组合两个父类的功能。</p>
+<pre><code>7.类的多态和面向接口编程</code></pre><p>=================</p>
+<p>多态的含义：同一类的对象收到消息时，会得到不同的结果。多态性是一种通过多种状态或阶段描述相同对象的编程方式，它的真正意义在于：实际开发中，只要关心一个接口或基类的编程，而不关心一个对象所属于的具体类。判断是否是多态的关键在于看对象是否属于同一类型，如果把它们看成同一类型，调用相同函数返回不同结果，那么它就是多态，由于PHP是弱类型语言，本身具备多态的性质，但在子类中无法向上转型为父类，所以和传统强类型语言的多态有所区别。 面向接口的编程：这里的接口指的是狭义的接口，即interface关键字。广义的接口是任何一个对外提供服务的出口，比如USB接口，支付宝接口。接口定义一套规范，描述一个“物”的功能，要求如果“物”是可用的，就必须实现这些基本功能。接口是抽象类的变体，接口中所有的方法都是抽象的，没有一个程序体，接口除了包含方法外，还可以包含常量。接口为抽象而生。 PHP5的SPL（标准PHP库）中实现一些接口，其中最主要的就是Iterator迭代器接口。 混入式的Traits，被视为加强型接口。</p>
+<pre><code>8.反射</code></pre><p>========</p>
+<p>反射：直观理解就是根据到达地找到出发地和来源。即从对象找到所属类的属性和方法。 反射的作用：通过反射可以对对象进行调试，获取类的信息；实现hook插件功能；做动态代理。</p>
+
     
 
     
@@ -284,7 +301,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/05/12/oop-basic/" title="面向对象的核心概念" target="_blank">http://tinywind.cn/2015/05/12/oop-basic/</a>
         </li>
         
         <li>
@@ -302,6 +319,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/OOP//" class="article-tag-list-link color4">OOP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +379,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/05/12/oop-basic/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +391,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/05/12/oop-five-principle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          面向对象的设计原则
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/10/soap_in_php/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">php中soap的学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +479,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

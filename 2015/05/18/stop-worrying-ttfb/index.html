@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>不用担心TTFB时间过长 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="时间第一个字节是经常被用来作为如何快速的Web服务器响应请求和常见的Web服务测试报告它的措施。的速度就越快越好Web服务器（在理论上）。但理论是不是很好。 维基至第一字节定义时间为“从虚拟用户作出HTTP请求到页面的第一个字节被接收到浏览器中的持续时间”。但是，什么流行的网页测试网站居然报到？要找出我们创建了一个测试服务器中插入延迟到HTTP响应，找出什么是真正被测量。答案是一个巨大的惊喜和发现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不用担心TTFB时间过长">
+<meta property="og:url" content="http://tinywind.cn/2015/05/18/stop-worrying-ttfb/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="时间第一个字节是经常被用来作为如何快速的Web服务器响应请求和常见的Web服务测试报告它的措施。的速度就越快越好Web服务器（在理论上）。但理论是不是很好。 维基至第一字节定义时间为“从虚拟用户作出HTTP请求到页面的第一个字节被接收到浏览器中的持续时间”。但是，什么流行的网页测试网站居然报到？要找出我们创建了一个测试服务器中插入延迟到HTTP响应，找出什么是真正被测量。答案是一个巨大的惊喜和发现">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-05-18T14:17:31.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.500Z">
 <meta property="article:author" content="Nathan">
+<meta property="article:tag" content="ttfb">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Tinywind" type="application/atom+xml">
@@ -185,14 +188,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-stop-worrying-ttfb" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      不用担心TTFB时间过长
     </h1>
   
 
@@ -204,8 +207,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/05/18/stop-worrying-ttfb/" class="archive-article-date">
+        <time datetime="2015-05-18T14:17:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-18</time>
 </a>
 
   
@@ -218,7 +221,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">1.1k字</span>
     </span>
   </span>
 
@@ -227,7 +230,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -238,7 +241,8 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>时间第一个字节是经常被用来作为如何快速的Web服务器响应请求和常见的Web服务测试报告它的措施。的速度就越快越好Web服务器（在理论上）。但理论是不是很好。 维基至第一字节定义时间为“从虚拟用户作出HTTP请求到页面的第一个字节被接收到浏览器中的持续时间”。但是，什么流行的网页测试网站居然报到？要找出我们创建了一个测试服务器中插入延迟到HTTP响应，找出什么是真正被测量。答案是一个巨大的惊喜和发现TTFB不是一个有用的指标。 当Web浏览器请求一个页面从Web服务器发送请求本身和一些头指定的东西，如可接受的格式的响应。服务器与状态行响应（这通常是HTTP / 1.1 200 OK指示该页面是可用的），然后加入更多的头（含约页面信息），最后页的内容。 CloudFlare的TTFB测试服务器不同的行为一点。当它接收到一个请求发送的HTTP / 1.1 200 OK（轰）的第一个字母，然后发送标题和页面本身的其他部分之前等待10秒。 （你可以抓住这里的TTFB服务器的代码;它写在Go）。 如果你问WebPageTest从CloudFlare的TTFB服务器下载页面，你获得以下惊喜。 WebPageTest报时间至第一字节为轰收到（而不是时间的页面本身实际发送）的时间。 10秒的等待使得这种显而易见的。 相同数量的报告被戈麦斯。 该TTFB所报告不是页的第一数据字节，但是HTTP响应的第一个字节的时间。这些都是由于响应头可以非常迅速地产生非常不同的东西，但它是将影响所有的最重要的指标数据：如何快速用户得到看到该页面。 在CloudFlare的我们广泛使用nginx的，并在调查TTFB跨显著差异从nginx的进来TTFB时，压缩或不使用。网页gzip压缩大大缩短了网页下载时间，但压缩本身是有成本的。这会导致成本要TTFB更大，即使完整的下载更快。 为了说明，我们采取了最大的维基百科页面（高级龙与地下城第二版怪兽的列表），并使用nginx的有和没有启用gzip压缩服之。下表显示了TTFB和总下载时间与压缩和关闭。 | TTFB | Page loaded ————————— | ——- | ————- No compression (gzip off) | 213us | 43ms Compressed (gzip on) | 1.7ms | 8ms 请注意如何与gzip压缩，网页被下载5倍的速度更快，但TTFB是8倍大。这是因为nginx的等待，直到压缩发送HTTP头之前已经开始;当压缩关闭它发出的头直掉。所以，如果你看一下TTFB看上去好像压缩是一个坏主意。但你看看下载的时候，你看到对面。 从最终用户的角度来看TTFB几乎是无用的。在这个（实）例如它的实际负的下载时间相关：越差TTFB更好的下载时间。窥视到nginx的源代码，我们意识到，我们可以欺骗和快速发送标题，这样它看起来像我们TTFB是太棒了，即使压缩，但最终我们决定不：这也将有负面的最终用户体验的影响，因为我们将有当浪费TCP正在经历缓慢的开始了宝贵的数据包的权利。它会作出的CloudFlare好看一些测试，但实际上伤害了最终用户。 也许是作为一种趋势的唯一一次TTFB是非常有用的。而且它最擅长的服务器本身，使网络延迟消除测量。通过检查一个趋势有可能发现是否有Web服务器（如它超载）上出了问题。 测量TTFB远程意味着你还测量在相同的时间，这掩盖了事情TTFB实际测量网络延迟：Web服务器的速度有多快能够响应请求。 在的CloudFlare TTFB不是显著度量。我们感兴趣的优化终端用户体验，这意味着真正的最终用户页面是可见的时间。我们将推出专门的工具来监控最终用户体验，使我们所有的出版商能看到并测量他们的访客正在经历。</p>
+
     
 
     
@@ -284,7 +288,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/05/18/stop-worrying-ttfb/" title="不用担心TTFB时间过长" target="_blank">http://tinywind.cn/2015/05/18/stop-worrying-ttfb/</a>
         </li>
         
         <li>
@@ -301,7 +305,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ttfb</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +377,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/05/18/stop-worrying-ttfb/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +389,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/07/20/zengguangxianwen/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          古训《增广贤文》
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/17/stdclass-to-array/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Laravel数据库查询结果stdClass类型转为array类型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +477,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

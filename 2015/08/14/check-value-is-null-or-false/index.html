@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>检测一个值是否为 null 或 false | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="使用 &#x3D;&#x3D;&#x3D; 操作符来检测 null 和布尔 false 值。PHP 宽松的类型系统提供了许多不同的方法来检测一个变量的值。 然而这也造成了很多问题。 使用 &#x3D;&#x3D; 来检测一个值是否为 null 或 false，如果该值实际上是一个空字符串或 0，也会误报为 false。 isset 是检测一个变量是否有值， 而不是检测该值是否为 null 或 false，因此在这里使用是不恰当的。 is_null">
+<meta property="og:type" content="article">
+<meta property="og:title" content="检测一个值是否为 null 或 false">
+<meta property="og:url" content="http://tinywind.cn/2015/08/14/check-value-is-null-or-false/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="使用 &#x3D;&#x3D;&#x3D; 操作符来检测 null 和布尔 false 值。PHP 宽松的类型系统提供了许多不同的方法来检测一个变量的值。 然而这也造成了很多问题。 使用 &#x3D;&#x3D; 来检测一个值是否为 null 或 false，如果该值实际上是一个空字符串或 0，也会误报为 false。 isset 是检测一个变量是否有值， 而不是检测该值是否为 null 或 false，因此在这里使用是不恰当的。 is_null">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-08-14T09:21:05.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.482Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-check-value-is-null-or-false" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      检测一个值是否为 null 或 false
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/08/14/check-value-is-null-or-false/" class="archive-article-date">
+        <time datetime="2015-08-14T09:21:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-14</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">392字</span>
     </span>
   </span>
 
@@ -238,7 +240,22 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h3 id="使用-操作符来检测-null-和布尔-false-值。"><a href="#使用-操作符来检测-null-和布尔-false-值。" class="headerlink" title="使用 === 操作符来检测 null 和布尔 false 值。"></a>使用 === 操作符来检测 null 和布尔 false 值。</h3><p>PHP 宽松的类型系统提供了许多不同的方法来检测一个变量的值。 然而这也造成了很多问题。 使用 <code>==</code> 来检测一个值是否为 null 或 false，如果该值实际上是一个空字符串或 0，也会误报为 false。 <a href="http://php.net/manual/zh/function.isset.php" target="_blank" rel="noopener">isset</a> 是检测一个变量是否有值， 而不是检测该值是否为 null 或 false，因此在这里使用是不恰当的。 <a href="http://php.net/manual/zh/function.is-null.php" target="_blank" rel="noopener">is_null()</a> 函数能准确地检测一个值是否为 null， <a href="http://php.net/manual/zh/function.is-bool.php" target="_blank" rel="noopener">is_bool</a> 可以检测一个值是否是布尔值（比如 false）， 但存在一个更好的选择：<code>===</code> 操作符。<code>===</code> 检测两个值是否同一， 这不同于 PHP 宽松类型世界里的 <strong>相等</strong>。它也比 is_null() 和 is_bool() 要快一些，并且有些人认为这比使用函数来做比较更干净些。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>$x = 0;<br>$y = null;</p>
+<p>// Is $x null?<br>if($x == null)<br> print(‘Oops! $x is 0, not null!’);</p>
+<p>// Is $y null?<br>if(is_null($y))<br> print(‘Great, but could be faster.’);</p>
+<p>if($y === null)<br> print(‘Perfect!’);</p>
+<p>// Does the string abc contain the character a?<br>if(strpos(‘abc’, ‘a’))<br> // GOTCHA! strpos returns 0, indicating it wishes to return the position of the first character.<br> // But PHP interpretes 0 as false, so we never reach this print statement!<br> print(‘Found it!’); </p>
+<p>//Solution: use !== (the opposite of ===) to see if strpos() returns 0, or boolean false.<br>if(strpos(‘abc’, ‘a’) !== false)<br> print(‘Found it for real this time!’);</p>
+<h2 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h2><ul>
+<li>测试一个返回 0 或布尔 false 的函数的返回值时，如 strpos()，始终使用 <code>===</code> 和<code>!==</code>，否则你就会碰到问题。</li>
+</ul>
+<h2 id="进一步阅读"><a href="#进一步阅读" class="headerlink" title="进一步阅读"></a>进一步阅读</h2><ul>
+<li><a href="http://php.net/manual/zh/language.operators.comparison.php" target="_blank" rel="noopener">PHP 手册：比较操作符</a></li>
+<li><a href="http://stackoverflow.com/questions/8228837/is-nullx-vs-x-null-in-php" target="_blank" rel="noopener">Stack Overflow: is_null() vs ===</a></li>
+<li><a href="http://www.laruence.com/2009/12/09/1180.html" target="_blank" rel="noopener">Laruence：isset 和 is_null 的不同</a></li>
+</ul>
+
     
 
     
@@ -284,7 +301,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/08/14/check-value-is-null-or-false/" title="检测一个值是否为 null 或 false" target="_blank">http://tinywind.cn/2015/08/14/check-value-is-null-or-false/</a>
         </li>
         
         <li>
@@ -302,6 +319,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/PHP最佳实践//" class="article-tag-list-link color3">PHP最佳实践</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +379,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/08/14/check-value-is-null-or-false/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +391,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/10/10/curl_ssl_error/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          php curl错误：SSL错误、bool(false)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/12/use-yoast-seo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">wordpress使用Yoast SEO插件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +479,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

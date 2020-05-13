@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+    
+    <!-- <meta name="keywords" content="">
+    <meta name="description" content=""> -->
+  
   <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+<meta property="og:title" content="Tinywind">
+<meta property="og:url" content="http://tinywind.cn/page/5/index.html">
 <meta property="og:site_name" content="Tinywind">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,116 +187,49 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            
+
+  
+    <article id="post-save-array-to-db" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 class="article-title" itemprop="name">
-      关于
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2017/10/27/save-array-to-db/" target="_blank">数组存储在数据库中</a>
+  
     </h1>
   
 
 
   
   
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2017/10/27/save-array-to-db/" class="archive-article-date">
+        <time datetime="2017-10-27T10:52:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-27</time>
 </a>
 
   
   
     
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
-    </span>
-  </span>
-</div>
-
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>数组是 PHP 开发中使用最多的数据类型之一，对于结构化的数据尤为重要。 很多时候我们需要把数组保存到数据库中，实现对结构化数据的直接存储和读取。 其中一个案例就是，对于 Form 提交的多选 checkbox 数据，PHP后端就收到的数据就是一个数组，而且有可能还是多维数组。例如，如下一个员工数组：</p>
+<p>$staff = array<br>(<br> array(“name” =&gt; “洪七”, “number” =&gt; “101”, “sex” =&gt; “男”, “job” =&gt; “总经理”, “mobile” =&gt; array(“01234567890”, “9876543210”)),<br> array(“name” =&gt; “郭靖”, “number” =&gt; “102”, “sex” =&gt; “男”, “job” =&gt; “开发工程师”),<br> array(“name” =&gt; “黄蓉”, “number” =&gt; “103”, “sex” =&gt; “女”, “job” =&gt; “产品经理”),<br>);</p>
+<p>对于这样的数据，MySQL数据库是无法直接写入的，那么有什么办法呢？ 有，但是需要稍微转换一下，不过也很简单。就是使用PHP自带的<code>serialize()</code>或者<code>json_encode()</code>函数序列化数据成字符串：</p>
+<p>// 写入数据库之前<br>$staff_serialize = serialize($staff);            // 序列化成字符串<br>$staff_json = json_encode($staff);               // JSON编码数组成字符串</p>
+<p>// 读取数据库后<br>$staff_restore = unserialize($staff_serialize);  // 反序列化成数组<br>$staff_dejson = json_decode($staff_json, true);  // JSON解码成数组</p>
+<p>之后从数据库里面读出来的数据还是字符串格式的，用<code>unserialize()</code>和<code>json_decode()</code>函数转换成数组就可以了。</p>
+
     
 
     
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
 
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Nathan
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
     
 
   </div>
@@ -302,68 +237,29 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
-
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2017/10/27/save-array-to-db/">展开全文 >></a>
+    </p>
     
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
-
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -384,14 +280,854 @@
 
 
 
+  
+    <article id="post-why-is-it-good-practice-to-store-session-ids-in-a-database" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2017/10/18/why-is-it-good-practice-to-store-session-ids-in-a-database/" target="_blank">Why is it good practice to store session IDs in a database?</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2017/10/18/why-is-it-good-practice-to-store-session-ids-in-a-database/" class="archive-article-date">
+        <time datetime="2017-10-18T07:00:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-18</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <ol>
+<li>Audit and analysis. You want a persistent copy of who you handed what session to so as to know who does what in your system. You might say that the userId might be used for this sort of logging but please bear in mind that not all sessions are “logged in”. We have sensitive systems where a client first obtains a session and optionally logs in later. Another case is if you’re supporting “guest” or “anonymous” users on your platform or when you’re supporting multi-login like Google Apps.</li>
+<li>Session recovery. If you do a server restart and you’re not running a cluster with session replication built-in, some of your users will get abruptly logged out in the middle of a task. If you’re running on a single compute node with only in-memory session management, all of your users will get logged out. Possibly in the middle of completing an order. You miss sales. Very bad.</li>
+<li>Node initialization. This is strategy dependent really, error-prone and might even limit how far you can scale. But the idea is that on server startup, the server fetches active sessions from the source of truth and uses that to setup it’s own local in-memory copy for fast lookups. The main issue here is cache invalidation. As Martin Fowler said, there are two hard things: cache invalidation and naming things.</li>
+</ol>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2017/10/18/why-is-it-good-practice-to-store-session-ids-in-a-database/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
 
 
 
 
+  
+    <article id="post-ecmascript-6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2017/09/20/ecmascript-6/" target="_blank">ECMAScript 6</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2017/09/20/ecmascript-6/" class="archive-article-date">
+        <time datetime="2017-09-20T00:40:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>ECMAScript 6.0（以下简称 ES6）是 JavaScript 语言的下一代标准，已经在2015年6月正式发布了。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。</p>
+<p> <strong>一、ECMAScript和JavaScript的关系</strong> 一个常见的问题是，ECMAScript 和 JavaScript 到底是什么关系？ 要讲清楚这个问题，需要回顾历史。1996年11月，JavaScript 的创造者 Netscape 公司，决定将 JavaScript 提交给国际标准化组织ECMA，希望这种语言能够成为国际标准。次年，ECMA 发布262号标准文件（ECMA-262）的第一版，规定了浏览器脚本语言的标准，并将这种语言称为 ECMAScript，这个版本就是1.0版。 该标准从一开始就是针对 JavaScript 语言制定的，但是之所以不叫 JavaScript，有两个原因。一是商标，Java 是 Sun 公司的商标，根据授权协议，只有 Netscape 公司可以合法地使用 JavaScript 这个名字，且 JavaScript 本身也已经被 Netscape 公司注册为商标。二是想体现这门语言的制定者是 ECMA，不是 Netscape，这样有利于保证这门语言的开放性和中立性。 因此，ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）。日常场合，这两个词是可以互换的。 </p>
+<p><strong>二、ES6和ECMAScript 2015的关系</strong> ECMAScript 2015（简称 ES2015）这个词，也是经常可以看到的。它与 ES6 是什么关系呢？ 2011年，ECMAScript 5.1版发布后，就开始制定6.0版了。因此，ES6 这个词的原意，就是指 JavaScript 语言的下一个版本。 但是，因为这个版本引入的语法功能太多，而且制定过程当中，还有很多组织和个人不断提交新功能。事情很快就变得清楚了，不可能在一个版本里面包括所有将要引入的功能。常规的做法是先发布6.0版，过一段时间再发6.1版，然后是6.2版、6.3版等等。 但是，标准的制定者不想这样做。他们想让标准的升级成为常规流程：任何人在任何时候，都可以向标准委员会提交新语法的提案，然后标准委员会每个月开一次会，评估这些提案是否可以接受，需要哪些改进。如果经过多次会议以后，一个提案足够成熟了，就可以正式进入标准了。这就是说，标准的版本升级成为了一个不断滚动的流程，每个月都会有变动。 标准委员会最终决定，标准在每年的6月份正式发布一次，作为当年的正式版本。接下来的时间，就在这个版本的基础上做改动，直到下一年的6月份，草案就自然变成了新一年的版本。这样一来，就不需要以前的版本号了，只要用年份标记就可以了。 ES6 的第一个版本，就这样在2015年6月发布了，正式名称就是《ECMAScript 2015标准》（简称 ES2015）。2016年6月，小幅修订的《ECMAScript 2016标准》（简称 ES2016）如期发布，这个版本可以看作是 ES6.1 版，因为两者的差异非常小（只新增了数组实例的<code>includes</code>方法和指数运算符），基本上是同一个标准。根据计划，2017年6月发布 ES2017 标准。 因此，ES6 既是一个历史名词，也是一个泛指，含义是5.1版以后的 JavaScript 的下一代标准，涵盖了ES2015、ES2016、ES2017等等，而ES2015 则是正式名称，特指该年发布的正式版本的语言标准。本书中提到 ES6 的地方，一般是指 ES2015 标准，但有时也是泛指“下一代 JavaScript 语言”。 </p>
+<p><strong>三、ECMAScript的历史。</strong> ES6 从开始制定到最后发布，整整用了15年。 前面提到，ECMAScript 1.0 是1997年发布的，接下来的两年，连续发布了 ECMAScript 2.0（1998年6月）和 ECMAScript 3.0（1999年12月）。3.0版是一个巨大的成功，在业界得到广泛支持，成为通行标准，奠定了 JavaScript 语言的基本语法，以后的版本完全继承。直到今天，初学者一开始学习 JavaScript，其实就是在学3.0版的语法。 2000年，ECMAScript 4.0 开始酝酿。这个版本最后没有通过，但是它的大部分内容被 ES6 继承了。因此，ES6 制定的起点其实是2000年。 为什么 ES4 没有通过呢？因为这个版本太激进了，对 ES3 做了彻底升级，导致标准委员会的一些成员不愿意接受。ECMA 的第39号技术专家委员会（Technical Committee 39，简称TC39）负责制订 ECMAScript 标准，成员包括 Microsoft、Mozilla、Google 等大公司。 2007年10月，ECMAScript 4.0 版草案发布，本来预计次年8月发布正式版本。但是，各方对于是否通过这个标准，发生了严重分歧。以 Yahoo、Microsoft、Google 为首的大公司，反对 JavaScript 的大幅升级，主张小幅改动；以 JavaScript 创造者Brendan Eich为首的Mozilla公司，则坚持当前的草案。 2008年7月，由于对于下一个版本应该包括哪些功能，各方分歧太大，争论过于激烈，ECMA 开会决定，中止 ECMAScript 4.0 的开发，将其中涉及现有功能改善的一小部分，发布为 ECMAScript 3.1，而将其他激进的设想扩大范围，放入以后的版本，由于会议的气氛，该版本的项目代号起名为 Harmony（和谐）。会后不久，ECMAScript 3.1 就改名为 ECMAScript 5。 2009年12月，ECMAScript 5.0 版正式发布。Harmony 项目则一分为二，一些较为可行的设想定名为 JavaScript.next 继续开发，后来演变成 ECMAScript 6；一些不是很成熟的设想，则被视为 JavaScript.next.next，在更远的将来再考虑推出。TC39 委员会的总体考虑是，ES5 与 ES3 基本保持兼容，较大的语法修正和新功能加入，将由 JavaScript.next 完成。当时，JavaScript.next 指的是ES6，第六版发布以后，就指 ES7。TC39 的判断是，ES5 会在2013年的年中成为 JavaScript 开发的主流标准，并在此后五年中一直保持这个位置。 2011年6月，ECMAscript 5.1 版发布，并且成为 ISO 国际标准（ISO/IEC 16262:2011）。 2013年3月，ECMAScript 6 草案冻结，不再添加新功能。新的功能设想将被放到 ECMAScript 7。 2013年12月，ECMAScript 6 草案发布。然后是12个月的讨论期，听取各方反馈。 2015年6月，ECMAScript 6 正式通过，成为国际标准。从2000年算起，这时已经过去了15年。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端技术//" class="article-tag-list-link color5">前端技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2017/09/20/ecmascript-6/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
 
 
 
 
+  
+    <article id="post-laravel-5-2-authlogout-notworking" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2017/09/19/laravel-5-2-authlogout-notworking/" target="_blank">Laravel 5.2: Auth::logout() 失效</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2017/09/19/laravel-5-2-authlogout-notworking/" class="archive-article-date">
+        <time datetime="2017-09-19T03:18:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>解决办法： 1、手动添加一条路由：</p>
+<p>Route::get(‘auth/logout’, ‘Auth\AuthController@logout’);</p>
+<p>2、在AuthController中构造器中增加以下代码：</p>
+<p>public function __construct()<br>{<br>    $this-&gt;middleware(‘guest’, [‘except’ =&gt; [‘logout’, ‘getLogout’]]);<br>}</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2017/09/19/laravel-5-2-authlogout-notworking/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-difference-between-get-and-post" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2016/09/25/difference-between-get-and-post/" target="_blank">99%的人理解错HTTP中GET与POST的区别</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2016/09/25/difference-between-get-and-post/" class="archive-article-date">
+        <time datetime="2016-09-25T14:55:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>GET和POST是HTTP请求的两种基本方法，要说它们的区别，接触过WEB开发的人都能说出一二。 最直观的区别就是GET把参数包含在URL中，POST通过request body传递参数。 你可能自己写过无数个GET和POST请求，或者已经看过很多权威网站总结出的他们的区别，你非常清楚知道什么时候该用什么。 当你在面试中被问到这个问题，你的内心充满了自信和喜悦。</p>
+<p><a href="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145016_316.jpg"><img src="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145016_316-300x162.jpg" alt="20160925_145016_316"></a></p>
+<p>你轻轻松松的给出了一个“标准答案”： GET在浏览器回退时是无害的，而POST会再次提交请求。 GET产生的URL地址可以被Bookmark，而POST不可以。 GET请求会被浏览器主动cache，而POST不会，除非手动设置。 GET请求只能进行url编码，而POST支持多种编码方式。 GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。 GET请求在URL中传送的参数是有长度限制的，而POST么有。 对参数的数据类型，GET只接受ASCII字符，而POST没有限制。 GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。 GET参数通过URL传递，POST放在Request body中。 （本标准答案参考自w3schools） “很遗憾，这不是我们要的回答！”</p>
+<p><a href="http://tinywind.cn/wp-content/uploads/2016/09/072621_vmDd_2896879.png"><img src="http://tinywind.cn/wp-content/uploads/2016/09/072621_vmDd_2896879-300x175.png" alt="072621_vmDd_2896879"></a></p>
+<p>请告诉我真相。。。 如果我告诉你GET和POST本质上没有区别你信吗？ 让我们扒下GET和POST的外衣，坦诚相见吧！ GET和POST是什么？HTTP协议中的两种发送请求的方法。 HTTP是什么？HTTP是基于TCP/IP的关于数据如何在万维网中如何通信的协议。 HTTP的底层是TCP/IP。所以GET和POST的底层也是TCP/IP，也就是说，GET/POST都是TCP链接。GET和POST能做的事情是一样一样的。你要给GET加上request body，给POST带上url参数，技术上是完全行的通的。 那么，“标准答案”里的那些区别是怎么回事？</p>
+<p><a href="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145016_961.jpg"><img src="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145016_961.jpg" alt="20160925_145016_961"></a></p>
+<p>在我大万维网世界中，TCP就像汽车，我们用TCP来运输数据，它很可靠，从来不会发生丢件少件的现象。但是如果路上跑的全是看起来一模一样的汽车，那这个世界看起来是一团混乱，送急件的汽车可能被前面满载货物的汽车拦堵在路上，整个交通系统一定会瘫痪。为了避免这种情况发生，交通规则HTTP诞生了。HTTP给汽车运输设定了好几个服务类别，有GET, POST, PUT, DELETE等等，HTTP规定，当执行GET请求的时候，要给汽车贴上GET的标签（设置method为GET），而且要求把传送的数据放在车顶上（url中）以方便记录。如果是POST请求，就要在车上贴上POST的标签，并把货物放在车厢里。当然，你也可以在GET的时候往车厢内偷偷藏点货物，但是这是很不光彩；也可以在POST的时候在车顶上也放一些数据，让人觉得傻乎乎的。HTTP只是个行为准则，而TCP才是GET和POST怎么实现的基本。 但是，我们只看到HTTP对GET和POST参数的传送渠道（url还是requrest body）提出了要求。“标准答案”里关于参数大小的限制又是从哪来的呢？</p>
+<p><a href="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145017_437.jpg"><img src="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145017_437-300x99.jpg" alt="20160925_145017_437"></a></p>
+<p>在我大万维网世界中，还有另一个重要的角色：运输公司。不同的浏览器（发起http请求）和服务器（接受http请求）就是不同的运输公司。虽然理论上，你可以在车顶上无限的堆货物（url中无限加参数）。但是运输公司可不傻，装货和卸货也是有很大成本的，他们会限制单次运输量来控制风险，数据量太大对浏览器和服务器都是很大负担。业界不成文的规定是，（大多数）浏览器通常都会限制url长度在2K个字节，而（大多数）服务器最多处理64K大小的url。超过的部分，恕不处理。如果你用GET服务，在request body偷偷藏了数据，不同服务器的处理方式也是不同的，有些服务器会帮你卸货，读出数据，有些服务器直接忽略，所以，虽然GET可以带request body，也不能保证一定能被接收到哦。 好了，现在你知道，GET和POST本质上就是TCP链接，并无差别。但是由于HTTP的规定和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同。 <strong>你以为本文就这么结束了？</strong> <a href="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145018_43.jpg"><img src="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145018_43-300x184.jpg" alt="20160925_145018_43"></a> 我们的大BOSS还等着出场呢。。。 这位BOSS有多神秘？当你试图在网上找“GET和POST的区别”的时候，那些你会看到的搜索结果里，从没有提到他。他究竟是什么呢。。。 GET和POST还有一个重大区别，简单的说： GET产生一个TCP数据包；POST产生两个TCP数据包。 <strong>长的说：</strong> 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）； 而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。 也就是说，GET只需要汽车跑一趟就把货送到了，而POST得跑两趟，第一趟，先去和服务器打个招呼“嗨，我等下要送一批货来，你们打开门迎接我”，然后再回头把货送过去。 因为POST需要两步，时间上消耗的要多一点，看起来GET比POST更有效。因此Yahoo团队有推荐用GET替换POST来优化网站性能。但这是一个坑！跳入需谨慎。为什么？ 1. GET与POST都有自己的语义，不能随便混用。 2.据研究，在网络环境好的情况下，发一次包的时间和发两次包的时间差别基本可以无视。而在网络环境差的情况下，两次包的TCP在验证数据包完整性上，有非常大的优点。 3.并不是所有浏览器都会在POST中发送两次包，Firefox就只发送一次。 现在，当面试官再问你“GET与POST的区别”的时候，你的内心是不是这样的？ <a href="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145018_442.jpg"><img src="http://tinywind.cn/wp-content/uploads/2016/09/20160925_145018_442-300x230.jpg" alt="20160925_145018_442"></a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2016/09/25/difference-between-get-and-post/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-how_to_continue_coding_after_40th" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2016/09/23/how_to_continue_coding_after_40th/" target="_blank">廉颇不老,如何在40岁后继续做开发</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2016/09/23/how_to_continue_coding_after_40th/" class="archive-article-date">
+        <time datetime="2016-09-23T13:40:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>一位42岁的程序员向后辈讲述了自己的故事，告诉各位如何在40岁之后继续在自己的岗位上工作的方法。这个年龄往往被看作是程序员的“迟暮”，然而只要走的对，廉颇不老，仍可驰骋沙场。 </p>
+<p>故事很长，一切从1997年开始讲起。那是一个令人怀念的年代（FF7发售，微软入股苹果，铁达尼号电影上映），那是作者第一年身为软件开发者的年份。当时他的第一份工作是从事ASP并且在微软的平台上面使用EditPlus。十八年过去，作者一共做过六份工作，其中被炒鱿鱼两次，出过两本书，从事过不少演讲。他整理了他的一些心得，希望年轻的开发者（或是有志将软件开发作为终生志业的人）一些建议，条列如下:</p>
+<p> <strong>1. Forget The Hype（忘记各种程序语言与架构的炒作与热潮）</strong> 不少的新的语言与技术来来去去，作者不是要你别去学习新事物，而是不要因为有太多的新事物而恐慌或是自我放弃。持续鑽研你目前在学习的，并且可以每年挑一些你有兴趣的项目深入了解。 [反观我自己]：各种后端与前端语言来来去去，我把时间花在学习Python（会持续），Ruby，Scala（会持续）与Golang（会持续）。透过使用Golang可以有更多的时间去了解系统架构与直接面对问题，让写代码变得更有趣。 </p>
+<p><strong>2. Choose Your Galaxy Wisely（慎选你的星系）</strong> 为了维持原文的意思，我还是使用星系这个字。这边指的是你学习跟从事的技术要慎选，举例而言，微软星系（泛指: .Net、C#….）或是Apple星系（Objective C++、Swift…）。慎选你喜欢的星系，因为那会影响你未来的发展。 [反观我自己]：过去十年主要针对微软星系，目前主要就是后端的Ubuntu星系，各种后端程序语言都是我目前主要的重点，当然还有Docker相关技术。</p>
+<p> <strong>3. Learn About Software History（了解各种软件的历史）</strong> 作者认为如果你喜欢一种程序语言、一种架构，你就需要好好的了解它的由来与故事。 [反观我自己]：比如说我喜欢Golang，我就应该要了解以下的一些问题： Golang是谁发明的？ Ans：由Google内部的三位大神Robert Griesemer，Ken Thompson（C语言的共同发明者）与Rob Pike（UTF-8的共同发明者），在2007年于Google内部共同起草发明。 他主要解决什么问题？为何以前做不到？ Ans：根据第一份Golang Talk 原因为： Go fast！ Make programming fun again. 世界在变，但是系统语言却已经十年没变。 系统语言往往编译过久。 为何以前做不到：（在旧的程序语言上做不到） 新增函式库不是一个正确的方向。 需要从新思考整个架构来开发新的程序语言。 目前这个技术的最新状况如何？ Ans：Golang目前是1.6.2 (2016/05/03)，并且支援HTTP2并且可以透过gomobile在手机上也可以使用相关套件。 </p>
+<p><strong>4. Keep on Learning（持续学习！）</strong> 不论你喜欢哪些新的技术或是新的程序语言，你都应该持续的学习，里面并且建议： 每年学习一个新的程序语言。 每年读六本书。（作者推荐Peopleware、The Psychology of Software Programming、Facts and Fallacies of Software Engineering、Agile!: The Good, the Hype and the Ugly、Rework跟Geekonomics，都是好书。） [反观我自己]： 程序语言部分：2014 (Ruby，Scala) 2015 (Go, Swift) 2016还没有决定. 读书部分：每年读没有超过六本书，但是读过不少论文并且有上过一些MOOCs。 </p>
+<p><strong>5. Teach（指导其他人）</strong> 这边指的不是一定要开堂授课，你可以写一篇部落格来讲解你学习的新事物，因为教导是最好的学习方式。 [反观我自己]：还好部落格（IT之家编辑注：博客）从来没停过，个人也认为写部落格的过程可以让我不断地检视我了解的部分，并且弄懂所有的细节（希望！），不过还是希望能够多多指导其他人（比如说meetup或是talk）。 </p>
+<p><strong>6. Workplaces Suck（工作场所糟糕透了）</strong> 不要去期望软件公司会给你任何职涯的规划，相反的不少公司会将你认为是另外一种的劳工，只会将你放在你擅长的位子，所以也有软件公司变成血汗工厂的相关文章。作者同时也认为开放性座位对于需要高度脑力工作的软件工作者是一种最不好的设计（使用“cancer”这个词)。而对于工作上的指派，作者也建议大家应该要好好了解每个任务的内容.有任何疑问应该要提出来讨论，对于不了解的事物盲从是最不好的，应该不惜抗拒权威或是离职才是正确的选择，不要让这样的工作风气扼杀了你的热情。 [反观我自己]：我一向对于任何”不合理”的任务指派都会有意见，甚至不断地提出抗议。（当然结果可能都不好！）但是如果因为这样就不提出，那么我们还剩下什么呢？ </p>
+<p><strong>7. Know Your Worth（了解自我的市场价值）</strong> 这篇是要大家充分的了解自己的市场行情（也就是薪水），根据这篇文章通常一个软件工程师应该要能创造出他自己薪水等级的十倍价值。事实上可能远远不止如此，所以作者建议我们要勇敢地去争取更多的薪水，甚至你可以公开你的薪水等级，让更多人知道你是否被低估（或是高估）任何（自认为）有你相同能力的人，都应该拿到一样的待遇。 [反观我自己]：这件事情还真是难做到，在一间公司待久之后，最容易降低的就是薪水提升的幅度。这件事情还得努力学习，让自己的市场价值更高.同时我们也要不断检视，我们自己能不能创造出自己薪水的十倍价值。 </p>
+<p><strong>8. Send The Elevator Down（虚心地接受任何意见）</strong> 这边我的解读可能跟作者原先的不同。他有提到肤色与种族的优势，但是我想到的却是你的职位，你可能会听到许多来自于部下或是后辈的建议（或是批评）。不要快速地想要反驳或是抵制，充分的了解过后，或许可以坦诚自己的见解或许是有盲点的，必要时甚至可以道歉并且快速修正。如同许多书上有提到的：「你雇用一个员工，一定是要比你还强的，这样你才能将事情交给他办，你自己做更需要更大视野的任务。」 [反观我自己]：参加社群后，最容易有这种感觉：太多令人钦佩的后辈了，每个人都有着渊博而清楚的知识。我们不需要否认，更不需要去挑惕或是批评，我们要谦虚的接受并且吸收，成为我们自己的养分。 </p>
+<p><strong>9. LLVM（一个自由软件专案，是一种编译器的基础建设，以C++写成）</strong> 作者认为LLVM会是下一个重要的资讯业的星系（Galaxy），目前已经有许多的程序语言支援LLVM了。所以作者建议我们可以花一些时间去了解，或许去学习相关的程序语言。 [反观我自己]：虽然Python与Swift都有学习，但是还不是我最上手的程序语言之一。这一个部分我会好好谨记于心，好好学习。</p>
+<p> <strong>10. Follow Your Gut（相信你的直觉）</strong> 作者在2000年就觉得.NET会引领接下来的几年，在2007年iPhone的发表会就了解他的相关技术会是紧接着几年的发展趋势。 当然，这是作者的直觉。但是，你也应该充分地相信你的直觉，并且努力的去追求与学习。 [反观我自己]：我在2014年开始学习许多不同的程序语言，Python, Ruby，Objective C, Java, Swift, Scala与Rust。最后学习到Golang，我直觉认为Golang会是Server-side（或是说Service-side）最重要的程序语言之一，所以我会努力学习。 </p>
+<p><strong>11. APIs Are King（API是王道）</strong> 这边很推崇好的API设计是很重要的，不仅仅影响server与client的沟通，更会影响到好的软件品质。也提出chunky is better than chatty（简单的说：就是不要将API拆的太精简，使得API call需要往来相当的多次。） 同时作者也建议不要太依赖REST，不彷看看socket.io, ZeroMQ, RabbitMQ,或是Erlang。并且也应该开始架设自己的机器人。 [反观我自己]：没有想过，原来chunky的设计准则在某些状况下竟然比chatty更好，这得好好学习。我有架设自己的机器人来帮助我处理一些日常伺服器维护的琐碎事项。 </p>
+<p><strong>12. Fight Complexity（将复杂的事情简单化）</strong> 永远要秉持着KISS原则（“Keep it short and simple”）来处理任何事情.面对困难或是负责的事情，有着不少工具可以帮助你将设计简单化。 [反观我自己]：我一直认为能够越有能力的人，越能够将复杂的事情简单的讲解，或是写成一段简单的程式码来实现，这个能力是我们都要不断学习的。 </p>
+<p><strong>Conclusion（结论）</strong> 「年龄永远不会是一个问题，只要你的心不断催促你持续写代码，持续制造新的东西，你永远都会是年轻的。」</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂文</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/产品设计//" class="article-tag-list-link color5">产品设计</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2016/09/23/how_to_continue_coding_after_40th/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-letsencrypt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2016/09/18/letsencrypt/" target="_blank">免费https证书获取</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2016/09/18/letsencrypt/" class="archive-article-date">
+        <time datetime="2016-09-18T02:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-18</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>HTTPS的好处大家都知道，但是推广仍然不是很顺利，这一点跟IPv6挺像，有点叫好不叫座的意思。 简单解释下，为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL协议，SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。<strong>但是HTTPS协议需要到CA申请证书，一般免费证书很少，需要交费</strong>。 为了加快普及，<a href="http://news.mydrivers.com/1/423/423296.htm" target="_blank" rel="noopener">Mozilla联盟思科等合作的Let’s Encrypt开源免费证书</a>现在终于是推出了，虽然原定的日子“夏季”都已经过去了。 Let’s Encrypt很方便，终端用户只要增加它们的<a href="https://letsencrypt.org/certificates/" target="_blank" rel="noopener">ISRG Root</a>认证就好了。大家可以尝试打开Hello World测试网站（<a href="https://helloworld.letsencrypt.org/" target="_blank" rel="noopener">HTTPS</a>、<a href="http://helloworld.letsencrypt.org/" target="_blank" rel="noopener">HTTP</a>），<strong>如果出现警告就意味着没装认证</strong>。 因为Mozilla、微软、苹果、谷歌都是参与者，相信各主要浏览器会加快支持的步伐。 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">https://letsencrypt.org/</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2016/09/18/letsencrypt/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-front-end-manager-bower" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2016/09/02/front-end-manager-bower/" target="_blank">前端包管理工具---bower</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2016/09/02/front-end-manager-bower/" class="archive-article-date">
+        <time datetime="2016-09-02T01:34:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-02</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.</p>
+<p>Keeping track of all these packages and making sure they are up to date (or set to the specific versions you need) is tricky. Bower to the rescue! Bower can manage components that contain HTML, CSS, JavaScript, fonts or even image files. Bower doesn’t concatenate or minify code or do anything else - it just installs the right versions of the packages you need and their dependencies. To <a href="https://bower.io/#getting-started" target="_blank" rel="noopener">get started</a>, Bower works by fetching and installing <a href="https://bower.io/search" target="_blank" rel="noopener">packages</a> from all over, taking care of hunting, finding, downloading, and saving the stuff you’re looking for. Bower keeps track of these packages in a manifest file, <a href="https://bower.io/docs/creating-packages/#bowerjson" target="_blank" rel="noopener"><code>bower.json</code></a>. How you use <a href="https://bower.io/search" target="_blank" rel="noopener">packages</a> is up to you. Bower provides hooks to facilitate using packages in your <a href="https://bower.io/docs/tools" target="_blank" rel="noopener">tools and workflows</a>. Bower is optimized for the front-end. If multiple packages depend on a package - jQuery for example - Bower will download jQuery just once. This is known as a flat dependency graph and it helps reduce page load.</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2016/09/02/front-end-manager-bower/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-fetch_and_pull" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2016/07/21/fetch_and_pull/" target="_blank">使用git时，fetch和pull之间的区别</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2016/07/21/fetch_and_pull/" class="archive-article-date">
+        <time datetime="2016-07-21T00:56:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-21</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Git中从远程的分支获取最新的版本到本地有这样2个命令：</p>
+<ol>
+<li><p>git fetch：相当于是从远程获取最新版本到本地，不会自动merge</p>
+<p>git fetch origin master </p>
+<p>git log -p master..origin/master </p>
+<p>git merge origin/master</p>
+<p>以上命令的含义： 首先从远程的origin的master主分支下载最新的版本到origin/master分支上 然后比较本地的master分支和origin/master分支的差别 最后进行合并.</p>
+<p>上述过程其实可以用以下更清晰的方式来进行： git fetch origin master:tmp git diff tmp  git merge tmp 从远程获取最新的版本到本地的test分支上 之后再进行比较合并 </p>
+</li>
+<li><p>git pull：相当于是从远程获取最新版本并merge到本地 </p>
+<p>git pull origin master 上述命令其实相当于git fetch 和 git merge 在实际使用中，git fetch更安全一些 因为在merge前，我们可以查看更新情况，然后再决定是否合并</p>
+</li>
+</ol>
+<p>结束</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2016/07/21/fetch_and_pull/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-just-api" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2016/07/15/just-api/" target="_blank">一切皆软件，一切皆API</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2016/07/15/just-api/" class="archive-article-date">
+        <time datetime="2016-07-15T02:55:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-15</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>先说件事儿，科学家证明，马这种动物最早是出现在美洲大陆的，但经过了漫长的进化之后，这里的马反而灭绝了。一个比较合理的解释是因为在欧洲人到来之前，马只是和鸡鸭牛一样作为当地人捕猎的对象，而不是驯化后的“捕猎工具”。这直接导致的一个结果就是当地人在战场上无法和拥有强大骑兵的欧洲人相抗衡。 这件事儿说明了两个道理，首先，要想让自己变得强大，就要进入更高级的协作系统；其次，要想生存的更好，还要保证你的协作者也能获得更好的成长机会。 当然，今天我们主要说的不是马的事情，我们说协作，一种将在企业中发挥重要作用的协作机制——API。 啥是API？API即Application Programming Interface——应用程序编程接口，最早的API的概念是和操作系统一起兴起的，我们可以把操作系统本身看作一个包含得有丰富API接口的集合体，现在API也泛指操作系统上层的应用接口。所以，对于大多程序员来说，这并不是一个陌生的概念。然而在最开始的几年，API这种业务接口因为没有统一的标准，也更多的是企业与企业针对某些业务进行对接，导致了一家企业和多少家企业合作，就要制定多少个API，进而需要花费很大的时间和精力去开发，加上其中绝大部分的API在后续的使用上并没有提供预想中的便利，进而逐渐沦为鸡肋。 随着云计算的兴起，API 开始作为软件之间重要媒介而作为一种独立应用而存在。“一切皆软件，一切皆API”这是AWS首席云计算企业顾问张侠博士近期在深圳举办地的一场活动中阐述的观点，这个观点可以认为是之前较为盛行的“软件定义一切”的延伸。 在企业内部，各组织之间可以通过API调用实现软件的自动配置，且逐渐地，API会变得更加丰富。由开发、运维和质量保障等部门而沟通构建的传统软件组织架构将别打破，代之以更为短小的开发组织，各组织间只需要API的调用，就可以让整个开发过程变得更具协作性、更高效。 同时，API还是建立完善的软件开发生态的重要手段。 在微软看来，今天的API更新是其新的开发方向的第一步，未来将可以使用统一的API，为各个平台开发应用并提供OneDrive支持，这样每个平台的应用都可以使用OneDrive最新的功能，第三方开发商也能够快速更新相关功能。 不久前，AWS也发布了旗下最新应用：API Gateway，其提供的服务可以轻松地将应用程序和AWS云服务（自然地）连接起来，也可以被用于将旧有的、孤立的网络服务和应用程序现代化。 而对于众多中小创业公司，尤其是SaaS类的创业公司来说，通过API的调用，将可以直接享受来自巨头们的IaaS服务，省去了自己搭建的成本，更为重要的是各企业之间还可以实现业务上的协作，这就像一块块积木，通过彼此的互补，组建成一个更为完整的功能体系，比如主打社区3.0概念的opencom，主营云端数据备份业务的多备份等创业公司，都是通过API的接入，将各自的业务充分与外界融合。 <img src="http://www.williamlong.info/upload/4303_1.jpg" alt="一切皆软件，一切皆API"> 面对数以千万计的互联网用户，创业者和巨头们从来都没有停止过如果赚钱的思考，因此，越来越多的人将目光投向了API，他们的出发点都是：做一个产品或者平台，面向开发者提供服务，既能够帮助开发者提升开发效率，节约开发成本，同时赚些钱。 那么，开发者会为API买单吗？ 独立开发者及企业的开发者会更快地理解API.特别是如果他们能够从旧有的系统获得更多并且让它们变得对云计算更友好的话。对于开发者来说，数量不断上升的API服务的确会他们带来一些便利，比如说通过它们调用云端上的一些复杂功能，并不需要开发。 不过不管对于开发者还是企业来说，他们的程序不只是调用Facebook一家的API，还有可能会同时调用Twitter、Google的等。随着调用的API越来越多，他们的开发成本也会越来越高。于是在这个痛点之下，一些把这些API聚集到一起的平台开始出现，比如获贝佐斯得投资的Singly、AWS的API Gateway、百度的API Store等。 这种第三方服务平台的具体收费策略由服务商自行制定，如按次数或者包月等。比如，API Gateway的每100万个免费的调用之后，价格是每100万个API调用3.50美元。数据传输和缓存将会稍稍增加一些费用。当然平台会对服务的服务商提供一系列的 增值服务，如服务的托管、用户鉴权、调用频控、限流和缓存、服务监控、在线调试等，易降低服务商的服务开发和接入成本，同时最大限度的保证用户使用服务的低成本。 不管是中心化、还是去中心化，抽象一点来说，互联网就是诸多软件和硬件的结合，随着云计算的发展，硬件的问题可以交由摩尔定律来解决，而软件的问题将由API来解决，未来，你的手机、衣服、汽车都可以有API.</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/产品设计//" class="article-tag-list-link color5">产品设计</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2016/07/15/just-api/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+    </nav>
+  
 
 
           </div>
@@ -431,7 +1167,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,

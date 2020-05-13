@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>Laravel 5.2: Auth::logout() 失效 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="解决办法： 1、手动添加一条路由： Route::get(‘auth&#x2F;logout’, ‘Auth\AuthController@logout’); 2、在AuthController中构造器中增加以下代码： public function __construct(){    $this-&gt;middleware(‘guest’, [‘except’ &#x3D;&gt; [‘logout’, ‘get">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel 5.2: Auth::logout() 失效">
+<meta property="og:url" content="http://tinywind.cn/2017/09/19/laravel-5-2-authlogout-notworking/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="解决办法： 1、手动添加一条路由： Route::get(‘auth&#x2F;logout’, ‘Auth\AuthController@logout’); 2、在AuthController中构造器中增加以下代码： public function __construct(){    $this-&gt;middleware(‘guest’, [‘except’ &#x3D;&gt; [‘logout’, ‘get">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2017-09-19T03:18:20.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.491Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-laravel-5-2-authlogout-notworking" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      Laravel 5.2: Auth::logout() 失效
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2017/09/19/laravel-5-2-authlogout-notworking/" class="archive-article-date">
+        <time datetime="2017-09-19T03:18:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">45字</span>
     </span>
   </span>
 
@@ -238,7 +240,11 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>解决办法： 1、手动添加一条路由：</p>
+<p>Route::get(‘auth/logout’, ‘Auth\AuthController@logout’);</p>
+<p>2、在AuthController中构造器中增加以下代码：</p>
+<p>public function __construct()<br>{<br>    $this-&gt;middleware(‘guest’, [‘except’ =&gt; [‘logout’, ‘getLogout’]]);<br>}</p>
+
     
 
     
@@ -284,7 +290,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2017/09/19/laravel-5-2-authlogout-notworking/" title="Laravel 5.2: Auth::logout() 失效" target="_blank">http://tinywind.cn/2017/09/19/laravel-5-2-authlogout-notworking/</a>
         </li>
         
         <li>
@@ -302,6 +308,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +368,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2017/09/19/laravel-5-2-authlogout-notworking/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +380,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2017/09/20/ecmascript-6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ECMAScript 6
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/25/difference-between-get-and-post/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">99%的人理解错HTTP中GET与POST的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -380,16 +416,6 @@
         
     </div>
 </aside>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,7 +458,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

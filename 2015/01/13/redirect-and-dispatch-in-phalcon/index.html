@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>redirect and dispatch in phalcon? | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="Broadly speaking, Redirect will do an http redirection (with the header location). It means that the browser of the client will change the page. It processes to a new routing (it can also be used to g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redirect and dispatch in phalcon?">
+<meta property="og:url" content="http://tinywind.cn/2015/01/13/redirect-and-dispatch-in-phalcon/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="Broadly speaking, Redirect will do an http redirection (with the header location). It means that the browser of the client will change the page. It processes to a new routing (it can also be used to g">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-01-13T02:51:40.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.499Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-redirect-and-dispatch-in-phalcon" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      redirect and dispatch in phalcon?
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/01/13/redirect-and-dispatch-in-phalcon/" class="archive-article-date">
+        <time datetime="2015-01-13T02:51:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-01-13</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">309字</span>
     </span>
   </span>
 
@@ -238,7 +240,8 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>Broadly speaking, <code>Redirect</code> will do an http redirection (with the header location). It means that the browser of the client will change the page. It processes to a new routing (it can also be used to go to another website) and the actual script will end. Whereas <code>Forward</code> is internal, the browser of the client wont see any difference, you just execute a different controller.The dispatch loop allows the user to forward the execution flow to another controller/action. This is very useful to check if the user can access to certain options, redirect users to other screens or simply reuse code. But, Keep in mind that making a “forward” is not the same as making an HTTP redirect. Although they apparently got the same result. The “forward” doesn’t reload the current page, all the redirection occurs in a single request, while the HTTP redirect needs two requests to complete the process. Similar analogy can be shown in JSP as well, The <code>sendRedirect(String path)</code> method of <code>HttpServletResponse</code> will tell the client that it should send a request to the specified path. So the client will build a new request and submit it to the server. The client’s history will be updated so the forward and back buttons will work. This method is useful for redirecting to pages on other servers and domains. The forward method of <code>RequestDispatcher</code> will forward the <code>ServletRequest</code> and <code>ServletResponse</code>that it is passed to the path that was specified in <code>getRequestDispatcher(String path).</code> The response will not be sent back to the client and so the client will not know about this change of resource on the server. This method is useful for communicating between server resources, (servlet to servlet). This method is faster than using <code>sendRedirect</code> as no network round trip to the server and back is required.   answered by <a href="http://stackoverflow.com/users/3534854/ricoricochet" target="_blank" rel="noopener">RicoRicochet</a> .</p>
+
     
 
     
@@ -284,7 +287,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/01/13/redirect-and-dispatch-in-phalcon/" title="redirect and dispatch in phalcon?" target="_blank">http://tinywind.cn/2015/01/13/redirect-and-dispatch-in-phalcon/</a>
         </li>
         
         <li>
@@ -302,6 +305,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +365,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/01/13/redirect-and-dispatch-in-phalcon/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +377,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/01/13/ajax_example/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          jQuery Ajax 实例 全解析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/09/windows-installer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">windows installer</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +465,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

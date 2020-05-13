@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>php curl错误：SSL错误、bool(false) | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="症状：php curl调用https出错 排查方法：在命令行中使用curl调用试试。 原因：服务器所在机房无法验证SSL证书。 解决办法：跳过SSL证书检查。 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 症状：php curl调用curl_exec返回bool(false)，命令行curl调用正常。 排查方法： var_dump(curl_er">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php curl错误：SSL错误、bool(false)">
+<meta property="og:url" content="http://tinywind.cn/2015/10/10/curl_ssl_error/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="症状：php curl调用https出错 排查方法：在命令行中使用curl调用试试。 原因：服务器所在机房无法验证SSL证书。 解决办法：跳过SSL证书检查。 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 症状：php curl调用curl_exec返回bool(false)，命令行curl调用正常。 排查方法： var_dump(curl_er">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-10-10T07:19:20.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.483Z">
 <meta property="article:author" content="Nathan">
+<meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Tinywind" type="application/atom+xml">
@@ -185,14 +188,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-curl_ssl_error" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      php curl错误：SSL错误、bool(false)
     </h1>
   
 
@@ -204,8 +207,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/10/10/curl_ssl_error/" class="archive-article-date">
+        <time datetime="2015-10-10T07:19:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-10</time>
 </a>
 
   
@@ -218,7 +221,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">334字</span>
     </span>
   </span>
 
@@ -238,7 +241,8 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>症状：php curl调用https出错 排查方法：在命令行中使用curl调用试试。 原因：服务器所在机房无法验证SSL证书。 解决办法：跳过SSL证书检查。 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 症状：php curl调用curl_exec返回bool(false)，命令行curl调用正常。 排查方法： var_dump(curl_error($ch)); 返回： string(23) “Empty reply from server” 再排查： curl_setopt($ch, CURLOPT_HEADER, true); curl_setopt($ch, CURLOPT_RETURNTRANSFER, false); 返回： HTTP/1.1 100 Continue Connection: close 原因：php curl接收到HTTP 100就结束了，应该继续接收HTTP 200 解决方案： curl_setopt($ch, CURLOPT_HTTPHEADER, array(‘Expect:’)); PHP and cURL: Disabling 100-continue header Published June 15th, 2006 I’ve been using cURL (through PHP) to build a sort of proxy for a project I’m working on. I need to parse the returned headers (to recover the HTTP status), so had included a very simple script to do so. It had worked fine in the past, but for some reason barfed in this case. A closer look at what was being returned revealed that for some reason, Apache was prepending the ‘normal’ headers with an extra response header: HTTP/1.1 100 Continue HTTP/1.1 200 OK Date: Fri, 09 Jun 2006 15:23:42 GMT Server: Apache …A bit of Googling revealed that this was to do with a header that cURL sends by default: Expect: 100-continue …which in turns tells Apache to send the extra header. I poked around a fair bit but couldn’t quite find a workable solution short of manually removing the header in PHP, which seemed a bit clumsy. Finally, on a hunch I tried this: curl_setopt( $curl_handle, CURLOPT_HTTPHEADER, array( ‘Expect:’ ) ); …which basically overrides the original ‘Expect:’ header with an empty one. Hope this helps someone.</p>
+
     
 
     
@@ -284,7 +288,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/10/10/curl_ssl_error/" title="php curl错误：SSL错误、bool(false)" target="_blank">http://tinywind.cn/2015/10/10/curl_ssl_error/</a>
         </li>
         
         <li>
@@ -301,7 +305,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/其他//" class="article-tag-list-link color3">其他</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +377,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/10/10/curl_ssl_error/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +389,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/10/11/robotc-website/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ROBOTC中国新版网站已上线
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/14/check-value-is-null-or-false/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">检测一个值是否为 null 或 false</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -380,16 +425,6 @@
         
     </div>
 </aside>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,7 +467,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

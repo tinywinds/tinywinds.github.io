@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>utf8_general_ci和utf8_bin的一点区别 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="utf8_general_ci 不区分大小写，这个你在注册用户名和邮箱的时候就要使用。 utf8_general_cs 区分大小写，如果用户名和邮箱用这个 就会照成不良后果 utf8_bin:字符串每个字符串用二进制数据编译存储。 区分大小写，而且可以存二进制的内容 ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的; bin 是二进制,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="utf8_general_ci和utf8_bin的一点区别">
+<meta property="og:url" content="http://tinywind.cn/2015/03/08/utf8-general-ci-bin/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="utf8_general_ci 不区分大小写，这个你在注册用户名和邮箱的时候就要使用。 utf8_general_cs 区分大小写，如果用户名和邮箱用这个 就会照成不良后果 utf8_bin:字符串每个字符串用二进制数据编译存储。 区分大小写，而且可以存二进制的内容 ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的; bin 是二进制,">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-03-08T06:46:38.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.501Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-utf8-general-ci-bin" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      utf8_general_ci和utf8_bin的一点区别
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/03/08/utf8-general-ci-bin/" class="archive-article-date">
+        <time datetime="2015-03-08T06:46:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-03-08</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">160字</span>
     </span>
   </span>
 
@@ -238,7 +240,15 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>utf8_general_ci 不区分大小写，这个你在注册用户名和邮箱的时候就要使用。</p>
+<p>utf8_general_cs 区分大小写，如果用户名和邮箱用这个 就会照成不良后果</p>
+<p>utf8_bin:字符串每个字符串用二进制数据编译存储。 区分大小写，而且可以存二进制的内容</p>
+<p>ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的;</p>
+<p>bin 是二进制, a 和 A 会别区别对待.</p>
+<p>例如你运行:</p>
+<p>SELECT * FROM table WHERE txt = ‘a’</p>
+<p>那么在utf8_bin中你就找不到 txt = ‘A’ 的那一行, 而 utf8_general_ci 则可以.</p>
+
     
 
     
@@ -284,7 +294,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/03/08/utf8-general-ci-bin/" title="utf8_general_ci和utf8_bin的一点区别" target="_blank">http://tinywind.cn/2015/03/08/utf8-general-ci-bin/</a>
         </li>
         
         <li>
@@ -302,6 +312,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +372,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/03/08/utf8-general-ci-bin/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +384,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/05/10/git-error/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          git更新文件冲突解决
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/08/full-stack-framework-ef-bc-9f/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">什么是full-stack框架？</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +472,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

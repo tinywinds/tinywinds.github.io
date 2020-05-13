@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>composer-error-about-memory-exhausted | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="安装 composer 包时候报错： composer require knplabs&#x2F;github-api php-http&#x2F;guzzle6-adapter &quot;^1.1&quot; Using version ^2.14 for knplabs&#x2F;github-api.&#x2F;composer.json has been updatedLoading composer repositories">
+<meta property="og:type" content="article">
+<meta property="og:title" content="composer-error-about-memory-exhausted">
+<meta property="og:url" content="http://tinywind.cn/2020/05/13/composer-error-about-memory-exhausted/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="安装 composer 包时候报错： composer require knplabs&#x2F;github-api php-http&#x2F;guzzle6-adapter &quot;^1.1&quot; Using version ^2.14 for knplabs&#x2F;github-api.&#x2F;composer.json has been updatedLoading composer repositories">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2020-05-13T08:19:38.000Z">
+<meta property="article:modified_time" content="2020-05-13T08:22:26.941Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-composer-error-about-memory-exhausted" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      composer-error-about-memory-exhausted
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2020/05/13/composer-error-about-memory-exhausted/" class="archive-article-date">
+        <time datetime="2020-05-13T08:19:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">109字</span>
     </span>
   </span>
 
@@ -238,7 +240,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>安装 composer 包时候报错：</p>
+<p><code>composer require knplabs/github-api php-http/guzzle6-adapter &quot;^1.1&quot;</code></p>
+<p><code>Using version ^2.14 for knplabs/github-api</code><br><code>./composer.json has been updated</code><br><code>Loading composer repositories with package information</code><br><code>Updating dependencies (including require-dev)</code><br><code>PHP Fatal error:  Allowed memory size of 1610612736 bytes exhausted (tried to allocate 4096 bytes) in phar:///usr/local/Cellar/composer/1.9.2/bin/composer/src/Composer/DependencyResolver/Solver.php on line 223</code></p>
+<p>Composer 文章中给出的解决办法如下，尝试了一下貌似不行。</p>
+<p><a href="https://getcomposer.org/doc/articles/troubleshooting.md#memory-limit-errors" target="_blank" rel="noopener">https://getcomposer.org/doc/articles/troubleshooting.md#memory-limit-errors</a></p>
+
     
 
     
@@ -284,7 +291,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2020/05/13/composer-error-about-memory-exhausted/" title="composer-error-about-memory-exhausted" target="_blank">http://tinywind.cn/2020/05/13/composer-error-about-memory-exhausted/</a>
         </li>
         
         <li>
@@ -351,7 +358,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2020/05/13/composer-error-about-memory-exhausted/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +370,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2020/05/13/github-api-with-php-curl/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          PHP 调用 Github API(v3)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/13/php-run-linux-command/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PHP 执行 Linux 命令的几个方式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +458,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

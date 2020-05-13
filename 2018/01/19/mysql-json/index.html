@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>Mysql json字段的使用与意义 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="mysql 5.7.8开始支持json字段类型,并提供了不少内置函数,通过计算列,甚至还可以直接索引json中的数据! 如果还不了解基础的可参看 mysql json快速入门  为何说json原生支持非常关键呢,不是可以自己在客户端处理json然后保存字符串到mysql不就完了? 来看一看，原生支持到底有什么意义 create table t ( id int not null, js json">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql json字段的使用与意义">
+<meta property="og:url" content="http://tinywind.cn/2018/01/19/mysql-json/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="mysql 5.7.8开始支持json字段类型,并提供了不少内置函数,通过计算列,甚至还可以直接索引json中的数据! 如果还不了解基础的可参看 mysql json快速入门  为何说json原生支持非常关键呢,不是可以自己在客户端处理json然后保存字符串到mysql不就完了? 来看一看，原生支持到底有什么意义 create table t ( id int not null, js json">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2018-01-19T02:34:44.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.497Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-mysql-json" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      Mysql json字段的使用与意义
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2018/01/19/mysql-json/" class="archive-article-date">
+        <time datetime="2018-01-19T02:34:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">1k字</span>
     </span>
   </span>
 
@@ -227,7 +229,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -238,7 +240,23 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>mysql 5.7.8开始支持json字段类型,并提供了不少内置函数,通过计算列,甚至还可以直接索引json中的数据! 如果还不了解基础的可参看 <a href="http://blog.csdn.net/qq_16414307/article/details/50595255" target="_blank" rel="noopener">mysql json快速入门</a> </p>
+<p>为何说json原生支持非常关键呢,不是可以自己在客户端处理json然后保存字符串到mysql不就完了? 来看一看，原生支持到底有什么意义 create table t ( id int not null, js json not null, PRIMARY KEY (id) ) </p>
+<p><strong>1.可以直接过滤记录</strong> select * from t where js-&gt;’$.a’=100 避免了要将所有记录都读取出来，在客户端进行过滤。 </p>
+<p><strong>2.可以直接update，而无须先读取</strong> update t set js=json_set(js,’$.a’,js-&gt;’$.a’+1) where id=1 单条原子更新 update t,t1 set t.js=json_merage(t.js,t1.js) where t.id=t1.id 跨表更新 </p>
+<p><strong>3.可以在一条SQL中完成多条纪录的修改！</strong> update t set js=json_set(js,’$.a’,123) where id in(1,2) 没有原生的支持，这个是很难实现的。 </p>
+<p><strong>4.通过json类型，完美的实现了表结构的动态变化</strong> 除了一般意义上的增加表字段，还包括嵌套其他对象与数组 update t set js=json_array_append(js,’$.sonAry’,123) where id =1 增加一个子节点到sonAry中，无须子表。 </p>
+<p><strong>5.通过计算生成列在json上建立索引</strong> </p>
+<p>CREATE TABLE j1 ( id int(11) NOT NULL, js json NOT NULL, s varchar(45) CHARACTER SET utf8mb4 NOT NULL, a int(11) GENERATED ALWAYS AS (json_extract(js,’$.a’)) STORED, PRIMARY KEY (id), KEY i_a (a) ) </p>
+<p>通过a这个生成列(json_extract(js,’$.a’))上建立索引, 可以利用mysql的索引来快速定位。 json_extract还可利用path的通配符，发掘更多类型索引。 甚至还可利用JSON_CONTAINS/JSON_CONTAINS_PATH来建立索引。 </p>
+<p>这里可以组合出很多 <strong>与mongodb的差异</strong> </p>
+<p>1.mongodb会自动建立表 也就是可以动态增加表,这点mysql还是必须先定义表 </p>
+<p>2.大部分查询插入更新操作,因为mysql json支持,两者没有什么功能差别了 但是就查询来说,mysql的SQL语法,特别是json_extract的简写模式,可读性比mongodb的要强不少</p>
+<p>3.mongodb实际用牺牲事务性降低系统复杂度来实现高性能 这方面,要看用户使用场景,很难说优势还是劣势 </p>
+<p>4.对于大数据的支持 mongodb在大数据支持上做的比较好,特别是数据分片,高可用上基本内置实现了 mysql这方面也在不断完善</p>
+<p>其差异主要还是在一致性上的选取,弱一致性导致容易分布处理,而强一致性则复杂很多. 我们可以假设,关系数据库设计之初如果放弃强一致性,那么这方面,mongodb等nosql实际也不会有任何优势. 从未来趋势来看, 强一致性方面,传统关系数据库始终是唯一最佳选择,而且通过支持json,把以前Nosql的一些优势也可以纳入到自己体系中. 对于固定的字段,显然传统的表处理方式性能更优,而对于动态字段放置独立的json字段中,也可以很好的适应这类需求. 弱一致性方面,NoSQL更擅长一些,传统关系数据库则可以在应用层面通过多实例数据库的分布方式来实现(来降低一致性提高数据吞吐量). </p>
+<p>而在大分布式方面最终一致性方面,传统关系数据库缺乏直接支持,但还是可以通过应用层来实现, 而很多NoSQL也在不断完善这方面的功能. 我们期待一个基础关系数据库,每个实例提供强一致性的事务,易用的SQL,并对动态数据作出很好的支持. 并在实例之上有一个分布式的层,可以聚合大量数据库实例,并协助用户实现最终一致性, 这样就比较完美了.</p>
+
     
 
     
@@ -284,7 +302,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2018/01/19/mysql-json/" title="Mysql json字段的使用与意义" target="_blank">http://tinywind.cn/2018/01/19/mysql-json/</a>
         </li>
         
         <li>
@@ -302,6 +320,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +380,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2018/01/19/mysql-json/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +392,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/11/ckeditor-tools-modifiy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          CKEditor 调整工具栏项目
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/14/controller-and-model/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">对Controller与Model体型问题的一些想法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -380,16 +428,6 @@
         
     </div>
 </aside>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,7 +470,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

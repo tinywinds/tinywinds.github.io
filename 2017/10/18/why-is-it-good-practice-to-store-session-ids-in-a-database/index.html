@@ -6,16 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>Why is it good practice to store session IDs in a database? | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="Audit and analysis. You want a persistent copy of who you handed what session to so as to know who does what in your system. You might say that the userId might be used for this sort of logging but p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why is it good practice to store session IDs in a database?">
+<meta property="og:url" content="http://tinywind.cn/2017/10/18/why-is-it-good-practice-to-store-session-ids-in-a-database/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="Audit and analysis. You want a persistent copy of who you handed what session to so as to know who does what in your system. You might say that the userId might be used for this sort of logging but p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
+<meta property="article:published_time" content="2017-10-18T07:00:52.000Z">
 <meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-why-is-it-good-practice-to-store-session-ids-in-a-database" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      Why is it good practice to store session IDs in a database?
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2017/10/18/why-is-it-good-practice-to-store-session-ids-in-a-database/" class="archive-article-date">
+        <time datetime="2017-10-18T07:00:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-18</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">234字</span>
     </span>
   </span>
 
@@ -238,7 +240,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <ol>
+<li>Audit and analysis. You want a persistent copy of who you handed what session to so as to know who does what in your system. You might say that the userId might be used for this sort of logging but please bear in mind that not all sessions are “logged in”. We have sensitive systems where a client first obtains a session and optionally logs in later. Another case is if you’re supporting “guest” or “anonymous” users on your platform or when you’re supporting multi-login like Google Apps.</li>
+<li>Session recovery. If you do a server restart and you’re not running a cluster with session replication built-in, some of your users will get abruptly logged out in the middle of a task. If you’re running on a single compute node with only in-memory session management, all of your users will get logged out. Possibly in the middle of completing an order. You miss sales. Very bad.</li>
+<li>Node initialization. This is strategy dependent really, error-prone and might even limit how far you can scale. But the idea is that on server startup, the server fetches active sessions from the source of truth and uses that to setup it’s own local in-memory copy for fast lookups. The main issue here is cache invalidation. As Martin Fowler said, there are two hard things: cache invalidation and naming things.</li>
+</ol>
+
     
 
     
@@ -284,7 +291,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2017/10/18/why-is-it-good-practice-to-store-session-ids-in-a-database/" title="Why is it good practice to store session IDs in a database?" target="_blank">http://tinywind.cn/2017/10/18/why-is-it-good-practice-to-store-session-ids-in-a-database/</a>
         </li>
         
         <li>
@@ -302,6 +309,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +369,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2017/10/18/why-is-it-good-practice-to-store-session-ids-in-a-database/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +381,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2017/10/27/save-array-to-db/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数组存储在数据库中
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/20/ecmascript-6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ECMAScript 6</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -380,16 +417,6 @@
         
     </div>
 </aside>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,7 +459,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>行为型模式-观察者模式 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="观察者模式，也称发布-订阅模式，定义了一个被观察者和多个观察者的、一对多的对象关系。 在被观察者状态发生变化的时候，它的所有观察者都会收到通知，并自动更新。 观察者模式通常用在实时事件处理系统、组件间解耦、数据库驱动的消息队列系统，同时也是MVC设计模式中的重要组成部分。 以下我们以订单创建为例。 当订单创建后，系统会发送邮件和短信，并保存日志记录。 1 问题在没有用观察者模式的时候，如下： 12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="行为型模式-观察者模式">
+<meta property="og:url" content="http://tinywind.cn/2018/11/27/observer/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="观察者模式，也称发布-订阅模式，定义了一个被观察者和多个观察者的、一对多的对象关系。 在被观察者状态发生变化的时候，它的所有观察者都会收到通知，并自动更新。 观察者模式通常用在实时事件处理系统、组件间解耦、数据库驱动的消息队列系统，同时也是MVC设计模式中的重要组成部分。 以下我们以订单创建为例。 当订单创建后，系统会发送邮件和短信，并保存日志记录。 1 问题在没有用观察者模式的时候，如下： 12">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="og:image" content="http://tinywind.cn/2018/11/27/observer/img/201811/observerable.png">
+<meta property="article:published_time" content="2018-11-27T14:17:35.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.497Z">
 <meta property="article:author" content="Nathan">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tinywind.cn/2018/11/27/observer/img/201811/observerable.png">
   
     <link rel="alternative" href="/atom.xml" title="Tinywind" type="application/atom+xml">
   
@@ -185,14 +190,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-observer" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      行为型模式-观察者模式
     </h1>
   
 
@@ -204,8 +209,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2018/11/27/observer/" class="archive-article-date">
+        <time datetime="2018-11-27T14:17:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
 </a>
 
   
@@ -218,7 +223,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">1.8k字</span>
     </span>
   </span>
 
@@ -227,7 +232,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -238,7 +243,64 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p><strong>观察者模式</strong>，也称<strong>发布-订阅模式</strong>，定义了一个被观察者和多个观察者的、一对多的对象关系。</p>
+<p>在被观察者状态发生变化的时候，它的所有观察者都会收到通知，并自动更新。</p>
+<p>观察者模式通常用在<strong>实时事件处理系统、组件间解耦、数据库驱动的消息队列系统</strong>，同时也是<strong>MVC设计模式中的重要组成部分</strong>。</p>
+<p>以下我们以订单创建为例。</p>
+<p>当订单创建后，系统会<strong>发送邮件</strong>和<strong>短信</strong>，并保存<strong>日志记录</strong>。</p>
+<h2 id="1-问题"><a href="#1-问题" class="headerlink" title="1 问题"></a>1 问题</h2><p>在没有用观察者模式的时候，如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Order</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 订单状态</span></span><br><span class="line">    <span class="keyword">private</span> $state = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 订单状态有变化时发送通知</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addOrder</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;state = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 发送邮件</span></span><br><span class="line">        Email::update(<span class="keyword">$this</span>-&gt;state);</span><br><span class="line">        <span class="comment">// 短信通知</span></span><br><span class="line">        Message::update(<span class="keyword">$this</span>-&gt;state);</span><br><span class="line">        <span class="comment">// 记录日志</span></span><br><span class="line">        Log::update();</span><br><span class="line">        <span class="comment">// 其他更多通知</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码中，在<code>Order</code>类中调用各类的方法来实现通知。当在客户端创建订单：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$order = <span class="keyword">new</span> Order();</span><br><span class="line">$order-&gt;addOrder();</span><br></pre></td></tr></table></figure>
+
+<p>就会同时产生三个通知：发送邮件、发送短信和记录日志。</p>
+<p>在系统小的时候，这是非常快捷有效的方式。</p>
+<p>可是，当系统变大的时候，这种方法马上面临难以扩展的问题，并且容易出错：</p>
+<ol>
+<li>如果订单不需要某种通知，比如不需要记录日志，则必须修改<code>Order</code>类，做状态的判断；</li>
+<li>如果再加一种通知方式，如系统消息通知，则除了增加新类，同时还需要修改<code>Order</code>类和客户端。</li>
+</ol>
+<p>这两条都不符合面向对象中的<strong>开闭原则</strong>，会让系统越来越难维护。</p>
+<h2 id="2-解决"><a href="#2-解决" class="headerlink" title="2 解决"></a>2 解决</h2><p>接下来我们用观察者模式解决这个问题。</p>
+<h3 id="2-1-被观察者"><a href="#2-1-被观察者" class="headerlink" title="2.1 被观察者"></a>2.1 被观察者</h3><p>被观察者是一些具体的实例，比如订单管理、用户登陆、评论回复、状态审核等等。</p>
+<p>别的功能会依赖于它们的状态进行各种动作。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 被观察者接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Observable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 添加/注册观察者</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">attach</span><span class="params">(Observer $observer)</span></span>;</span><br><span class="line">    <span class="comment">// 删除观察者</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">detach</span><span class="params">(Observer $observer)</span></span>;</span><br><span class="line">    <span class="comment">// 触发通知</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">notify</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 被观察者</span></span><br><span class="line"><span class="comment"> * 职责：添加观察者到$observers属性中，</span></span><br><span class="line"><span class="comment"> * 有变动时通过notify()方法运行通知</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Order</span> <span class="keyword">implements</span> <span class="title">Observable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 保存观察者</span></span><br><span class="line">    <span class="keyword">private</span> $observers = <span class="keyword">array</span>();</span><br><span class="line">    <span class="comment">// 订单状态</span></span><br><span class="line">    <span class="keyword">private</span> $state = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加（注册）观察者</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">attach</span><span class="params">(Observer $observer)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $key = array_search($observer, <span class="keyword">$this</span>-&gt;observers);</span><br><span class="line">        <span class="keyword">if</span> ($key === <span class="keyword">false</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;observers[] = $observer;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 移除观察者</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">detach</span><span class="params">(Observer $observer)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $key = array_search($observer, <span class="keyword">$this</span>-&gt;observers);</span><br><span class="line">        <span class="keyword">if</span> ($key !== <span class="keyword">false</span>) &#123;</span><br><span class="line">            <span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;observers[$key]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历调用观察者的update()方法进行通知，不关心其具体实现方式</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">notify</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;observers <span class="keyword">as</span> $observer) &#123;</span><br><span class="line">            <span class="comment">// 把本类对象传给观察者，以便观察者获取当前类对象的信息</span></span><br><span class="line">            $observer-&gt;update(<span class="keyword">$this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 订单状态有变化时发送通知</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addOrder</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;state = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;notify();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取提供给观察者的状态</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getState</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>被观察者至少要实现<code>attach()</code>、<code>detach()</code>、<code>notify()</code>三个方法，用以添加、删除和通知观察者。</p>
+<p>通知的方式是，在类中的其他方法（如：创建订单）调用<code>notify()</code>方法。</p>
+<p>另外，观察者可能用到被观察者的一些状态信息。</p>
+<p>所以，要在<code>notify()</code>中把当前对象作为参数传给观察者，方便其通过提供的<code>public</code>方法获得被观察者的状态信息。</p>
+<p>本例用<code>getState()</code>方法供给观察者获取状态信息。</p>
+<h3 id="2-2-观察者"><a href="#2-2-观察者" class="headerlink" title="2.2 观察者"></a>2.2 观察者</h3><p>观察者可能有多个，但每个观察者都必须实现<code>Observer</code>接口规定的<code>update()</code>方法，这是接收被观察者通知的唯一渠道。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 观察者接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Observer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 接收到通知的处理方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(Observable $observable)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 观察者1：发送邮件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Email</span> <span class="keyword">implements</span> <span class="title">Observer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(Observable $observable)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $state = $observable-&gt;getState();</span><br><span class="line">        <span class="keyword">if</span> ($state) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'发送邮件：您已经成功下单。'</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'发送邮件：下单失败，请重试。'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 观察者2：短信通知</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span> <span class="keyword">implements</span> <span class="title">Observer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(Observable $observable)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $state = $observable-&gt;getState();</span><br><span class="line">        <span class="keyword">if</span> ($state) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'短信通知：您已下单成功。'</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'短信通知：下单失败，请重试。'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 观察者3：记录日志</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Log</span> <span class="keyword">implements</span> <span class="title">Observer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(Observable $observable)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'记录日志：生成了一个订单记录。'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里有三个观察者：<strong>发送邮件</strong>、<strong>短信通知</strong>和<strong>记录日志</strong>，它们都实现了<code>update()</code>方法。</p>
+<p>其中，发送邮件和短信依赖于订单、也就是被观察者的状态，来决定发送消息的内容，记录日志则不需要订单的状态。</p>
+<h3 id="2-3-客户端"><a href="#2-3-客户端" class="headerlink" title="2.3 客户端"></a>2.3 客户端</h3><p>然后我们创建一个客户端，内容：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建观察者对象</span></span><br><span class="line">$email = <span class="keyword">new</span> Email();</span><br><span class="line">$message = <span class="keyword">new</span> Message();</span><br><span class="line">$log = <span class="keyword">new</span> Log();</span><br><span class="line"><span class="comment">// 创建订单对象</span></span><br><span class="line">$order = <span class="keyword">new</span> Order();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向订单对象中注册3个观察者：发送邮件、短信通知、记录日志</span></span><br><span class="line">$order-&gt;attach($email);</span><br><span class="line">$order-&gt;attach($message);</span><br><span class="line">$order-&gt;attach($log);</span><br><span class="line"><span class="comment">// 添加订单，添加时会自动发送通知给观察者</span></span><br><span class="line">$order-&gt;addOrder();</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;br /&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除记录日志观察者</span></span><br><span class="line">$order-&gt;detach($log);</span><br><span class="line"><span class="comment">// 添加另一个订单，会再次发送通知给观察着</span></span><br><span class="line">$order-&gt;addOrder();</span><br></pre></td></tr></table></figure>
+
+<p>执行应用后，会输出这样的消息：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">发送邮件：您已经成功下单。添加日志：生成了一个订单记录。系统消息：您已下单成功。</span><br><span class="line">发送邮件：您已经成功下单。添加日志：生成了一个订单记录。</span><br></pre></td></tr></table></figure>
+
+<p>对于不需要通知的观察者，用<code>detach()</code>移出观察者列表即可。</p>
+<p>这种情况就解开了类之间的耦合。</p>
+<h3 id="2-4-新增观察者"><a href="#2-4-新增观察者" class="headerlink" title="2.4 新增观察者"></a>2.4 新增观察者</h3><p>如果再需要新增一个观察者，如下，只需要添加观察者类本身，实现<code>update()</code>方法。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 观察者4：系统消息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Alert</span> <span class="keyword">implements</span> <span class="title">Observer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(Observable $observable)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'系统消息：您的订单有更新了~~~'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再到客户端中注册<code>Alert</code>类到观察者列表中：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建“系统消息”观察者</span></span><br><span class="line">$alert = <span class="keyword">new</span> Alert();</span><br><span class="line"><span class="comment">// 注册观察者到订单对象中</span></span><br><span class="line">$order-&gt;attach($alert);</span><br></pre></td></tr></table></figure>
+
+<p>就能订阅被观察者的通知。</p>
+<h2 id="3-特点"><a href="#3-特点" class="headerlink" title="3 特点"></a>3 特点</h2><p>在观察者模式中，<strong>被观察者完全不需要关心观察者</strong>，在自身状态有变化是，遍历执行观察者<code>update()</code>方法即完成通知。</p>
+<p>在观察者模式中，被观察者通过添加<code>attach()</code>方法，提供给观察者注册，使自己变得可见。</p>
+<p>当被观察者改变时，给注册的观察者发送通知。至于观察者如何处理通知，被观察者不需要关心。</p>
+<p>这是一种良好的设计，对象之间不必相互理解，同样能够相互通信。</p>
+<p>UML如下：</p>
+<p><img src="img/201811/observerable.png" alt="img"></p>
+<p>面向对象编程中，任何对象的状态都非常重要，它们是对象间交互的桥梁。</p>
+<p>当一个对象的改变需要被其他对象关注时，观察者模式就派上用场了。</p>
+
     
 
     
@@ -284,7 +346,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2018/11/27/observer/" title="行为型模式-观察者模式" target="_blank">http://tinywind.cn/2018/11/27/observer/</a>
         </li>
         
         <li>
@@ -301,6 +363,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -351,7 +424,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2018/11/27/observer/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +436,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2018/12/03/gulp-vs-webpack/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          前端构建工具之争——Webpack vs Gulp 谁会被拍死在沙滩上
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/27/simple-factory/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">简单工厂模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +524,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>node版本导致的 npm 报错 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="运行 npm run dev 时，报错如下： 1234567891011121314151617internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1017throw err;^Error: Cannot find module &#39;..&#x2F;lib&#x2F;utils&#x2F;unsupported.js&#39;Require stack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node版本导致的 npm 报错">
+<meta property="og:url" content="http://tinywind.cn/2020/05/13/npm-error-caused-by-node/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="运行 npm run dev 时，报错如下： 1234567891011121314151617internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1017throw err;^Error: Cannot find module &#39;..&#x2F;lib&#x2F;utils&#x2F;unsupported.js&#39;Require stack">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2020-05-13T09:13:23.000Z">
+<meta property="article:modified_time" content="2020-05-13T09:20:16.099Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-npm-error-caused-by-node" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      node版本导致的 npm 报错
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2020/05/13/npm-error-caused-by-node/" class="archive-article-date">
+        <time datetime="2020-05-13T09:13:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">243字</span>
     </span>
   </span>
 
@@ -238,7 +240,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>运行 <code>npm run dev</code> 时，报错如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1017</span><br><span class="line">throw err;</span><br><span class="line">^Error: Cannot find module &#39;..&#x2F;lib&#x2F;utils&#x2F;unsupported.js&#39;</span><br><span class="line">Require stack:&#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;bin&#x2F;npm-cli.js</span><br><span class="line">at Function.Module._resolveFilename (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1014:15)</span><br><span class="line">at Function.Module._load (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:884:27)</span><br><span class="line">at Module.require (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1074:19)</span><br><span class="line">at require (internal&#x2F;modules&#x2F;cjs&#x2F;helpers.js:72:18)</span><br><span class="line">at &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;bin&#x2F;npm-cli.js:19:21</span><br><span class="line">at Object.&lt;anonymous&gt; (&#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;bin&#x2F;npm-cli.js:153:3)</span><br><span class="line">at Module._compile (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1185:30)</span><br><span class="line">at Object.Module._extensions..js (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1205:10)</span><br><span class="line">at Module.load (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1034:32)</span><br><span class="line">at Function.Module._load (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:923:14) &#123;</span><br><span class="line">code: &#39;MODULE_NOT_FOUND&#39;,</span><br><span class="line">requireStack: [ &#39;&#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;bin&#x2F;npm-cli.js&#39; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解决办法 — 升级 node 到最新版本后错误消息</p>
+<p><code>n latest</code></p>
+
     
 
     
@@ -284,7 +291,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2020/05/13/npm-error-caused-by-node/" title="node版本导致的 npm 报错" target="_blank">http://tinywind.cn/2020/05/13/npm-error-caused-by-node/</a>
         </li>
         
         <li>
@@ -351,7 +358,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2020/05/13/npm-error-caused-by-node/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +370,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2020/05/13/update-node-to-latest/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          升级更新 node 版本
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/13/github-api-with-php-curl/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PHP 调用 Github API(v3)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +458,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

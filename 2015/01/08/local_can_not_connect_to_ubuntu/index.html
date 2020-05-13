@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>Xshell 无法链接本地vmware中的ubuntu | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="用Xshell 无法链接本地vmware中的ubuntu 系统，相互都能ping通。 在ubuntu中 尝试ssh localhost ，得到ssh : connect to host localhost port 22: Connection refused。 说明没有安装sshd, 也就是openssh-server. 安装，sudo apt-get install openssh-serve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xshell 无法链接本地vmware中的ubuntu">
+<meta property="og:url" content="http://tinywind.cn/2015/01/08/local_can_not_connect_to_ubuntu/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="用Xshell 无法链接本地vmware中的ubuntu 系统，相互都能ping通。 在ubuntu中 尝试ssh localhost ，得到ssh : connect to host localhost port 22: Connection refused。 说明没有安装sshd, 也就是openssh-server. 安装，sudo apt-get install openssh-serve">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-01-08T08:15:54.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.492Z">
 <meta property="article:author" content="Nathan">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Tinywind" type="application/atom+xml">
@@ -185,14 +188,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-local_can_not_connect_to_ubuntu" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      Xshell 无法链接本地vmware中的ubuntu
     </h1>
   
 
@@ -204,8 +207,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/01/08/local_can_not_connect_to_ubuntu/" class="archive-article-date">
+        <time datetime="2015-01-08T08:15:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-01-08</time>
 </a>
 
   
@@ -218,7 +221,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">72字</span>
     </span>
   </span>
 
@@ -238,7 +241,13 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>用Xshell 无法链接本地vmware中的ubuntu 系统，相互都能ping通。</p>
+<p>在ubuntu中 尝试ssh localhost ，得到ssh : connect to host localhost port 22: Connection refused。</p>
+<p>说明没有安装sshd, 也就是openssh-server.</p>
+<p>安装，sudo apt-get install openssh-server</p>
+<p>然后ssh localhost， 可以链接。</p>
+<p>再使用Xshell链接ubuntu,OK.</p>
+
     
 
     
@@ -284,7 +293,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/01/08/local_can_not_connect_to_ubuntu/" title="Xshell 无法链接本地vmware中的ubuntu" target="_blank">http://tinywind.cn/2015/01/08/local_can_not_connect_to_ubuntu/</a>
         </li>
         
         <li>
@@ -301,7 +310,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/WEB开发//" class="article-tag-list-link color1">WEB开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +382,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/01/08/local_can_not_connect_to_ubuntu/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +394,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/01/09/windows-installer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          windows installer
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/05/mvc_design_pattern/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">论PHP框架设计模式及MVC的缺陷</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +482,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

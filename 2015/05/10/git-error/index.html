@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://tinywind.cn">
-  <title>关于 | Tinywind</title>
+  <title>git更新文件冲突解决 | Tinywind</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://tinywind.cn/about/index.html">
+  <meta name="description" content="在服务器上pull最新的代码，但是由于服务器上的一些配置文件有了变动，会出现错误 error: Your local changes to the following files would be overwritten by merge: protected&#x2F;config&#x2F;main.php Please, commit your changes or stash them before you">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git更新文件冲突解决">
+<meta property="og:url" content="http://tinywind.cn/2015/05/10/git-error/index.html">
 <meta property="og:site_name" content="Tinywind">
+<meta property="og:description" content="在服务器上pull最新的代码，但是由于服务器上的一些配置文件有了变动，会出现错误 error: Your local changes to the following files would be overwritten by merge: protected&#x2F;config&#x2F;main.php Please, commit your changes or stash them before you">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-11T09:58:22.000Z">
-<meta property="article:modified_time" content="2019-05-20T03:04:01.502Z">
+<meta property="article:published_time" content="2015-05-10T04:23:15.000Z">
+<meta property="article:modified_time" content="2019-05-20T03:04:01.485Z">
 <meta property="article:author" content="Nathan">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="about-" class="article article-type-about " itemscope itemprop="blogPost">
+            <article id="post-git-error" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于
+      git更新文件冲突解决
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2018-09-11T09:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+<a href="/2015/05/10/git-error/" class="archive-article-date">
+        <time datetime="2015-05-10T04:23:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-10</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">187字</span>
     </span>
   </span>
 
@@ -238,7 +240,13 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p>在服务器上pull最新的代码，但是由于服务器上的一些配置文件有了变动，会出现错误 error: Your local changes to the following files would be overwritten by merge: protected/config/main.php Please, commit your changes or stash them before you can merge. 如果希望保留生产服务器上所做的改动,仅仅并入新配置项, 处理方法如下:</p>
+<pre><code>git stash 
+git pull 
+git stash pop</code></pre><p>然后可以使用git diff -w +文件名 来确认代码自动合并的情况. 反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:</p>
+<pre><code>git reset --hard 
+git pull</code></pre><p>其中git reset是针对版本,如果想针对文件回退本地修改,使用 git checkout HEAD file/to/restore</p>
+
     
 
     
@@ -284,7 +292,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://tinywind.cn/about/index.html" title="关于" target="_blank">http://tinywind.cn/about/index.html</a>
+          <a href="http://tinywind.cn/2015/05/10/git-error/" title="git更新文件冲突解决" target="_blank">http://tinywind.cn/2015/05/10/git-error/</a>
         </li>
         
         <li>
@@ -302,6 +310,17 @@
     
     
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/版本管理//" class="article-tag-list-link color5">版本管理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -351,7 +370,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://tinywind.cn/2015/05/10/git-error/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -363,6 +382,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2015/05/10/soap_in_php/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          php中soap的学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/08/utf8-general-ci-bin/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">utf8_general_ci和utf8_bin的一点区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -432,7 +470,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
