@@ -166,6 +166,165 @@
             
 
   
+    <article id="post-auto-deploy-with-webhook" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/26/auto-deploy-with-webhook/" target="_blank">通过GitHub的Webhook 实现推送的自动更新</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/26/auto-deploy-with-webhook/" class="archive-article-date">
+        <time datetime="2020-05-25T16:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>试了网上找到的几种方法，发现都有一些很容出错的地方。</p>
+<p>1、项目目录的权限问题。</p>
+<p>2、www-data 用户连接 ssh 的证书问题。</p>
+<p>3、Laravel 自动部署需要注意的几个问题。</p>
+<p>引申出来的其他问题待补充。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/26/auto-deploy-with-webhook/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-upgrade-php-version" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/26/upgrade-php-version/" target="_blank">Ubuntu升级PHP到最新版本</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/26/upgrade-php-version/" class="archive-article-date">
+        <time datetime="2020-05-25T16:06:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>第一步：升级 PHP 版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add-apt-repository ppa:ondrej/php</span><br><span class="line">apt-get update</span><br><span class="line">apt-get upgrade php</span><br></pre></td></tr></table></figure>
+
+<p>第二步：升级常用扩展</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt-get install php-mbstring</span><br><span class="line">apt-get install php-gd</span><br><span class="line">apt-get install php-dom</span><br><span class="line">apt-get install php-mysql</span><br><span class="line">apt-get install php-curl</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/26/upgrade-php-version/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-update-node-to-latest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -199,7 +358,7 @@
 <h2 id="清除npm-cache"><a href="#清除npm-cache" class="headerlink" title="清除npm cache"></a>清除npm cache</h2><p><code>npm cache clean -force</code></p>
 <h2 id="安装n模块"><a href="#安装n模块" class="headerlink" title="安装n模块"></a>安装n模块</h2><p><code>npm install -g n</code></p>
 <h2 id="不行就这样："><a href="#不行就这样：" class="headerlink" title="不行就这样："></a>不行就这样：</h2><p> <code>npm install -g n -f</code></p>
-<h2 id="升级新版本（稳定版-stable-最新版-latest-指定版本号v8-11-1）"><a href="#升级新版本（稳定版-stable-最新版-latest-指定版本号v8-11-1）" class="headerlink" title="升级新版本（稳定版 stable ,最新版 latest ,指定版本号v8.11.1）"></a>升级新版本（稳定版 stable ,最新版 latest ,指定版本号v8.11.1）</h2><p><code>n latest</code></p>
+<h2 id="升级新版本（稳定版-stable-最新版-latest-指定版本号v8-11-1）"><a href="#升级新版本（稳定版-stable-最新版-latest-指定版本号v8-11-1）" class="headerlink" title="升级新版本（稳定版 stable ,最新版 latest ,指定版本号v8.11.1）"></a>升级新版本（稳定版 stable ,最新版 latest ,指定版本号v8.11.1）</h2><p><code>n latest //一般情况升级到stable即可，不要升级到latest，Bug较多</code><br><code>n stable //升级到最新稳定版本</code></p>
 <h2 id="查看版本号，确认是否升级成功"><a href="#查看版本号，确认是否升级成功" class="headerlink" title="查看版本号，确认是否升级成功"></a>查看版本号，确认是否升级成功</h2><p><code>node -v</code></p>
 
     
@@ -1082,212 +1241,9 @@
 
 
   
-    <article id="post-youzan-personal-payment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2018/12/07/youzan-personal-payment/" target="_blank">通过有赞云实现个人在线支即时到账</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2018/12/07/youzan-personal-payment/" class="archive-article-date">
-        <time datetime="2018-12-07T10:16:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>很多人都想出售自己的一些产品，课程，电子书，或者其它在线可售卖的东西，但是不管是微信支付还是支付宝，都需要公司账户，这一套不是不可以搞，就是太麻烦了而已。今天介绍的就是不需要公司账号实现个人收款的自动化方案（当然，交易 1% 手续费比微信等略高）。</p>
-<p>思路是：</p>
-<p><strong>环境准备</strong>：在有赞开通微小店（免费）-&gt; 注册有赞云 -&gt; 创建自用型应用 -&gt; 绑定微小店 -&gt; 开通 push (推送交易状态)</p>
-<p><strong>交易流程</strong>：调用有赞云的收银 API ，创建支付二维码(并存储二维码 id 到自有网站订单) -&gt; 用户扫描二维码并支付 -&gt; 推送交易状态到你的网站 -&gt; 更新网站订单状态 -&gt; 完成购买</p>
-<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a><strong>环境准备</strong></h2><p><strong>第一步：开通微小店</strong></p>
-<p>去这里注册并开通小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc">有赞微小店_微店怎么开_微店网页登录/下载 - 做生意，用有赞</a></p>
-<p><strong>第二步：注册有赞云</strong></p>
-<p>去这里注册个人开发者：<a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/">有赞云 - 做软件，用有赞云</a>，然后创建<strong>自用型</strong>应用，默认微商城，填写应用名称点下一步，授权店铺，选择你上面开通的小店名称并完成授权绑定。</p>
-<p><strong>第三步：开通应用动态推送</strong></p>
-<p>这一步主要是接收订单交易状态的，用户发起支付与支付完成都有推送消息，后面我们会介绍如何处理推送。</p>
-<p>开通推送的方法：有赞云控制台 -&gt; 应用设置 -&gt; 开发信息 -&gt; 修改 -&gt; 填写接收推送的网址即可。</p>
-<p>环境已经准备 OK 了，你的手机上应该已经装了微小店应用了，接下来我们要发起交易，开始之前我们得准备好 SDK，如果你使用 Laravel，我封了一个包：<a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan">overtrue/laravel-youzan</a>，如果你是其它框架，那么请使用 HanSon 的封装：<a href="http://link.zhihu.com/?target=https%3A//github.com/HanSon/youzan-sdk">HanSon/youzan-sdk</a>。当然还有一个选择，官方 SDK：<a href="http://link.zhihu.com/?target=https%3A//github.com/youzan/open-sdk-php">youzan/open-sdk-php</a>。</p>
-<p>安装完 SDK，配置环境我们需要一些参数：</p>
-<ul>
-<li>client_id: 应用ID，在有赞云控制台 -&gt; 应用设置 页可以找到</li>
-<li>client_secret 密钥，同样在应用设置页</li>
-<li>kdt_id 其实就是原来的口袋通ID，就是应用设置页基本信息中的 “授权店铺id”</li>
-</ul>
-<h2 id="交易流程"><a href="#交易流程" class="headerlink" title="交易流程"></a><strong>交易流程</strong></h2><p><strong>第一步：创建收款二维码</strong></p>
-<p>这一步一般是用户在你的网站选择完商品，或者在购物车点结算，你在自己网站创建完订单后，调用有赞云收银 API 创建二维码，以我的包为例（大同小异啦）：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$result = \Youzan::request(<span class="string">'youzan.pay.qrcode.create'</span>, [</span><br><span class="line">                <span class="string">'qr_type'</span> =&gt; <span class="string">'QR_TYPE_DYNAMIC'</span>,  <span class="comment">// 这个就不要动了</span></span><br><span class="line">                <span class="string">'qr_price'</span> =&gt; <span class="number">100</span>,  <span class="comment">// 金额：分</span></span><br><span class="line">                <span class="string">'qr_name'</span> =&gt; <span class="string">'iPhone 8 plus 64G 金色'</span>, <span class="comment">// 收款理由</span></span><br><span class="line">                <span class="string">'qr_source'</span> =&gt; <span class="string">'102828399222'</span>, <span class="comment">// 自定义字段，你可以设置为网站订单号</span></span><br><span class="line">            ])<span class="string">'</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>得到的结果呢包含三个值：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"qr_id": "19707",</span><br><span class="line">"qr_url": "https://trade.koudaitong.com/wxpay/confirmQr?qr_id=19707&amp;kdt_id=55",</span><br><span class="line">"qr_code": "data:image/png;base64,iV......"</span><br></pre></td></tr></table></figure>
-
-<p>其中 qr_id 你需要与刚才的订单绑定（这里取决于你自己的实现了，比如你在网站应该有 payments 表用于专门记录支付记录）</p>
-<p>qr_url 呢其实就是扫码完打开的页面，qr_code 是图片内容，可以直接放到 img 的 src 中，data-url 格式。就是一个二维码图片。</p>
-<p>用户扫码后打开一个网址完成付款。这时候你的手机 app 微小店会告诉你有新的订单。</p>
-<p>接下来就是处理交易结果了。</p>
-<p><strong>第二步：主动查询订单</strong></p>
-<p>为啥要主动查询呢，不是有推送么，对，但是推送的时间以及成功率是无法保证的，所以我们应该主动去查询，我的做法是在交易创建完成后，定时（2秒左右）查询一次订单信息：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$payment = Payment::whereQrId(<span class="string">'19707'</span>);</span><br><span class="line">$result = Youzan::request(<span class="string">'youzan.trades.qr.get'</span>, [</span><br><span class="line">     <span class="string">'qr_id'</span> =&gt; $payment-&gt;qr_id, </span><br><span class="line">     <span class="string">'status'</span> =&gt; <span class="string">'TRADE_RECEIVED'</span></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($result[<span class="string">'total_results'</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    $order = array_pop($result[<span class="string">'qr_trades'</span>]);</span><br><span class="line">    $payment-&gt;status = Payment::STATUS_SUCCEED;</span><br><span class="line">    $payment-&gt;save();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面我们先从自己的数据库根据 qr_id 查询交易记录得到 $payment，然后调用了有赞云 API 的二维码订单列表得到这个二维码产生的成功的交易订单。</p>
-<p>如果得到成功交易的订单数量大于 0 （一般就一笔），就更新支付状态为成功。</p>
-<p>反之，继续查，这里一般有一个限制，比如查10次没有交易就关闭，或者其它你觉得 OK 的策略都可以。</p>
-<p><strong>第三步：处理推送</strong></p>
-<p>这一步与其它支付的情况不太一样，因为推送过来的内容不是直接就能与你的订单关联上的，推送过来的内容中有一个 id 字段，这是有赞的订单 ID ，不是我们的订单 ID，我们先要拿这个 ID 去他们的 API 取到交易详情，然后再从交易详情得到 qr_id 才能查出我们订单的关联信息。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($request-&gt;get(<span class="string">'type'</span>) == <span class="string">'TRADE_ORDER_STATE'</span> </span><br><span class="line">    &amp;&amp; $request-&gt;get(<span class="string">'status'</span>) == <span class="string">'TRADE_SUCCESS'</span>) &#123;</span><br><span class="line">    $order = Youzan::request(<span class="string">'youzan.trade.get'</span>, [<span class="string">'tid'</span> =&gt; $request-&gt;id]);</span><br><span class="line"></span><br><span class="line">    $payment = Payment::WhereQrId($order[<span class="string">'trade'</span>][<span class="string">'qr_id'</span>])-&gt;first();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($payment &amp;&amp; $payment-&gt;status !== <span class="keyword">self</span>::STATUS_SUCCEED) &#123;</span><br><span class="line">        $payment-&gt;status = Payment::STATUS_SUCCEED;</span><br><span class="line">        $payment-&gt;save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>获取交易详情 API 为 youzan.trade.get，传入的 tid 就是推送内容里的 id。二维码 ID 在交易详情的 trade 里。</p>
-<p>那这一套流程就实现完了，个人感觉还是非常容易的，收款完成你就可以在微小店提现了。</p>
-<p>个人觉得这一套下来接入成本非常的低，然后还有一个非常大的好处是给你省去很多开发工作，因为在手机 app 上随时有推送，以及订单管理，每天的收益统计等，很方便，当然 1% 的手续费感觉其实还好吧，毕竟你的个人站交易也大不到百万千万这样的额度去。</p>
-<p>相关资料：</p>
-<p>有赞云：<a href="http://link.zhihu.com/?target=http%3A//www.youzanyun.com/">www.youzanyun.com</a></p>
-<p>微小店：<a href="http://link.zhihu.com/?target=https%3A//h5.youzan.com/v2/index/wxdpc">有赞微小店_微店怎么开_微店网页登录/下载 - 做生意，用有赞</a></p>
-<p>收银台 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/pay_qrcode">收银台API - 有赞云</a></p>
-<p>交易 API: <a href="http://link.zhihu.com/?target=https%3A//www.youzanyun.com/apilist/list/group_trade/trade">商家管理订单API - 有赞云</a></p>
-<p>overtrue/laravel-youzan: <a href="http://link.zhihu.com/?target=https%3A//github.com/overtrue/laravel-youzan">overtrue/laravel-youzan</a></p>
-<p>HanSon/youzan-sdk: <a href="http://link.zhihu.com/?target=https%3A//github.com/HanSon/youzan-sdk">HanSon/youzan-sdk</a></p>
-<p>官方 SDK：<a href="http://link.zhihu.com/?target=https%3A//github.com/youzan/open-sdk-php">youzan/open-sdk-php</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2018/12/07/youzan-personal-payment/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mobile-location" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2018/12/07/mobile-location/" target="_blank">获取手机号码归属地及运营商信息</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2018/12/07/mobile-location/" class="archive-article-date">
-        <time datetime="2018-12-07T10:13:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 手机号码归属地查询</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $tel</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLocation</span><span class="params">($tel)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 过滤参数</span></span><br><span class="line">    <span class="keyword">if</span> ( !isPhoneNumber($tel) ) <span class="keyword">return</span> [<span class="string">'code'</span>=&gt;<span class="number">200</span>,<span class="string">'status'</span>=&gt;<span class="keyword">false</span>,<span class="string">'msg'</span>=&gt;<span class="string">'Cell phone number error!'</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求地址</span></span><br><span class="line">    $url = <span class="string">'http://mobsec-dianhua.baidu.com/dianhua_api/open/location?tel='</span>.$tel;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发起请求</span></span><br><span class="line">    <span class="comment">//$res = file_get_contents($url);</span></span><br><span class="line">    $res = curlRequest($url,<span class="string">''</span>,<span class="string">'GET'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( $res[<span class="string">'code'</span>] !== <span class="number">200</span> ) <span class="keyword">return</span> [<span class="string">'code'</span>=&gt;$res[<span class="string">'code'</span>],<span class="string">'status'</span>=&gt;<span class="keyword">false</span>,<span class="string">'msg'</span>=&gt;$res[<span class="string">'responseHeader'</span>][<span class="string">'msg'</span>]];<span class="comment">// 判断请求是否成功</span></span><br><span class="line"></span><br><span class="line">    $data = $res[<span class="string">'response'</span>][$tel];<span class="comment">// 接收返回值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( !$data ) <span class="keyword">return</span> [<span class="string">'code'</span>=&gt;<span class="number">200</span>,<span class="string">'status'</span>=&gt;<span class="keyword">false</span>,<span class="string">'msg'</span>=&gt;<span class="string">'API Exception!'</span>];<span class="comment">// 返回值为空</span></span><br><span class="line"></span><br><span class="line">    $response[<span class="string">'province'</span>] = $data[<span class="string">'detail'</span>][<span class="string">'province'</span>];        <span class="comment">// 归属地</span></span><br><span class="line">    $response[<span class="string">'city'</span>] = $data[<span class="string">'detail'</span>][<span class="string">'area'</span>][<span class="number">0</span>][<span class="string">'city'</span>];   <span class="comment">// 城市</span></span><br><span class="line">    $response[<span class="string">'service'</span>] = $data[<span class="string">'detail'</span>][<span class="string">'operator'</span>];     <span class="comment">// 运行商</span></span><br><span class="line">    $response[<span class="string">'fullname'</span>] = $data[<span class="string">'location'</span>];            <span class="comment">// 运行商全称</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">'code'</span>=&gt;<span class="number">200</span>,<span class="string">'status'</span>=&gt;<span class="keyword">true</span>,<span class="string">'data'</span>=&gt;$response];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 手机号码格式验证</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $tel</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPhoneNumber</span><span class="params">($tel)</span>//手机号码正则表达试</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (preg_match(<span class="string">"/0?(13|14|15|17|18|19)[0-9]&#123;9&#125;/"</span>,$tel))?<span class="keyword">true</span>:<span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 发起CURL请求</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $url 请求地址</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $data 请求数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $method 请求方式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> array 一维数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curlRequest</span><span class="params">($url,$data = <span class="string">''</span>,$method = <span class="string">'POST'</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $ch = curl_init(); <span class="comment">//初始化CURL句柄</span></span><br><span class="line">    curl_setopt($ch, CURLOPT_URL, $url); <span class="comment">//设置请求的URL</span></span><br><span class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER,<span class="number">1</span>); <span class="comment">//设为TRUE把curl_exec()结果转化为字串，而s不是直接输出</span></span><br><span class="line">    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method); <span class="comment">//设置请求方式</span></span><br><span class="line"></span><br><span class="line">    curl_setopt($ch,CURLOPT_HTTPHEADER,<span class="keyword">array</span>(<span class="string">"X-HTTP-Method-Override: $method"</span>));<span class="comment">//设置HTTP头信息</span></span><br><span class="line">    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);<span class="comment">//设置提交的字符串</span></span><br><span class="line">    $document = curl_exec($ch);<span class="comment">//执行预定义的CURL</span></span><br><span class="line">    $code = curl_getinfo($ch,CURLINFO_HTTP_CODE); <span class="comment">//获取HTTP请求状态码～</span></span><br><span class="line">    curl_close($ch);</span><br><span class="line"></span><br><span class="line">    $document = json_decode(removeBOM($document),<span class="keyword">true</span>);</span><br><span class="line">    $document[<span class="string">'code'</span>] = $code;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $document;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检测并移除 BOM 头</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $str 字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string 去除BOM以后的字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeBOM</span><span class="params">($str = <span class="string">''</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (substr($str, <span class="number">0</span>,<span class="number">3</span>) == pack(<span class="string">"CCC"</span>,<span class="number">0xef</span>,<span class="number">0xbb</span>,<span class="number">0xbf</span>)) &#123;</span><br><span class="line">        $str = substr($str, <span class="number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;pre&gt;"</span>;</span><br><span class="line">var_dump( getLocation(<span class="string">'18888888888'</span>) );<span class="keyword">exit</span>();</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2018/12/07/mobile-location/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
