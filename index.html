@@ -68,6 +68,109 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-php-json-web-token" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/19/php-json-web-token/" class="article-date">
+  <time datetime="2020-06-19T14:20:34.000Z" itemprop="datePublished">2020-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/19/php-json-web-token/">JWT的PHP实现过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>什么是JWT，JWT(json web token)是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准。<br>JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源。比如用在用户登录上。<br>JWT定义了一种用于简洁，自包含的用于通信双方之间以 JSON 对象的形式安全传递信息的方法。JWT 可以使用 HMAC 算法或者是 RSA 的公钥密钥对进行签名。</p>
+<h3 id="JWT-有两个特点："><a href="#JWT-有两个特点：" class="headerlink" title="JWT 有两个特点："></a>JWT 有两个特点：</h3><p>自包含(Self-contained)：负载中包含了所有用户所需要的信息，避免了多次查询数据库</p>
+<p>简洁(Compact)：可以通过URL, POST 参数或者在 HTTP header 发送，因为数据量小，传输速度快</p>
+<h3 id="WT组成"><a href="#WT组成" class="headerlink" title="WT组成"></a>WT组成</h3><p><strong><code>JWT由header，payload，signature三个部分</code></strong><code>，下面我们用官网的实例先来讲解一个这三个部分的用法。</code></p>
+<p><strong><code>header部分：</code></strong></p>
+<p>jwt的头部承载两部分信息：</p>
+<p>声明类型，这里是jwt</p>
+<p>声明加密的算法 通常直接使用 HMAC SHA256</p>
+<p>完整的头部就像下面这样的JSON：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;alg&quot;: &quot;HS256&quot;,</span><br><span class="line"> &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 对应base64UrlEncode编码为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span><br></pre></td></tr></table></figure>
+
+<p>说明：该字段为json格式。alg字段指定了生成signature的算法，默认值为HS256，typ默认值为JWT </p>
+<p><strong>payload部分：</strong></p>
+<p>载荷就是存放有效信息的地方。</p>
+<p>标准中注册的声明 (建议但不强制使用) ：</p>
+<p>iss: jwt签发者</p>
+<p>sub: jwt所面向的用户</p>
+<p>aud: 接收jwt的一方</p>
+<p>exp: jwt的过期时间，这个过期时间必须要大于签发时间</p>
+<p>nbf: 定义在什么时间之前，该jwt都是不可用的</p>
+<p>iat: jwt的签发时间</p>
+<p>jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;sub&quot;: &quot;1234567890&quot;,</span><br><span class="line"> &quot;name&quot;: &quot;John Doe&quot;,</span><br><span class="line"> &quot;iat&quot;: 1516239022</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对应base64UrlEncode编码为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</span><br></pre></td></tr></table></figure>
+
+<p>说明：该字段为json格式，表明用户身份的数据，可以自己自定义字段，很灵活。sub 面向的用户，name 姓名 ,iat 签发时间。例如可自定义示例如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"iss"</span>: <span class="string">"admin"</span>,     <span class="comment">//该JWT的签发者</span></span><br><span class="line">  <span class="string">"iat"</span>: <span class="number">1535967430</span>,    <span class="comment">//签发时间</span></span><br><span class="line">  <span class="string">"exp"</span>: <span class="number">1535974630</span>,    <span class="comment">//过期时间</span></span><br><span class="line">  <span class="string">"nbf"</span>: <span class="number">1535967430</span>,     <span class="comment">//该时间之前不接收处理该Token</span></span><br><span class="line">  <span class="string">"sub"</span>: <span class="string">"www.admin.com"</span>,  <span class="comment">//面向的用户</span></span><br><span class="line">  <span class="string">"jti"</span>: <span class="string">"9f10e796726e332cec401c569969e13e"</span>  <span class="comment">//该Token唯一标识</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>signature部分：</code></strong></p>
+<p>jwt的第三部分是一个签证信息，这个签证信息由三部分组成：</p>
+<ul>
+<li>header (base64后的)</li>
+<li>payload (base64后的)</li>
+<li>secret</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line"> base64UrlEncode(header) + <span class="string">"."</span> +</span><br><span class="line"> base64UrlEncode(payload),</span><br><span class="line"> <span class="number">123456</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>对应的签名为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keH6T3x1z7mmhKL1T3r9sQdAxxdzB6siemGMr_6ZOwU</span><br></pre></td></tr></table></figure>
+
+<p>最终得到的JWT的json为(header.payload.signature)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.keH6T3x1z7mmhKL1T3r9sQdAxxdzB6siemGMr_6ZOwU</span><br></pre></td></tr></table></figure>
+
+<p>说明：对header和payload进行base64UrlEncode编码后进行拼接。通过key（这里是123456）进行HS256算法签名。</p>
+<h3 id="JWT的使用流程"><a href="#JWT的使用流程" class="headerlink" title="JWT的使用流程"></a>JWT的使用流程</h3><ul>
+<li>初次登录：用户初次登录，输入用户名密码</li>
+<li>密码验证：服务器从数据库取出用户名和密码进行验证</li>
+<li>生成JWT：服务器端验证通过，根据从数据库返回的信息，以及预设规则，生成JWT</li>
+<li>返还JWT：服务器的HTTP RESPONSE中将JWT返还</li>
+<li>带JWT的请求：以后客户端发起请求，HTTP REQUEST</li>
+<li>HEADER中的Authorizatio字段都要有值，为JWT</li>
+<li>服务器验证JWT</li>
+</ul>
+<h3 id="PHP如何实现JWT"><a href="#PHP如何实现JWT" class="headerlink" title="PHP如何实现JWT"></a>PHP如何实现JWT</h3><p>这里使用的是PHP 7.0.31，我们新建一个文件jwtAuth.php，完整类代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * PHP实现jwt</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JwtAuth</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//头部</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> $header=<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'alg'</span>=&gt;<span class="string">'HS256'</span>, <span class="comment">//生成signature的算法</span></span><br><span class="line">    <span class="string">'typ'</span>=&gt;<span class="string">'JWT'</span>  <span class="comment">//类型</span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="comment">//使用HMAC生成信息摘要时所使用的密钥</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> $key=<span class="string">'root123456'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 获取jwt token</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> array $payload jwt载荷  格式如下非必须</span></span><br><span class="line"><span class="comment">   * [</span></span><br><span class="line"><span class="comment">   * 'iss'=&gt;'jwt_admin', //该JWT的签发者</span></span><br><span class="line"><span class="comment">   * 'iat'=&gt;time(), //签发时间</span></span><br><span class="line"><span class="comment">   * 'exp'=&gt;time()+7200, //过期时间</span></span><br><span class="line"><span class="comment">   * 'nbf'=&gt;time()+60, //该时间之前不接收处理该Token</span></span><br><span class="line"><span class="comment">   * 'sub'=&gt;'www.mano100.cn', //面向的用户</span></span><br><span class="line"><span class="comment">   * 'jti'=&gt;md5(uniqid('JWT').time()) //该Token唯一标识</span></span><br><span class="line"><span class="comment">   * ]</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> bool|string</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getToken</span><span class="params">(array $payload)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(is_array($payload))</span><br><span class="line">    &#123;</span><br><span class="line">      $base64header=<span class="keyword">self</span>::base64UrlEncode(json_encode(<span class="keyword">self</span>::$header,JSON_UNESCAPED_UNICODE));</span><br><span class="line">      $base64payload=<span class="keyword">self</span>::base64UrlEncode(json_encode($payload,JSON_UNESCAPED_UNICODE));</span><br><span class="line">      $token=$base64header.<span class="string">'.'</span>.$base64payload.<span class="string">'.'</span>.<span class="keyword">self</span>::signature($base64header.<span class="string">'.'</span>.$base64payload,<span class="keyword">self</span>::$key,<span class="keyword">self</span>::$header[<span class="string">'alg'</span>]);</span><br><span class="line">      <span class="keyword">return</span> $token;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 验证token是否有效,默认验证exp,nbf,iat时间</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> string $Token 需要验证的token</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> bool|string</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">verifyToken</span><span class="params">(string $Token)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    $tokens = explode(<span class="string">'.'</span>, $Token);</span><br><span class="line">    <span class="keyword">if</span> (count($tokens) != <span class="number">3</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">list</span>($base64header, $base64payload, $sign) = $tokens;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取jwt算法</span></span><br><span class="line">    $base64decodeheader = json_decode(<span class="keyword">self</span>::base64UrlDecode($base64header), JSON_OBJECT_AS_ARRAY);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>($base64decodeheader[<span class="string">'alg'</span>]))</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//签名验证</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>::signature($base64header . <span class="string">'.'</span> . $base64payload, <span class="keyword">self</span>::$key, $base64decodeheader[<span class="string">'alg'</span>]) !== $sign)</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    $payload = json_decode(<span class="keyword">self</span>::base64UrlDecode($base64payload), JSON_OBJECT_AS_ARRAY);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//签发时间大于当前服务器时间验证失败</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($payload[<span class="string">'iat'</span>]) &amp;&amp; $payload[<span class="string">'iat'</span>] &gt; time())</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//过期时间小宇当前服务器时间验证失败</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($payload[<span class="string">'exp'</span>]) &amp;&amp; $payload[<span class="string">'exp'</span>] &lt; time())</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//该nbf时间之前不接收处理该Token</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($payload[<span class="string">'nbf'</span>]) &amp;&amp; $payload[<span class="string">'nbf'</span>] &gt; time())</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $payload;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * base64UrlEncode  https://jwt.io/ 中base64UrlEncode编码实现</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> string $input 需要编码的字符串</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">base64UrlEncode</span><span class="params">(string $input)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str_replace(<span class="string">'='</span>, <span class="string">''</span>, strtr(base64_encode($input), <span class="string">'+/'</span>, <span class="string">'-_'</span>));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * base64UrlEncode https://jwt.io/ 中base64UrlEncode解码实现</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> string $input 需要解码的字符串</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> bool|string</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">base64UrlDecode</span><span class="params">(string $input)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    $remainder = strlen($input) % <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">if</span> ($remainder) &#123;</span><br><span class="line">      $addlen = <span class="number">4</span> - $remainder;</span><br><span class="line">      $input .= str_repeat(<span class="string">'='</span>, $addlen);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> base64_decode(strtr($input, <span class="string">'-_'</span>, <span class="string">'+/'</span>));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * HMACSHA256签名  https://jwt.io/ 中HMACSHA256签名实现</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> string $input 为base64UrlEncode(header).".".base64UrlEncode(payload)</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> string $key</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> string $alg  算法方式</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> mixed</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">signature</span><span class="params">(string $input, string $key, string $alg = <span class="string">'HS256'</span>)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    $alg_config=<span class="keyword">array</span>(</span><br><span class="line">      <span class="string">'HS256'</span>=&gt;<span class="string">'sha256'</span></span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>::base64UrlEncode(hash_hmac($alg_config[$alg], $input, $key,<span class="keyword">true</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="这里测试一下"><a href="#这里测试一下" class="headerlink" title="这里测试一下"></a>这里测试一下</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试和官网是否匹配begin</span></span><br><span class="line">  $payload=<span class="keyword">array</span>(<span class="string">'sub'</span>=&gt;<span class="string">'1234567890'</span>,<span class="string">'name'</span>=&gt;<span class="string">'John Doe'</span>,<span class="string">'iat'</span>=&gt;<span class="number">1516239022</span>);</span><br><span class="line">  $jwt=<span class="keyword">new</span> Jwt;</span><br><span class="line">  $token=$jwt-&gt;getToken($payload);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;pre&gt;"</span>;</span><br><span class="line">  <span class="keyword">echo</span> $token;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//对token进行验证签名</span></span><br><span class="line">  $getPayload=$jwt-&gt;verifyToken($token);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;&lt;br&gt;"</span>;</span><br><span class="line">  var_dump($getPayload);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;&lt;br&gt;"</span>;</span><br><span class="line">  <span class="comment">//测试和官网是否匹配end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">//自己使用测试begin</span></span><br><span class="line">  $payload_test=<span class="keyword">array</span>(<span class="string">'iss'</span>=&gt;<span class="string">'admin'</span>,<span class="string">'iat'</span>=&gt;time(),<span class="string">'exp'</span>=&gt;time()+<span class="number">7200</span>,<span class="string">'nbf'</span>=&gt;time(),<span class="string">'sub'</span>=&gt;<span class="string">'www.admin.com'</span>,<span class="string">'jti'</span>=&gt;md5(uniqid(<span class="string">'JWT'</span>).time()));;</span><br><span class="line">  $token_test=Jwt::getToken($payload_test);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;pre&gt;"</span>;</span><br><span class="line">  <span class="keyword">echo</span> $token_test;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//对token进行验证签名</span></span><br><span class="line">  $getPayload_test=Jwt::verifyToken($token_test);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;&lt;br&gt;"</span>;</span><br><span class="line">  var_dump($getPayload_test);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;&lt;br&gt;"</span>;</span><br><span class="line">  <span class="comment">//自己使用时候end</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://tinywind.cn/2020/06/19/php-json-web-token/" data-id="ckbmb3wd200008ju41ci90ty6" class="article-share-link" data-share="baidu" data-title="JWT的PHP实现过程">分享到</a>
+      
+
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-auto-deploy-with-webhook" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/26/auto-deploy-with-webhook/" class="article-date">
@@ -716,75 +819,6 @@
 
 
   
-    <article id="post-git-head-detached-solution" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/11/git-head-detached-solution/" class="article-date">
-  <time datetime="2018-12-11T06:00:42.000Z" itemprop="datePublished">2018-12-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/11/git-head-detached-solution/">Git HEAD detached from XXX (git HEAD 游离)解决</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是-HEAD"><a href="#什么是-HEAD" class="headerlink" title="什么是 HEAD"></a>什么是 HEAD</h3><p>Git 中的 HEAD 可以理解为一个指针，我们可以在命令行中输入 cat .git/HEAD 查看当前 HEAD 指向哪儿，一般它指向当前工作目录所在分支的最新提交。</p>
-<p><img src="1.jpeg" alt="tested"></p>
-<p>当使用 git checkout &lt; branch_name&gt; 切换分支时，HEAD 会移动到指定分支。</p>
-<p><img src="2.jpeg" alt="git-detached"></p>
-<p>但是如果使用的是 git checkout &lt; commit id&gt;，即切换到指定的某一次提交，HEAD 就会处于 detached 状态（游离状态）。</p>
-<p><img src="/git-head-detached-solution/3.jpeg" alt="git-detached"></p>
-<h3 id="HEAD-游离状态的利与弊"><a href="#HEAD-游离状态的利与弊" class="headerlink" title="HEAD 游离状态的利与弊"></a>HEAD 游离状态的利与弊</h3><p>HEAD 处于游离状态时，我们可以很方便地在历史版本之间互相切换，比如需要回到某次提交，直接 checkout 对应的 commit id 或者 tag 名即可。</p>
-<p>它的弊端就是：在这个基础上的提交会新开一个匿名分支！</p>
-<p><img src="/git-head-detached-solution/4.jpeg" alt="git-detached"></p>
-<p>也就是说我们的提交是无法可见保存的，一旦切到别的分支，游离状态以后的提交就不可追溯了。</p>
-<p><img src="/git-head-detached-solution/5.jpeg" alt="git-detached"></p>
-<p>解决办法就是新建一个分支保存游离状态后的提交：</p>
-<p><img src="/git-head-detached-solution/6.jpeg" alt="git-detached"></p>
-<h3 id="具体解决操作"><a href="#具体解决操作" class="headerlink" title="具体解决操作"></a>具体解决操作</h3><ol>
-<li><p>git branch -v 查看当前领先多少，确定游离前的分支，新建一个 temp 分支，把当前提交的代码放到整个分支 </p>
-</li>
-<li><p>checkout 出要回到游离前的分支 </p>
-</li>
-<li><p>然后 merge 刚才创建的临时分支，把那些代码拿回来 </p>
-</li>
-<li><p>git status 查看下合并结果，有冲突就解决 </p>
-</li>
-<li><p>合并 OK 后就提交到远端 </p>
-</li>
-<li><p>删除刚才创建的临时分支</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://tinywind.cn/2018/12/11/git-head-detached-solution/" data-id="cka5femkm002jgbu417zt6ve8" class="article-share-link" data-share="baidu" data-title="Git HEAD detached from XXX (git HEAD 游离)解决">分享到</a>
-      
-
-      
-
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -825,7 +859,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -835,6 +869,10 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/06/19/php-json-web-token/">JWT的PHP实现过程</a>
+          </li>
         
           <li>
             <a href="/2020/05/26/auto-deploy-with-webhook/">通过GitHub的Webhook 实现推送的自动更新</a>
@@ -850,10 +888,6 @@
         
           <li>
             <a href="/2020/05/13/npm-error-caused-by-node/">node版本导致的 npm 报错</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/13/github-api-with-php-curl/">PHP 调用 Github API(v3)</a>
           </li>
         
       </ul>

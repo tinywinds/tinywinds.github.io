@@ -68,6 +68,53 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-chengdaomohuixiang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/04/chengdaomohuixiang/" class="article-date">
+  <time datetime="2016-04-04T05:39:08.000Z" itemprop="datePublished">2016-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/04/chengdaomohuixiang/">成道莫回乡，回乡道不成，溪边老婆子，唤我旧时名。</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在中国古代佛教的历史上有一位高僧叫马祖道一,他写过一首诗。 成道莫回乡，回乡道不成，溪边老婆子，唤我旧时名。 意思是说你要是想学佛修道就千万别回老家，一旦回老家你就可能前功尽弃。为啥呢？因为家乡小溪边的那个老太婆，从小就认得我呀！他见了我一高兴叫了我小时候的名字。</p>
+<p>我修行的功夫就退回到以前了，这当然是高僧自己开自己的玩笑，不过，所有自我提升的过程确实是有这个问题，昨天有个朋友还在那儿讲我自己的每次进步都伴随着一堆老朋友的疏远。</p>
+<p>这既是进步的结果也是进步的原因，如果我的人际关系不迭代升级，我自己是升不了级的，这话真是说出了一个残酷的真相。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://tinywind.cn/2016/04/04/chengdaomohuixiang/" data-id="cka5femjz000lgbu4ba1h2uxn" class="article-share-link" data-share="baidu" data-title="成道莫回乡，回乡道不成，溪边老婆子，唤我旧时名。">分享到</a>
+      
+
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-datebase-design-notice" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/25/datebase-design-notice/" class="article-date">
@@ -592,53 +639,6 @@
 
 
   
-    <article id="post-curl_ssl_error" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/10/curl_ssl_error/" class="article-date">
-  <time datetime="2015-10-10T07:19:20.000Z" itemprop="datePublished">2015-10-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/10/curl_ssl_error/">php curl错误：SSL错误、bool(false)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>症状：php curl调用https出错 排查方法：在命令行中使用curl调用试试。 原因：服务器所在机房无法验证SSL证书。 解决办法：跳过SSL证书检查。 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 症状：php curl调用curl_exec返回bool(false)，命令行curl调用正常。 排查方法： var_dump(curl_error($ch)); 返回： string(23) “Empty reply from server” 再排查： curl_setopt($ch, CURLOPT_HEADER, true); curl_setopt($ch, CURLOPT_RETURNTRANSFER, false); 返回： HTTP/1.1 100 Continue Connection: close 原因：php curl接收到HTTP 100就结束了，应该继续接收HTTP 200 解决方案： curl_setopt($ch, CURLOPT_HTTPHEADER, array(‘Expect:’)); PHP and cURL: Disabling 100-continue header Published June 15th, 2006 I’ve been using cURL (through PHP) to build a sort of proxy for a project I’m working on. I need to parse the returned headers (to recover the HTTP status), so had included a very simple script to do so. It had worked fine in the past, but for some reason barfed in this case. A closer look at what was being returned revealed that for some reason, Apache was prepending the ‘normal’ headers with an extra response header: HTTP/1.1 100 Continue HTTP/1.1 200 OK Date: Fri, 09 Jun 2006 15:23:42 GMT Server: Apache …A bit of Googling revealed that this was to do with a header that cURL sends by default: Expect: 100-continue …which in turns tells Apache to send the extra header. I poked around a fair bit but couldn’t quite find a workable solution short of manually removing the header in PHP, which seemed a bit clumsy. Finally, on a hunch I tried this: curl_setopt( $curl_handle, CURLOPT_HTTPHEADER, array( ‘Expect:’ ) ); …which basically overrides the original ‘Expect:’ header with an empty one. Hope this helps someone.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://tinywind.cn/2015/10/10/curl_ssl_error/" data-id="cka5femk50016gbu437se1irv" class="article-share-link" data-share="baidu" data-title="php curl错误：SSL错误、bool(false)">分享到</a>
-      
-
-      
-
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -679,7 +679,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -689,6 +689,10 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/06/19/php-json-web-token/">JWT的PHP实现过程</a>
+          </li>
         
           <li>
             <a href="/2020/05/26/auto-deploy-with-webhook/">通过GitHub的Webhook 实现推送的自动更新</a>
@@ -704,10 +708,6 @@
         
           <li>
             <a href="/2020/05/13/npm-error-caused-by-node/">node版本导致的 npm 报错</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/13/github-api-with-php-curl/">PHP 调用 Github API(v3)</a>
           </li>
         
       </ul>
