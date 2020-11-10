@@ -24,7 +24,7 @@
 
   <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
   
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 <body>
 <div id="container">
   <div id="wrap">
@@ -67,6 +67,57 @@
 </header>
     <div class="outer">
       <section id="main">
+  
+    <article id="post-controller-and-model" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/14/controller-and-model/" class="article-date">
+  <time datetime="2017-12-14T09:39:43.000Z" itemprop="datePublished">2017-12-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/">产品设计</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/14/controller-and-model/">对Controller与Model体型问题的一些想法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>相信接触过Rails的朋友们都知道<em>Skinny Controller_</em>, Fat Model_的说法 <em>Skinny Controller_</em>, Fat Model_的说法出现在各大论坛和教程，帮助了很多初入Rails者放置自己的代码。 但是这种说法未免太过简洁。 可能新手偶尔会在一些细节上混淆，产生这些代码是放在Controller好些还是Model好些的疑问。 本文<strong>并非反对</strong>这种观点，而是讨论下<strong>什么情况</strong>下Controller需要减肥。 我认为Controller并非一直都应该皮包骨头，而且有时应该属于Controller的脂肪，<strong>初入者不应该仅仅抱着一句廋Controller胖Model就随便的丢到Model里面，而应抱着求知的心态去思考问题</strong>：</p>
+<ol>
+<li>为什么要说胖Model,廋Controller?</li>
+<li>这种说法适应于任何情况吗？</li>
+</ol>
+<p>1.其实了解MVC思想就很容易理解第一点。 Model是用来封装业务逻辑的，所以要尽可能的把涉及业务逻辑的代码放到Model里。 Rails提供了Model中的验证即是个很好的例子。想象下，如果验证在Controller中，当你又要在另外的Controller中调用Model时，你可能需要把Controller中的验证代码再写一遍，而且现在你发现了一个Bug,你需要在所有使用该Model的Controller中改代码！这带来的很高的维护成本和重复代码。 Controller 提供View中的数据，所以如果程序的UI逻辑发生了很大的变动,Controller也有可能随之改变，现在你采用了胖Model廋Controller这种设计方式，因为业务逻辑都在Model中，Controller仅仅是对Model的调用，我们只需要改动Controller中的几行代码即可。 2.其实我们了解了第一点即可理解这里 举个例子，说下我遇到的问题。 我需要在视图中取到多个Tag并插入数据库 在视图中我取到的是如下字符串： Controller, Model, 代码设计, 新手向 我需要将其split后分别插入数据库 经过思考后我把split和循环插入数据库的代码写在controller中 因为现在采用的是从一串字符串中截取每个Tag，但若某天我修改视图层，用Ajax来分别获取每一个Tag。 如果上述逻辑写在Model中这势必会需要修改Model。 修改了下视图，却牵扯Model。足以证明这种设计有问题，所以放在Controller才是正确的做法。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>如果说Model封装业务逻辑，那么Controller就是封装了UI逻辑。 Model更接近数据库，Controller更接近视图。 处理业务逻辑的代码应该放到Model,牵扯到UI逻辑的应该放到Controller <strong>个人简单的判断方法</strong> 如果修改View时你的代码需要随之改动，那么把它放在Controller中 除此之外尽量放在Model中 如果这样你还是无法区分的话，至少记住一句话 <em>Skinny Controller__, Fat Model</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://tinywind.cn/2017/12/14/controller-and-model/" data-id="cka5femk3000xgbu46m2u9ij5" class="article-share-link" data-share="baidu" data-title="对Controller与Model体型问题的一些想法">分享到</a>
+      
+
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-warning-1265-data-truncated-column-status-row-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -606,53 +657,6 @@ set tx_isolation=’隔离级别名称;’</code></pre><p>后记：隔离级别�
 
 
   
-    <article id="post-missing-storage-symlink" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/03/missing-storage-symlink/" class="article-date">
-  <time datetime="2017-11-03T09:16:01.000Z" itemprop="datePublished">2017-11-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/03/missing-storage-symlink/">Missing storage symlink</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>We could not find a storage symlink. This could cause problems with loading media files from the browser. 解决办法： 以管理员权限启动命令行，然后再启动vagrant. 之后在项目目录运行 php artisan storage:link 然后ok</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://tinywind.cn/2017/11/03/missing-storage-symlink/" data-id="cka5femks0033gbu4cypt5e88" class="article-share-link" data-share="baidu" data-title="Missing storage symlink">分享到</a>
-      
-
-      
-
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -666,7 +670,7 @@ set tx_isolation=’隔离级别名称;’</code></pre><p>后记：隔离级别�
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OOP/">OOP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">PHP最佳实践</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ROBOTC/">ROBOTC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB%E5%BC%80%E5%8F%91/">WEB开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/WEB%E5%BC%80%E5%8F%91/">WEB开发</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/">产品设计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/">前端技术</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">版本管理</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OOP/">OOP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">PHP最佳实践</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ROBOTC/">ROBOTC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB%E5%BC%80%E5%8F%91/">WEB开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/WEB%E5%BC%80%E5%8F%91/">WEB开发</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/">产品设计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/">前端技术</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">版本管理</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -693,7 +697,7 @@ set tx_isolation=’隔离级别名称;’</code></pre><p>后记：隔离级别�
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -703,6 +707,10 @@ set tx_isolation=’隔离级别名称;’</code></pre><p>后记：隔离级别�
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/09/10/n-plus-one-problem/">N+1问题的产生及解决</a>
+          </li>
         
           <li>
             <a href="/2020/06/19/php-json-web-token/">JWT的PHP实现过程</a>
@@ -718,10 +726,6 @@ set tx_isolation=’隔离级别名称;’</code></pre><p>后记：隔离级别�
         
           <li>
             <a href="/2020/05/13/update-node-to-latest/">升级更新 node 版本</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/13/npm-error-caused-by-node/">node版本导致的 npm 报错</a>
           </li>
         
       </ul>
